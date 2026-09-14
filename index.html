@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ALISON GESTOR FINANCEIRO - SEGURANÇA MÁXIMA</title>
+  <!-- Google Fonts & Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Rajdhani:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    :root {
+      --bg-black: #040806;
+      --bg-darker: #020503;
+      --panel-bg: rgba(6, 17, 11, 0.92);
+      --panel-border: rgba(0, 255, 128, 0.28);
+      --panel-border-bright: #00ff73;
+      --neon-green: #00ff66;
+      --neon-glow: 0 0 15px rgba(0, 255, 102, 0.45);
+      --neon-glow-strong: 0 0 25px rgba(0, 255, 102, 0.75);
+      --neon-green-light: #20ffa0;
+      --neon-green-dark: #00b347;
+      --neon-red: #ff334b;
+      --text-white: #ffffff;
+      --text-muted: #82a892;
+      --input-bg: rgba(2, 12, 6, 0.9);
+      --input-border: rgba(0, 255, 115, 0.4);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; scrollbar-width: thin; scrollbar-color: var(--neon-green) #020804; }
+    *::-webkit-scrollbar { width: 6px; height: 6px; }
+    *::-webkit-scrollbar-track { background: #020804; }
+    *::-webkit-scrollbar-thumb { background-color: rgba(0, 255, 102, 0.4); border-radius: 4px; }
+
+    body {
+      background-color: var(--bg-black); color: var(--text-white); font-family: 'Inter', sans-serif; min-height: 100vh; overflow-x: hidden;
+      background-image: radial-gradient(circle at 10% 20%, rgba(0, 255, 102, 0.08) 0%, transparent 35%), radial-gradient(circle at 90% 80%, rgba(0, 255, 102, 0.07) 0%, transparent 40%), linear-gradient(rgba(0, 255, 102, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 102, 0.03) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+    }
+
+    #matrix-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; opacity: 0.07; z-index: 0; }
+
+    .login-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(2, 6, 4, 0.95); backdrop-filter: blur(12px); z-index: 99999; display: flex; align-items: center; justify-content: center; padding: 20px; transition: opacity 0.4s ease; }
+    .login-overlay.hidden { opacity: 0; pointer-events: none; }
+    .login-card { background: linear-gradient(135deg, rgba(8, 26, 15, 0.95) 0%, rgba(2, 10, 5, 0.98) 100%); border: 2px solid var(--neon-green); border-radius: 24px; width: 100%; max-width: 440px; padding: 38px 32px; box-shadow: 0 0 50px rgba(0, 255, 102, 0.35), inset 0 0 20px rgba(0, 255, 102, 0.1); position: relative; overflow: hidden; }
+    .login-header-brand { text-align: center; margin-bottom: 28px; }
+    .login-logo-svg { width: 56px; height: 56px; fill: var(--neon-green); filter: drop-shadow(0 0 12px var(--neon-green)); margin-bottom: 10px; }
+    .login-header-brand h1 { font-family: 'Orbitron', sans-serif; font-size: 1.6rem; font-weight: 900; letter-spacing: 2px; color: #fff; text-shadow: 0 0 10px var(--neon-green); }
+    .login-header-brand p { font-family: 'Rajdhani', sans-serif; font-size: 0.85rem; font-weight: 700; letter-spacing: 3px; color: var(--neon-green); text-transform: uppercase; margin-top: 4px; }
+    .login-tabs { display: flex; background: rgba(0, 20, 10, 0.8); border: 1px solid rgba(0, 255, 102, 0.25); border-radius: 12px; padding: 4px; margin-bottom: 22px; }
+    .login-tab-btn { flex: 1; background: transparent; border: none; color: var(--text-muted); padding: 10px; font-size: 0.88rem; font-weight: 700; cursor: pointer; border-radius: 9px; transition: all 0.25s; }
+    .login-tab-btn.active { background: rgba(0, 255, 102, 0.2); color: #fff; border: 1px solid rgba(0, 255, 102, 0.5); box-shadow: 0 0 12px rgba(0, 255, 102, 0.3); }
+    .login-form { display: flex; flex-direction: column; gap: 16px; }
+    .login-form-group { display: flex; flex-direction: column; gap: 6px; }
+    .login-form-group label { font-size: 0.8rem; font-weight: 600; color: #9ec5ad; }
+    .login-input-box { display: flex; align-items: center; background: rgba(1, 14, 7, 0.9); border: 1px solid rgba(0, 255, 102, 0.35); border-radius: 12px; padding: 11px 14px; transition: border-color 0.25s, box-shadow 0.25s; }
+    .login-input-box:focus-within { border-color: var(--neon-green); box-shadow: 0 0 14px rgba(0, 255, 102, 0.35); }
+    .login-input-box i { color: var(--neon-green); font-size: 1rem; margin-right: 12px; width: 18px; text-align: center; }
+    .login-input-box input { flex: 1; background: transparent; border: none; outline: none; color: #fff; font-size: 0.95rem; font-family: 'Inter', sans-serif; }
+    .login-btn-submit { margin-top: 6px; background: linear-gradient(90deg, #00d957 0%, #00ff73 100%); color: #011408; border: none; border-radius: 12px; padding: 14px; font-size: 1rem; font-weight: 800; letter-spacing: 0.5px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 0 20px rgba(0, 255, 115, 0.5); transition: all 0.25s ease; }
+    .login-btn-submit:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(0, 255, 115, 0.8); }
+    .login-hint { margin-top: 18px; text-align: center; font-size: 0.78rem; color: var(--text-muted); line-height: 1.4; }
+    .login-hint strong { color: var(--neon-green); }
+
+    .app-container { position: relative; z-index: 1; display: flex; flex-direction: column; min-height: 100vh; }
+    header.main-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 28px; background: linear-gradient(180deg, rgba(5, 18, 10, 0.96) 0%, rgba(2, 8, 4, 0.92) 100%); border-bottom: 1px solid rgba(0, 255, 115, 0.28); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8), 0 2px 10px rgba(0, 255, 102, 0.12); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 14px; }
+    .menu-toggle-btn { display: none; background: none; border: 1px solid var(--neon-green); color: var(--neon-green); padding: 6px 10px; border-radius: 6px; font-size: 1.1rem; cursor: pointer; }
+    .brand-logo-combo { display: flex; align-items: center; gap: 12px; text-decoration: none; cursor: pointer; }
+    .logo-icon-svg { width: 38px; height: 38px; fill: var(--neon-green); filter: drop-shadow(0 0 8px rgba(0, 255, 102, 0.8)); }
+    .brand-names { display: flex; flex-direction: column; line-height: 1.05; }
+    .brand-names .brand-title { font-family: 'Orbitron', cursive, sans-serif; font-size: 1.6rem; font-weight: 900; letter-spacing: 2px; color: #fff; text-shadow: 0 0 10px var(--neon-green); }
+    .brand-names .brand-subtitle { font-family: 'Rajdhani', sans-serif; font-size: 0.85rem; font-weight: 700; letter-spacing: 3px; color: var(--neon-green); text-transform: uppercase; }
+    .header-center { display: flex; align-items: center; gap: 8px; font-family: 'Rajdhani', sans-serif; font-size: 1.05rem; font-weight: 600; color: var(--neon-green); letter-spacing: 2px; text-transform: uppercase; }
+    .header-center span.dot { color: #fff; margin: 0 4px; font-size: 0.8rem; }
+    .header-right { display: flex; align-items: center; gap: 20px; position: relative; }
+    .header-search { display: flex; align-items: center; background: rgba(0, 20, 10, 0.7); border: 1px solid rgba(0, 255, 115, 0.4); border-radius: 25px; padding: 6px 16px; }
+    .header-search i { color: var(--neon-green); font-size: 0.9rem; margin-right: 8px; }
+    .header-search input { background: transparent; border: none; outline: none; color: #fff; font-size: 0.88rem; width: 180px; }
+    .header-notif-box { position: relative; }
+    .header-notif { position: relative; cursor: pointer; color: var(--neon-green); font-size: 1.25rem; }
+    .notif-badge { position: absolute; top: -4px; right: -4px; width: 9px; height: 9px; background-color: var(--neon-red); border-radius: 50%; box-shadow: 0 0 8px var(--neon-red); }
+    .dropdown-box { display: none; position: absolute; top: 48px; right: 0; width: 320px; background: rgba(3, 16, 9, 0.97); border: 1px solid var(--neon-green); border-radius: 14px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.9), 0 0 20px rgba(0, 255, 102, 0.35); z-index: 1000; padding: 14px; backdrop-filter: blur(10px); }
+    .dropdown-box.active { display: block; animation: fadeIn 0.2s ease-out; }
+    .dropdown-box h4 { font-size: 0.9rem; color: var(--neon-green); border-bottom: 1px solid rgba(0, 255, 102, 0.25); padding-bottom: 8px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+    .notif-item { font-size: 0.82rem; padding: 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); color: #d1ead7; }
+    .notif-item small { display: block; color: var(--text-muted); font-size: 0.72rem; margin-top: 2px; }
+    .user-profile-badge { display: flex; align-items: center; gap: 12px; cursor: pointer; padding: 4px 12px; border-radius: 30px; background: rgba(0, 35, 16, 0.35); border: 1px solid rgba(0, 255, 102, 0.3); }
+    .user-avatar { width: 38px; height: 38px; border-radius: 50%; border: 2px solid var(--neon-green); background: #000; display: flex; align-items: center; justify-content: center; }
+    .user-avatar i { color: var(--neon-green); font-size: 1.2rem; }
+    .user-info-text { display: flex; flex-direction: column; line-height: 1.15; }
+    .user-name { font-weight: 700; font-size: 0.95rem; color: #fff; }
+    .user-role { font-size: 0.72rem; color: var(--text-muted); }
+
+    .layout-body { display: flex; flex: 1; }
+    aside.sidebar { width: 250px; min-width: 250px; background: linear-gradient(180deg, rgba(3, 12, 6, 0.96) 0%, rgba(1, 5, 2, 0.98) 100%); border-right: 1px solid rgba(0, 255, 102, 0.25); display: flex; flex-direction: column; justify-content: space-between; padding: 20px 14px; z-index: 90; }
+    .nav-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .nav-item a { display: flex; align-items: center; gap: 14px; padding: 12px 18px; color: #cde4d5; text-decoration: none; font-weight: 600; font-size: 0.95rem; border-radius: 12px; background: rgba(0, 255, 102, 0.02); cursor: pointer; }
+    .nav-item a i { font-size: 1.15rem; width: 22px; text-align: center; color: var(--neon-green); }
+    .nav-item a:hover { background: rgba(0, 255, 102, 0.1); color: #fff; box-shadow: 0 0 15px rgba(0, 255, 102, 0.2); }
+    .nav-item.active a { background: linear-gradient(90deg, rgba(0, 255, 102, 0.25) 0%, rgba(0, 255, 102, 0.08) 100%); border: 1px solid var(--neon-green); color: #fff; font-weight: 700; }
+    .sidebar-brand-box { margin-top: 24px; background: radial-gradient(circle at 50% 30%, rgba(0, 255, 102, 0.12), rgba(0, 10, 4, 0.85)); border: 1px solid rgba(0, 255, 102, 0.4); border-radius: 16px; padding: 24px 14px; text-align: center; }
+    .brand-crown-icon { font-size: 2.2rem; color: var(--neon-green); margin-bottom: 8px; }
+    .sidebar-brand-title { font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1.35rem; color: #fff; }
+    .sidebar-brand-sub { font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 2.5px; color: var(--neon-green); margin-bottom: 12px; text-transform: uppercase; }
+    .sidebar-brand-motto { font-size: 0.82rem; color: #d8f5e3; margin-bottom: 16px; }
+
+    main.main-content { flex: 1; padding: 24px 28px; max-width: 1700px; margin: 0 auto; width: calc(100% - 250px); }
+    .dashboard-title-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; flex-wrap: wrap; gap: 16px; }
+    .title-texts h1 { font-size: 1.7rem; font-weight: 700; color: #fff; }
+    .title-texts p { font-size: 0.88rem; color: var(--text-muted); margin-top: 4px; }
+    .dashboard-controls { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .ctrl-pill { background: rgba(0, 28, 12, 0.75); border: 1px solid rgba(0, 255, 102, 0.35); color: #fff; padding: 8px 16px; border-radius: 10px; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 8px; cursor: pointer; }
+    .ctrl-pill select { background: transparent; border: none; outline: none; color: #fff; font-size: 0.88rem; font-weight: 600; cursor: pointer; }
+    .ctrl-time { color: var(--neon-green); font-family: 'Rajdhani', monospace; font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 6px; padding: 7px 14px; border: 1px solid rgba(0, 255, 102, 0.3); border-radius: 10px; background: rgba(0, 25, 10, 0.6); }
+
+    .financial-cards-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-bottom: 24px; }
+    .kpi-card { background: linear-gradient(135deg, rgba(8, 26, 15, 0.85) 0%, rgba(3, 12, 6, 0.95) 100%); border: 1px solid rgba(0, 255, 102, 0.32); border-radius: 18px; padding: 20px 22px; display: flex; align-items: center; gap: 18px; }
+    .kpi-icon-wrapper { width: 54px; height: 54px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; flex-shrink: 0; }
+    .kpi-card.green .kpi-icon-wrapper { background: rgba(0, 255, 102, 0.12); border: 1.5px solid var(--neon-green); color: var(--neon-green); }
+    .kpi-card.red .kpi-icon-wrapper { background: rgba(255, 51, 75, 0.12); border: 1.5px solid var(--neon-red); color: var(--neon-red); }
+    .kpi-data { display: flex; flex-direction: column; }
+    .kpi-title { font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #9abfa9; }
+    .kpi-card.red .kpi-title { color: #ff8594; }
+    .kpi-value { font-family: 'Rajdhani', sans-serif; font-size: 1.95rem; font-weight: 700; color: #fff; margin: 3px 0; }
+    .kpi-growth { font-size: 0.74rem; display: flex; align-items: center; gap: 5px; color: var(--text-muted); }
+    .kpi-growth.green { color: var(--neon-green); }
+    .kpi-growth.red { color: var(--neon-red); }
+
+    .dashboard-grid-2col { display: grid; grid-template-columns: 460px 1fr; gap: 22px; margin-bottom: 24px; }
+    .panel-card { background: linear-gradient(135deg, rgba(6, 20, 12, 0.92) 0%, rgba(2, 8, 4, 0.96) 100%); border: 1px solid rgba(0, 255, 102, 0.28); border-radius: 18px; padding: 22px; }
+    .panel-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+    .panel-header-title { display: flex; align-items: center; gap: 10px; font-size: 1.05rem; font-weight: 700; color: #fff; }
+    .panel-header-title i { color: var(--neon-green); }
+
+    .os-form { display: flex; flex-direction: column; gap: 14px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: 0.8rem; font-weight: 600; color: #9ec5ad; }
+    .input-icon-box { display: flex; align-items: center; background: rgba(1, 14, 7, 0.85); border: 1px solid rgba(0, 255, 102, 0.35); border-radius: 10px; padding: 9px 14px; }
+    .input-icon-box:focus-within { border-color: var(--neon-green); box-shadow: 0 0 14px rgba(0, 255, 102, 0.35); }
+    .input-icon-box i { color: var(--neon-green); font-size: 0.95rem; margin-right: 10px; width: 18px; text-align: center; }
+    .input-icon-box input, .input-icon-box select { flex: 1; background: transparent; border: none; outline: none; color: #fff; font-size: 0.9rem; font-family: 'Inter', sans-serif; }
+    .form-row-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .btn-submit-os { margin-top: 8px; background: linear-gradient(90deg, #00d957 0%, #00ff73 100%); color: #011408; border: none; border-radius: 12px; padding: 13px; font-size: 0.98rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 0 20px rgba(0, 255, 115, 0.5); }
+    .btn-submit-os:hover { box-shadow: 0 0 30px rgba(0, 255, 115, 0.8); }
+
+    .chart-container-panel { display: flex; flex-direction: column; height: 100%; }
+    .chart-legend-custom { display: flex; align-items: center; gap: 20px; font-size: 0.78rem; font-weight: 600; }
+    .legend-item { display: flex; align-items: center; gap: 6px; }
+    .legend-box { width: 18px; height: 12px; border-radius: 3px; }
+    .legend-box.gross { background-color: var(--neon-green); }
+    .legend-box.net { background-color: #6efeb0; }
+    .chart-wrapper-inner { flex: 1; position: relative; min-height: 290px; width: 100%; margin-top: 12px; }
+
+    .dashboard-bottom-grid { display: grid; grid-template-columns: 460px 1fr; gap: 22px; }
+    .table-search-box { display: flex; align-items: center; background: rgba(1, 14, 7, 0.85); border: 1px solid rgba(0, 255, 102, 0.35); border-radius: 20px; padding: 5px 12px; }
+    .table-search-box i { color: var(--neon-green); font-size: 0.8rem; margin-right: 6px; }
+    .table-search-box input { background: transparent; border: none; outline: none; color: #fff; font-size: 0.8rem; width: 110px; }
+
+    .aparelhos-table-wrapper, .lancamentos-table-wrapper { width: 100%; overflow-x: auto; }
+    .styled-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    .styled-table th { text-align: left; padding: 10px 8px; color: #8bb399; font-size: 0.72rem; font-weight: 700; letter-spacing: 1px; border-bottom: 1px solid rgba(0, 255, 102, 0.2); text-transform: uppercase; }
+    .styled-table td { padding: 12px 8px; border-bottom: 1px solid rgba(0, 255, 102, 0.1); vertical-align: middle; }
+    .styled-table tr:hover td { background: rgba(0, 255, 102, 0.04); }
+
+    .client-device-cell { display: flex; flex-direction: column; line-height: 1.25; }
+    .client-device-cell .client-name { font-weight: 700; color: #fff; }
+    .client-device-cell .device-name { font-size: 0.74rem; color: var(--text-muted); text-transform: uppercase; }
+
+    .status-badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 600; cursor: pointer; user-select: none; }
+    .status-concluido { background: rgba(0, 255, 102, 0.18); border: 1px solid var(--neon-green); color: var(--neon-green); }
+    .status-andamento { background: rgba(0, 180, 255, 0.18); border: 1px solid #00d9ff; color: #00d9ff; }
+    .status-fila { background: rgba(255, 191, 0, 0.18); border: 1px solid #ffbf00; color: #ffbf00; }
+    .status-cancelado { background: rgba(255, 51, 75, 0.18); border: 1px solid var(--neon-red); color: var(--neon-red); }
+
+    .val-text-green { color: var(--neon-green); font-family: 'Rajdhani', sans-serif; font-weight: 700; }
+    .val-text-red { color: var(--neon-red); font-family: 'Rajdhani', sans-serif; font-weight: 700; }
+    .btn-table-action { background: none; border: none; color: var(--neon-green); cursor: pointer; font-size: 0.85rem; padding: 4px; }
+    .btn-table-action:hover { color: #fff; transform: scale(1.2); }
+    .btn-table-action.delete:hover { color: var(--neon-red); }
+    .link-ver-todos { color: var(--neon-green); font-size: 0.82rem; text-decoration: none; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+
+    .bottom-motto-bar { margin-top: 24px; display: flex; align-items: center; justify-content: space-between; padding: 12px 24px; background: linear-gradient(90deg, rgba(1, 20, 9, 0.7) 0%, rgba(3, 30, 14, 0.4) 100%); border: 1px solid rgba(0, 255, 102, 0.25); border-radius: 12px; }
+    .bottom-motto-left { display: flex; align-items: center; gap: 12px; font-size: 1rem; font-weight: 700; color: #c9ebd4; }
+    .bottom-motto-left i { color: var(--neon-green); font-size: 1.3rem; }
+    .cyber-circuit-deco { display: flex; align-items: center; gap: 6px; }
+    .cyber-line { height: 3px; background: linear-gradient(90deg, transparent, var(--neon-green)); border-radius: 2px; }
+    .cyber-line.l1 { width: 80px; } .cyber-line.l2 { width: 45px; } .cyber-line.l3 { width: 25px; }
+
+    .modal-backdrop { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.88); backdrop-filter: blur(6px); z-index: 9999; align-items: center; justify-content: center; padding: 20px; }
+    .modal-backdrop.show { display: flex; }
+    .modal-box { background: #05130b; border: 1.5px solid var(--neon-green); border-radius: 20px; width: 100%; max-width: 580px; max-height: 90vh; overflow-y: auto; padding: 26px; box-shadow: 0 0 40px rgba(0, 255, 102, 0.4); }
+    .modal-box.modal-large { max-width: 860px; }
+    .modal-box-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; border-bottom: 1px solid rgba(0, 255, 102, 0.3); padding-bottom: 12px; }
+    .modal-box-header h3 { font-size: 1.25rem; color: #fff; display: flex; align-items: center; gap: 10px; }
+    .modal-box-header h3 i { color: var(--neon-green); }
+    .modal-close-btn { background: none; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer; }
+    .modal-close-btn:hover { color: var(--neon-red); }
+    .modal-btn-row { display: flex; gap: 10px; margin-top: 15px; justify-content: flex-end; }
+    .btn-secondary { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); color: #fff; padding: 10px 18px; border-radius: 10px; cursor: pointer; font-weight: 600; }
+    .btn-secondary:hover { background: rgba(255, 255, 255, 0.15); }
+    .btn-action-neon { background: linear-gradient(90deg, #00d957 0%, #00ff73 100%); color: #011408; border: none; padding: 10px 18px; border-radius: 10px; cursor: pointer; font-weight: 800; box-shadow: 0 0 15px rgba(0, 255, 115, 0.4); }
+
+    .toast-container { position: fixed; bottom: 24px; right: 24px; z-index: 10000; display: flex; flex-direction: column; gap: 10px; }
+    .toast { background: rgba(3, 20, 10, 0.95); border: 1px solid var(--neon-green); color: #fff; padding: 12px 20px; border-radius: 12px; box-shadow: 0 0 20px rgba(0, 255, 102, 0.4); display: flex; align-items: center; gap: 10px; font-size: 0.88rem; }
+
+    @media (max-width: 1280px) {
+      .financial-cards-grid { grid-template-columns: repeat(2, 1fr); }
+      .dashboard-grid-2col, .dashboard-bottom-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 992px) {
+      .header-center { display: none; }
+      .menu-toggle-btn { display: block; }
+      aside.sidebar { position: fixed; top: 65px; left: -270px; height: calc(100vh - 65px); box-shadow: 5px 0 25px rgba(0, 0, 0, 0.9); }
+      aside.sidebar.open { left: 0; }
+      main.main-content { width: 100%; padding: 16px; }
+    }
+    @media (max-width: 640px) {
+      .header-search { display: none; }
+      .financial-cards-grid { grid-template-columns: 1fr; }
+      .form-row-2col { grid-template-columns: 1fr; }
+      .brand-names .brand-title { font-size: 1.25rem; }
+      .user-info-text { display: none; }
+      .dashboard-controls { width: 100%; justify-content: space-between; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Matrix Canvas -->
+  <canvas id="matrix-canvas"></canvas>
+
+  <!-- =========================================================
+       TELA DE LOGIN / AUTENTICAÇÃO COM APROVAÇÃO E JWT
+       ========================================================= -->
+  <div class="login-overlay" id="loginOverlay">
+    <div class="login-card">
+      <div class="login-header-brand">
+        <svg class="login-logo-svg" viewBox="0 0 24 24">
+          <path d="M3.5 18.5H20.5V20.5H3.5V18.5ZM5.5 16.5H8.5V9.5H5.5V16.5ZM10.5 16.5H13.5V5.5H10.5V16.5ZM15.5 16.5H18.5V12.5H15.5V16.5ZM6.5 7.5L12 2L17.5 7.5L16 9L12 5L8 9L6.5 7.5Z"/>
+        </svg>
+        <h1>ALISON</h1>
+        <p>GESTOR FINANCEIRO</p>
+      </div>
+
+      <div class="login-tabs">
+        <button class="login-tab-btn active" id="tabBtnLogin" onclick="switchLoginTab('login')">Entrar</button>
+        <button class="login-tab-btn" id="tabBtnRegister" onclick="switchLoginTab('register')">Solicitar Conta</button>
+      </div>
+
+      <!-- FORM LOGIN -->
+      <form id="formLogin" class="login-form" onsubmit="realizarLogin(event)">
+        <div class="login-form-group">
+          <label>Usuário</label>
+          <div class="login-input-box">
+            <i class="fa-solid fa-user-shield"></i>
+            <input type="text" id="loginUser" placeholder="Ex: alison" required>
+          </div>
+        </div>
+
+        <div class="login-form-group">
+          <label>Senha</label>
+          <div class="login-input-box">
+            <i class="fa-solid fa-key"></i>
+            <input type="password" id="loginPass" placeholder="••••••••" required>
+          </div>
+        </div>
+
+        <button type="submit" class="login-btn-submit">
+          <i class="fa-solid fa-right-to-bracket"></i> Acessar Painel
+        </button>
+
+        <div class="login-hint">
+          Acesso Seguro. Token JWT requerido.<br>
+          <span style="color:#f39c12;">Novos usuários exigem aprovação do administrador.</span>
+        </div>
+      </form>
+
+      <!-- FORM REGISTER -->
+      <form id="formRegister" class="login-form" style="display: none;" onsubmit="solicitarCadastro(event)">
+        <div class="login-form-group">
+          <label>Nome Completo</label>
+          <div class="login-input-box">
+            <i class="fa-solid fa-user"></i>
+            <input type="text" id="regName" placeholder="Ex: Carlos Técnico" required>
+          </div>
+        </div>
+
+        <div class="login-form-group">
+          <label>Nome de Usuário (Login)</label>
+          <div class="login-input-box">
+            <i class="fa-solid fa-at"></i>
+            <input type="text" id="regUser" placeholder="Ex: carlos" required>
+          </div>
+        </div>
+
+        <div class="login-form-group">
+          <label>Senha</label>
+          <div class="login-input-box">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="regPass" placeholder="Mínimo 6 caracteres" required>
+          </div>
+        </div>
+
+        <button type="submit" class="login-btn-submit">
+          <i class="fa-solid fa-paper-plane"></i> Enviar Solicitação
+        </button>
+        <div class="login-hint">
+          Sua conta ficará pendente até que o administrador principal (Alison) aprove o acesso.
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       CONTAINER PRINCIPAL
+       ========================================================= -->
+  <div class="app-container">
+    <header class="main-header">
+      <div class="header-left">
+        <button class="menu-toggle-btn" id="menuToggleBtn" title="Menu" onclick="toggleSidebar()">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="brand-logo-combo" onclick="irParaInicio()">
+          <svg class="logo-icon-svg" viewBox="0 0 24 24">
+            <path d="M3.5 18.5H20.5V20.5H3.5V18.5ZM5.5 16.5H8.5V9.5H5.5V16.5ZM10.5 16.5H13.5V5.5H10.5V16.5ZM15.5 16.5H18.5V12.5H15.5V16.5ZM6.5 7.5L12 2L17.5 7.5L16 9L12 5L8 9L6.5 7.5Z"/>
+          </svg>
+          <div class="brand-names">
+            <div class="brand-title">ALISON</div>
+            <div class="brand-subtitle">GESTOR FINANCEIRO</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-center">
+        Organize <span class="dot">•</span> Controle <span class="dot">•</span> Cresça
+      </div>
+
+      <div class="header-right">
+        <div class="header-search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="globalSearchInput" placeholder="Buscar no sistema..." oninput="handleGlobalSearch(this.value)">
+        </div>
+
+        <div class="header-notif-box">
+          <div class="header-notif" id="notifIcon" onclick="toggleNotificacoesDropdown()" title="Notificações">
+            <i class="fa-regular fa-bell"></i>
+            <span class="notif-badge" id="notifBadge"></span>
+          </div>
+          <div class="dropdown-box" id="notifDropdown">
+            <h4>
+              <span><i class="fa-solid fa-bell"></i> Notificações</span>
+              <small style="color:var(--text-muted); cursor:pointer;" onclick="limparNotificacoes()">Limpar</small>
+            </h4>
+            <div id="notifList"></div>
+          </div>
+        </div>
+
+        <!-- Perfil do Usuário -->
+        <div class="user-profile-badge" id="userMenuBtn" onclick="toggleUserDropdown()">
+          <div class="user-avatar"><i class="fa-solid fa-user-ninja"></i></div>
+          <div class="user-info-text">
+            <span class="user-name" id="displayAdminName">Alison</span>
+            <span class="user-role" id="displayAdminRole">Acesso Autenticado</span>
+          </div>
+        </div>
+
+        <div class="dropdown-box" id="userDropdown" style="width: 250px; right: 0;">
+          <h4><i class="fa-solid fa-user-gear"></i> Sessão JWT</h4>
+          <div style="display:flex; flex-direction:column; gap:8px; margin-top:10px;">
+            <button class="btn-secondary" style="text-align:left; font-size:0.85rem;" onclick="abrirPainelUsuarios(); toggleUserDropdown();" id="btnAdminUsuarios" style="display:none;">
+              <i class="fa-solid fa-user-check"></i> Gerenciar Usuários <span id="pendingBadgeCount" style="background:var(--neon-red); padding:2px 6px; border-radius:10px; font-size:0.7rem; float:right;">0</span>
+            </button>
+            <button class="btn-secondary" style="text-align:left; font-size:0.85rem;" onclick="abrirConfiguracoes(); toggleUserDropdown();">
+              <i class="fa-solid fa-sliders"></i> Ajustes do Sistema
+            </button>
+            <button class="btn-secondary" style="text-align:left; font-size:0.85rem; color:var(--neon-red);" onclick="realizarLogout(false)">
+              <i class="fa-solid fa-right-from-bracket"></i> Sair / Revogar Token
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CORPO -->
+    <div class="layout-body">
+      <aside class="sidebar" id="sidebar">
+        <nav>
+          <ul class="nav-list" id="sidebarNav">
+            <li class="nav-item active" data-tab="inicio"><a onclick="navegarPara('inicio')"><i class="fa-solid fa-house"></i> Início</a></li>
+            <li class="nav-item" data-tab="financeiro"><a onclick="navegarPara('financeiro')"><i class="fa-solid fa-sack-dollar"></i> Financeiro</a></li>
+            <li class="nav-item" data-tab="clientes"><a onclick="navegarPara('clientes')"><i class="fa-solid fa-users"></i> Clientes</a></li>
+            <li class="nav-item" data-tab="servicos"><a onclick="navegarPara('servicos')"><i class="fa-solid fa-wrench"></i> Serviços</a></li>
+            <li class="nav-item" data-tab="aparelhos"><a onclick="navegarPara('aparelhos')"><i class="fa-solid fa-mobile-screen-button"></i> Aparelhos</a></li>
+            <li class="nav-item" data-tab="relatorios"><a onclick="navegarPara('relatorios')"><i class="fa-solid fa-chart-column"></i> Relatórios</a></li>
+            <li class="nav-item" data-tab="configuracoes"><a onclick="navegarPara('configuracoes')"><i class="fa-solid fa-gear"></i> Configurações</a></li>
+          </ul>
+        </nav>
+
+        <div class="sidebar-brand-box">
+          <div class="brand-crown-icon"><i class="fa-solid fa-crown"></i></div>
+          <div class="sidebar-brand-title">ALISON</div>
+          <div class="sidebar-brand-sub">GESTOR FINANCEIRO</div>
+          <div class="sidebar-brand-motto">"Seu dinheiro em boas mãos!"</div>
+          <div class="sidebar-brand-chart-icon"><i class="fa-solid fa-chart-line"></i></div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <div class="dashboard-title-row">
+          <div class="title-texts">
+            <h1>Painel Financeiro</h1>
+            <p>Acompanhe suas finanças e tenha total controle do seu negócio.</p>
+          </div>
+
+          <div class="dashboard-controls">
+            <div class="ctrl-pill">
+              <i class="fa-regular fa-calendar-days" style="color: var(--neon-green);"></i>
+              <select id="periodoSelect" onchange="mudarPeriodo(this.value)">
+                <option value="hoje" selected>Hoje</option>
+                <option value="7dias">Últimos 7 Dias</option>
+                <option value="mes">Mês Atual</option>
+                <option value="ano">Ano Atual</option>
+                <option value="tudo">Todos os Dados</option>
+              </select>
+            </div>
+
+            <div class="ctrl-time">
+              <i class="fa-regular fa-clock"></i>
+              <span id="currentTime">--:--:--</span>
+            </div>
+
+            <button class="ctrl-pill" onclick="abrirNovoLancamentoModal()" title="Adicionar Receita ou Despesa Avulsa">
+              <i class="fa-solid fa-plus" style="color: var(--neon-green);"></i>
+              <span>Lançamento</span>
+            </button>
+
+            <button class="ctrl-pill" onclick="carregarDadosAPI(true)" title="Recarregar Dados">
+              <i class="fa-solid fa-rotate" style="color: var(--neon-green);"></i>
+            </button>
+          </div>
+        </div>
+
+        <section class="financial-cards-grid">
+          <div class="kpi-card green" onclick="navegarPara('servicos')" style="cursor:pointer;" title="Serviços">
+            <div class="kpi-icon-wrapper"><i class="fa-solid fa-wrench"></i></div>
+            <div class="kpi-data">
+              <span class="kpi-title">SERVIÇOS</span>
+              <span class="kpi-value" id="kpiServicos">0</span>
+              <span class="kpi-growth green"><i class="fa-solid fa-arrow-up"></i> <span style="color: var(--text-muted);">no período</span></span>
+            </div>
+          </div>
+
+          <div class="kpi-card green" onclick="navegarPara('financeiro')" style="cursor:pointer;" title="Faturamento">
+            <div class="kpi-icon-wrapper"><i class="fa-solid fa-chart-line"></i></div>
+            <div class="kpi-data">
+              <span class="kpi-title">FATURAMENTO</span>
+              <span class="kpi-value" id="kpiFaturamento">R$ 0,00</span>
+              <span class="kpi-growth green"><i class="fa-solid fa-arrow-up"></i> <span style="color: var(--text-muted);">no período</span></span>
+            </div>
+          </div>
+
+          <div class="kpi-card red" onclick="navegarPara('financeiro')" style="cursor:pointer;" title="Custos">
+            <div class="kpi-icon-wrapper"><i class="fa-solid fa-cart-shopping"></i></div>
+            <div class="kpi-data">
+              <span class="kpi-title">CUSTOS</span>
+              <span class="kpi-value" id="kpiCustos" style="color: #ff99a8;">R$ 0,00</span>
+              <span class="kpi-growth red"><i class="fa-solid fa-arrow-down"></i> <span style="color: var(--text-muted);">em relação ao faturamento</span></span>
+            </div>
+          </div>
+
+          <div class="kpi-card green" onclick="navegarPara('relatorios')" style="cursor:pointer;" title="Lucro">
+            <div class="kpi-icon-wrapper"><i class="fa-solid fa-wallet"></i></div>
+            <div class="kpi-data">
+              <span class="kpi-title">LUCRO LÍQUIDO</span>
+              <span class="kpi-value" id="kpiLucro">R$ 0,00</span>
+              <span class="kpi-growth green"><i class="fa-solid fa-arrow-up"></i> <span style="color: var(--text-muted);">margem líquida</span></span>
+            </div>
+          </div>
+        </section>
+
+        <div class="dashboard-grid-2col">
+          <div class="panel-card">
+            <div class="panel-header">
+              <div class="panel-header-title"><i class="fa-solid fa-wrench"></i> Nova Ordem de Serviço</div>
+            </div>
+
+            <form id="osForm" class="os-form" onsubmit="adicionarOS(event)">
+              <div class="form-group">
+                <label>Nome do Cliente</label>
+                <div class="input-icon-box">
+                  <i class="fa-regular fa-user"></i>
+                  <input type="text" id="formCliente" placeholder="Ex: Maria Silva" required list="clientesDatalist">
+                  <datalist id="clientesDatalist"></datalist>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Aparelho</label>
+                <div class="input-icon-box">
+                  <i class="fa-solid fa-mobile-screen"></i>
+                  <input type="text" id="formAparelho" placeholder="Ex: SM-A165F" required list="aparelhosDatalist">
+                  <datalist id="aparelhosDatalist"></datalist>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Serviço Realizado</label>
+                <div class="input-icon-box">
+                  <i class="fa-solid fa-tag"></i>
+                  <input type="text" id="formServico" placeholder="Ex: Remoção FRP" required list="servicosDatalist">
+                  <datalist id="servicosDatalist"></datalist>
+                </div>
+              </div>
+
+              <div class="form-row-2col">
+                <div class="form-group">
+                  <label>Valor (R$)</label>
+                  <div class="input-icon-box">
+                    <i class="fa-solid fa-dollar-sign"></i>
+                    <input type="number" step="0.01" min="0" id="formValor" placeholder="R$ 0,00" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Custo (R$)</label>
+                  <div class="input-icon-box">
+                    <i class="fa-solid fa-receipt"></i>
+                    <input type="number" step="0.01" min="0" id="formCusto" placeholder="R$ 0,00" value="0.00" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Status Atual da OS</label>
+                <div class="input-icon-box">
+                  <i class="fa-regular fa-clipboard"></i>
+                  <select id="formStatus">
+                    <option value="Na Fila">Na Fila (Aguardando)</option>
+                    <option value="Em Andamento">Em Andamento</option>
+                    <option value="Concluído" selected>Concluído</option>
+                    <option value="Cancelado">Cancelado</option>
+                  </select>
+                </div>
+              </div>
+
+              <button type="submit" class="btn-submit-os">
+                <i class="fa-solid fa-floppy-disk"></i> Salvar Ordem
+              </button>
+            </form>
+          </div>
+
+          <div class="panel-card chart-container-panel">
+            <div class="panel-header">
+              <div class="panel-header-title">
+                <i class="fa-solid fa-chart-column"></i> <span id="chartTitleText">Desempenho Financeiro - Últimos 7 Dias</span>
+              </div>
+              <div class="chart-legend-custom">
+                <div class="legend-item"><span class="legend-box gross"></span><span>Faturamento Bruto (R$)</span></div>
+                <div class="legend-item"><span class="legend-box net"></span><span>Lucro Líquido (R$)</span></div>
+              </div>
+            </div>
+            <div class="chart-wrapper-inner">
+              <canvas id="financialChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-bottom-grid">
+          <div class="panel-card" id="painelAparelhos">
+            <div class="panel-header">
+              <div class="panel-header-title"><i class="fa-solid fa-mobile-screen-button"></i> Controle de Aparelhos</div>
+              <div class="table-search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchAparelhosInput" placeholder="Buscar OS..." oninput="pesquisarOS(this.value)">
+              </div>
+            </div>
+
+            <div class="aparelhos-table-wrapper">
+              <table class="styled-table" id="tabelaAparelhos">
+                <thead>
+                  <tr>
+                    <th>CLIENTE / APARELHO</th>
+                    <th>SERVIÇO</th>
+                    <th>STATUS DA OS</th>
+                    <th>VALOR</th>
+                    <th style="text-align: right;">AÇÕES</th>
+                  </tr>
+                </thead>
+                <tbody id="corpoTabelaAparelhos"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <div class="panel-header">
+              <div class="panel-header-title"><i class="fa-solid fa-list-check"></i> Últimos Lançamentos</div>
+              <a class="link-ver-todos" onclick="abrirModalLancamentos()">Ver todos <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <div class="lancamentos-table-wrapper">
+              <table class="styled-table" id="tabelaLancamentos">
+                <thead>
+                  <tr>
+                    <th>DATA</th>
+                    <th>DESCRIÇÃO</th>
+                    <th>TIPO</th>
+                    <th style="text-align: right;">VALOR</th>
+                  </tr>
+                </thead>
+                <tbody id="corpoTabelaLancamentos"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="bottom-motto-bar">
+          <div class="bottom-motto-left">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Mais controle, mais lucro!</span>
+          </div>
+          <div class="cyber-circuit-deco">
+            <div class="cyber-line l1"></div>
+            <div class="cyber-line l2"></div>
+            <div class="cyber-line l3"></div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MODAL DE APROVAÇÃO DE USUÁRIOS (ADMIN)
+       ========================================================= -->
+  <div class="modal-backdrop" id="modalUsuarios">
+    <div class="modal-box modal-large">
+      <div class="modal-box-header">
+        <h3><i class="fa-solid fa-user-check"></i> Gerenciar Solicitações de Usuários</h3>
+        <button class="modal-close-btn" onclick="fecharModal('modalUsuarios')">&times;</button>
+      </div>
+      <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:15px;">
+        Usuários aguardando autorização e usuários já registrados.
+      </p>
+      <div style="max-height: 400px; overflow-y: auto;">
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th>NOME</th>
+              <th>USUÁRIO (LOGIN)</th>
+              <th>STATUS</th>
+              <th style="text-align: right;">AÇÕES</th>
+            </tr>
+          </thead>
+          <tbody id="usuariosPendentesTbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- OUTROS MODAIS -->
+  <div class="modal-backdrop" id="modalOS">
+    <div class="modal-box">
+      <div class="modal-box-header">
+        <h3><i class="fa-solid fa-pen-to-square"></i> Editar Ordem de Serviço</h3>
+        <button class="modal-close-btn" onclick="fecharModal('modalOS')">&times;</button>
+      </div>
+      <form id="editOSForm" class="os-form" onsubmit="salvarEdicaoOS(event)">
+        <input type="hidden" id="editOSId">
+        <div class="form-group"><label>Nome do Cliente</label><div class="input-icon-box"><i class="fa-regular fa-user"></i><input type="text" id="editCliente" required></div></div>
+        <div class="form-group"><label>Aparelho</label><div class="input-icon-box"><i class="fa-solid fa-mobile-screen"></i><input type="text" id="editAparelho" required></div></div>
+        <div class="form-group"><label>Serviço Realizado</label><div class="input-icon-box"><i class="fa-solid fa-tag"></i><input type="text" id="editServico" required></div></div>
+        <div class="form-row-2col">
+          <div class="form-group"><label>Valor (R$)</label><div class="input-icon-box"><i class="fa-solid fa-dollar-sign"></i><input type="number" step="0.01" min="0" id="editValor" required></div></div>
+          <div class="form-group"><label>Custo (R$)</label><div class="input-icon-box"><i class="fa-solid fa-receipt"></i><input type="number" step="0.01" min="0" id="editCusto" required></div></div>
+        </div>
+        <div class="form-group">
+          <label>Status Atual da OS</label>
+          <div class="input-icon-box"><i class="fa-regular fa-clipboard"></i>
+            <select id="editStatus">
+              <option value="Na Fila">Na Fila (Aguardando)</option>
+              <option value="Em Andamento">Em Andamento</option>
+              <option value="Concluído">Concluído</option>
+              <option value="Cancelado">Cancelado</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-btn-row">
+          <button type="button" class="btn-secondary" onclick="fecharModal('modalOS')">Cancelar</button>
+          <button type="submit" class="btn-action-neon">Atualizar Ordem</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modalLancamentos">
+    <div class="modal-box modal-large">
+      <div class="modal-box-header">
+        <h3><i class="fa-solid fa-list-check"></i> Todos os Lançamentos Financeiros</h3>
+        <button class="modal-close-btn" onclick="fecharModal('modalLancamentos')">&times;</button>
+      </div>
+      <div style="display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; justify-content: space-between;">
+        <div style="display:flex; gap:10px;">
+          <button class="btn-secondary" onclick="filtrarTabelaModalLancamentos('todos')">Todos</button>
+          <button class="btn-secondary" onclick="filtrarTabelaModalLancamentos('Receita')">Receitas</button>
+          <button class="btn-secondary" onclick="filtrarTabelaModalLancamentos('Despesa')">Despesas</button>
+        </div>
+        <div style="display:flex; gap:10px;">
+          <button class="btn-action-neon" onclick="abrirNovoLancamentoModal()"><i class="fa-solid fa-plus"></i> Novo</button>
+          <button class="btn-secondary" onclick="exportarLancamentosCSV()"><i class="fa-solid fa-file-csv"></i> Exportar CSV</button>
+        </div>
+      </div>
+      <div style="max-height: 420px; overflow-y: auto;">
+        <table class="styled-table">
+          <thead><tr><th>DATA</th><th>DESCRIÇÃO</th><th>TIPO</th><th>VALOR</th><th style="text-align: right;">AÇÃO</th></tr></thead>
+          <tbody id="modalLancamentosTbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modalNovoLancamento">
+    <div class="modal-box">
+      <div class="modal-box-header">
+        <h3><i class="fa-solid fa-hand-holding-dollar"></i> Novo Lançamento Financeiro</h3>
+        <button class="modal-close-btn" onclick="fecharModal('modalNovoLancamento')">&times;</button>
+      </div>
+      <form onsubmit="salvarLancamentoAvulso(event)" class="os-form">
+        <div class="form-group">
+          <label>Tipo do Lançamento</label>
+          <div class="input-icon-box"><i class="fa-solid fa-arrows-split-up-and-left"></i>
+            <select id="avulsoTipo" required>
+              <option value="Receita" selected>Receita (Entrada / Venda)</option>
+              <option value="Despesa">Despesa (Saída / Compra / Custos)</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group"><label>Descrição</label><div class="input-icon-box"><i class="fa-solid fa-pen-nib"></i><input type="text" id="avulsoDesc" placeholder="Ex: Compra de telas" required></div></div>
+        <div class="form-row-2col">
+          <div class="form-group"><label>Valor (R$)</label><div class="input-icon-box"><i class="fa-solid fa-dollar-sign"></i><input type="number" step="0.01" min="0.01" id="avulsoValor" placeholder="0,00" required></div></div>
+          <div class="form-group"><label>Data</label><div class="input-icon-box"><i class="fa-regular fa-calendar"></i><input type="date" id="avulsoData" required></div></div>
+        </div>
+        <div class="modal-btn-row">
+          <button type="button" class="btn-secondary" onclick="fecharModal('modalNovoLancamento')">Cancelar</button>
+          <button type="submit" class="btn-action-neon">Confirmar Lançamento</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modalClientes">
+    <div class="modal-box modal-large">
+      <div class="modal-box-header">
+        <h3><i class="fa-solid fa-users"></i> Gestão de Clientes</h3>
+        <button class="modal-close-btn" onclick="fecharModal('modalClientes')">&times;</button>
+      </div>
+      <div style="max-height: 400px; overflow-y: auto;">
+        <table class="styled-table">
+          <thead><tr><th>CLIENTE</th><th>SERVIÇOS</th><th>APARELHOS</th><th style="text-align: right;">TOTAL GASTO</th></tr></thead>
+          <tbody id="clientesTbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modalServicos">
+    <div class="modal-box modal-large">
+      <div class="modal-box-header">
+        <h3><i class="fa-solid fa-wrench"></i> Catálogo de Serviços</h3>
+        <button class="modal-close-btn" onclick="fecharModal('modalServicos')">&times;</button>
+      </div>
+      <div style="max-height: 400px; overflow-y: auto;">
+        <table class="styled-table">
+          <thead><tr><th>SERVIÇO</th><th>QUANTIDADE</th><th>PREÇO MÉDIO</th><th style="text-align: right;">TOTAL GERADO</th></tr></thead>
+          <tbody id="servicosTbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modalAparelhos">
+    <div class="modal-box modal-large">
+      <div class="modal-box-header">
+        <h3><i class="fa-solid fa-mobile-screen-button"></i> Inventário de Modelos</h3>
+        <button class="modal-close-btn" onclick="fecharModal('modalAparelhos')">&times;</button>
+      </div>
+      <div style="max-height: 400px; overflow-y: auto;">
+        <table class="styled-table">
+          <thead><tr><th>MODELO</th><th>MANUTENÇÕES</th><th>CLIENTES</th><th style="text-align: right;">FATURAMENTO</th></tr></thead>
+          <tbody id="aparelhosTbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modalRelatorios">
+    <div class="modal-box modal-large">
+      <div class="modal-box-header">
+        <h3><i class="fa-solid fa-chart-column"></i> Relatório Financeiro Executivo</h3>
+        <button class="modal-close-btn" onclick="fecharModal('modalRelatorios')">&times;</button>
+      </div>
+      <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; margin-bottom: 20px;">
+        <div style="background: rgba(0,255,102,0.06); border:1px solid rgba(0,255,102,0.3); border-radius:12px; padding:12px; text-align:center;">
+          <div style="font-size:0.75rem; color:var(--text-muted);">FATURAMENTO BRUTO</div>
+          <div style="font-size:1.4rem; font-weight:700; color:var(--neon-green);" id="relFaturamento">R$ 0,00</div>
+        </div>
+        <div style="background: rgba(255,51,75,0.06); border:1px solid rgba(255,51,75,0.3); border-radius:12px; padding:12px; text-align:center;">
+          <div style="font-size:0.75rem; color:var(--text-muted);">CUSTOS TOTAIS</div>
+          <div style="font-size:1.4rem; font-weight:700; color:var(--neon-red);" id="relCustos">R$ 0,00</div>
+        </div>
+        <div style="background: rgba(0,255,102,0.06); border:1px solid rgba(0,255,102,0.3); border-radius:12px; padding:12px; text-align:center;">
+          <div style="font-size:0.75rem; color:var(--text-muted);">LUCRO LÍQUIDO</div>
+          <div style="font-size:1.4rem; font-weight:700; color:var(--neon-green);" id="relLucro">R$ 0,00</div>
+        </div>
+      </div>
+      <div class="modal-btn-row" style="justify-content: flex-start; margin-bottom: 15px;">
+        <button class="btn-action-neon" onclick="window.print()"><i class="fa-solid fa-print"></i> Imprimir</button>
+        <button class="btn-secondary" onclick="exportarRelatorioCompletoCSV()"><i class="fa-solid fa-file-excel"></i> Baixar CSV</button>
+      </div>
+      <div style="max-height: 280px; overflow-y: auto;">
+        <table class="styled-table">
+          <thead><tr><th>ID</th><th>CLIENTE</th><th>APARELHO</th><th>SERVIÇO</th><th>DATA</th><th>STATUS</th><th style="text-align: right;">LUCRO</th></tr></thead>
+          <tbody id="relatorioTbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modalConfiguracoes">
+    <div class="modal-box">
+      <div class="modal-box-header">
+        <h3><i class="fa-solid fa-gear"></i> Configurações</h3>
+        <button class="modal-close-btn" onclick="fecharModal('modalConfiguracoes')">&times;</button>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:16px;">
+        <div class="form-group"><label>Nome</label><div class="input-icon-box"><i class="fa-solid fa-user"></i><input type="text" id="configAdminName" value="Alison" disabled></div></div>
+        <div style="border-top:1px solid rgba(0,255,102,0.2); padding-top:16px;">
+          <h4 style="font-size:0.9rem; color:var(--neon-green); margin-bottom:10px;">Backup de Lançamentos Locais</h4>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="btn-secondary" onclick="fazerBackupJSON()"><i class="fa-solid fa-download"></i> Baixar JSON</button>
+          </div>
+        </div>
+        <div style="border-top:1px solid rgba(255,51,75,0.3); padding-top:16px;">
+          <h4 style="font-size:0.9rem; color:var(--neon-red); margin-bottom:8px;">Zona de Perigo</h4>
+          <button class="btn-secondary" style="color:var(--neon-red); border-color:var(--neon-red);" onclick="resetarDadosFabrica()"><i class="fa-solid fa-triangle-exclamation"></i> Limpar Sessão</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- SCRIPT -->
+  <script>
+    const API_BASE_URL = "https://alison-sistema-gestao.onrender.com";
+
+    const STORAGE_KEY_LANCAMENTOS = 'ALISON_GESTOR_LANC_V4';
+    const STORAGE_KEY_NOTIFS = 'ALISON_GESTOR_NOTIFS_V4';
+
+    let osList = [];
+    let lancamentosList = JSON.parse(localStorage.getItem(STORAGE_KEY_LANCAMENTOS)) || [];
+    let notificacoesList = JSON.parse(localStorage.getItem(STORAGE_KEY_NOTIFS)) || [];
+    let chartInstance = null;
+    let filtroPeriodoAtual = 'hoje';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      iniciarCanvasMatrix();
+      verificarSessao();
+      iniciarRelogio();
+      atualizarNotificacoesUI();
+      definirDataHojeFormularios();
+      
+      if (localStorage.getItem('ALISON_GESTOR_TOKEN')) {
+        carregarDadosAPI();
+      }
+    });
+
+    /* =========================================================
+       1. FUNÇÕES LOCAIS (LOGIN, TOKEN JWT E SESSÃO DA API)
+       ========================================================= */
+
+    async function apiFetch(endpoint, options = {}) {
+      const token = localStorage.getItem('ALISON_GESTOR_TOKEN');
+      const headers = { ...options.headers };
+      if (token) headers['Authorization'] = `Bearer ${token}`;
+      
+      const res = await fetch(`${API_BASE_URL}${endpoint}`, { ...options, headers });
+      if (res.status === 401 || res.status === 403) {
+        if (endpoint !== '/api/auth/login' && endpoint !== '/api/auth/register') {
+            realizarLogout(true);
+            throw new Error("Sessão expirada ou não autorizada.");
+        }
+      }
+      return res;
+    }
+
+    function verificarSessao() {
+      const token = localStorage.getItem('ALISON_GESTOR_TOKEN');
+      const overlay = document.getElementById('loginOverlay');
+      if (token) {
+        overlay.classList.add('hidden');
+        verificarPermissoesAdminUI();
+      } else {
+        overlay.classList.remove('hidden');
+      }
+    }
+
+    async function verificarPermissoesAdminUI() {
+      const btnAdmin = document.getElementById('btnAdminUsuarios');
+      if (!btnAdmin) return;
+      try {
+        const res = await apiFetch('/api/auth/me');
+        if (res.ok) {
+            const user = await res.json();
+            document.getElementById('displayAdminName').textContent = user.nome;
+            if (user.role === 'admin') {
+              btnAdmin.style.display = 'block';
+              atualizarBadgePendentes();
+            } else {
+              btnAdmin.style.display = 'none';
+            }
+        }
+      } catch(e) {}
+    }
+
+    async function atualizarBadgePendentes() {
+      try {
+        const res = await apiFetch('/api/usuarios/pendentes');
+        if (res.ok) {
+          const pendentes = await res.json();
+          const badge = document.getElementById('pendingBadgeCount');
+          if (badge) {
+            const contaPendente = pendentes.filter(u => u.status === 'pendente').length;
+            badge.textContent = contaPendente;
+            badge.style.display = contaPendente > 0 ? 'inline-block' : 'none';
+          }
+        }
+      } catch(e) {}
+    }
+
+    function switchLoginTab(tab) {
+      const btnLogin = document.getElementById('tabBtnLogin');
+      const btnReg = document.getElementById('tabBtnRegister');
+      const formLogin = document.getElementById('formLogin');
+      const formReg = document.getElementById('formRegister');
+      if (tab === 'login') {
+        btnLogin.classList.add('active'); btnReg.classList.remove('active');
+        formLogin.style.display = 'flex'; formReg.style.display = 'none';
+      } else {
+        btnReg.classList.add('active'); btnLogin.classList.remove('active');
+        formReg.style.display = 'flex'; formLogin.style.display = 'none';
+      }
+    }
+
+    async function realizarLogin(event) {
+      event.preventDefault();
+      const user = document.getElementById('loginUser').value.trim();
+      const pass = document.getElementById('loginPass').value;
+
+      const formData = new URLSearchParams();
+      formData.append("username", user);
+      formData.append("password", pass);
+
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: formData
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          localStorage.setItem('ALISON_GESTOR_TOKEN', data.access_token);
+          document.getElementById('displayAdminName').textContent = data.name;
+          document.getElementById('loginOverlay').classList.add('hidden');
+          verificarPermissoesAdminUI();
+          showNotification(`Bem-vindo, ${data.name}! Sessão protegida iniciada.`);
+          carregarDadosAPI();
+        } else {
+          showNotification(data.detail || "Erro de login.");
+        }
+      } catch (error) {
+        showNotification("Erro ao conectar no servidor de autenticação.");
+      }
+    }
+
+    async function solicitarCadastro(event) {
+      event.preventDefault();
+      const nome = document.getElementById('regName').value.trim();
+      const login = document.getElementById('regUser').value.trim();
+      const senha = document.getElementById('regPass').value;
+
+      if (senha.length < 6) { showNotification('Senha mínima de 6 caracteres.'); return; }
+
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/auth/register`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ nome, login, senha })
+        });
+        const data = await res.json();
+
+        if(res.ok) {
+          showNotification(data.mensagem);
+          switchLoginTab('login');
+        } else {
+          showNotification(data.detail);
+        }
+      } catch (error) {
+        showNotification("Erro na solicitação de cadastro.");
+      }
+    }
+
+    async function abrirPainelUsuarios() {
+      const tbody = document.getElementById('usuariosPendentesTbody'); 
+      tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding: 20px; color:var(--neon-green);">Carregando usuários do servidor...</td></tr>';
+      abrirModal('modalUsuarios');
+
+      try {
+        const res = await apiFetch('/api/usuarios/pendentes');
+        if (res.ok) {
+          const solicitantes = await res.json();
+          tbody.innerHTML = '';
+          if (solicitantes.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; padding: 20px; color:var(--text-muted);">Nenhum usuário registrado além do admin.</td></tr>`;
+            return;
+          }
+
+          solicitantes.forEach(u => {
+            const isPend = u.status === 'pendente';
+            const stColor = isPend ? '#f39c12' : (u.status === 'aprovado' ? 'var(--neon-green)' : 'var(--neon-red)');
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+              <td style="font-weight:700;">${escapeHTML(u.nome)}</td>
+              <td>${escapeHTML(u.login)}</td>
+              <td><span style="color:${stColor}; font-weight:700; text-transform:uppercase; font-size:0.75rem;">${u.status}</span></td>
+              <td style="text-align:right; white-space:nowrap;">
+                ${isPend ? `
+                  <button class="btn-action-neon" style="padding:5px 10px; font-size:0.75rem;" onclick="aprovarUsuario('${u.login}')">Aprovar</button>
+                  <button class="btn-secondary" style="padding:5px 10px; font-size:0.75rem; color:var(--neon-red);" onclick="rejeitarUsuario('${u.login}')">Rejeitar</button>
+                ` : `<button class="btn-secondary" style="padding:5px 10px; font-size:0.75rem; color:var(--neon-red);" onclick="rejeitarUsuario('${u.login}')">Excluir Conta</button>`}
+              </td>`;
+            tbody.appendChild(tr);
+          });
+        }
+      } catch (error) {
+        tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:var(--neon-red);">Erro ou acesso negado.</td></tr>`;
+      }
+    }
+
+    async function aprovarUsuario(login) {
+      try {
+        const res = await apiFetch(`/api/usuarios/${login}/aprovar`, { method: "PUT" });
+        if(res.ok) {
+          showNotification(`Usuário aprovado com sucesso!`);
+          atualizarBadgePendentes(); 
+          abrirPainelUsuarios();
+        }
+      } catch(e) { showNotification("Erro ao aprovar usuário."); }
+    }
+
+    async function rejeitarUsuario(login) {
+      if (confirm(`Remover definitivamente o usuário "${login}"?`)) {
+        try {
+          const res = await apiFetch(`/api/usuarios/${login}/rejeitar`, { method: "DELETE" });
+          if(res.ok) {
+            showNotification(`Usuário removido.`);
+            atualizarBadgePendentes(); 
+            abrirPainelUsuarios();
+          }
+        } catch(e) { showNotification("Erro ao rejeitar usuário."); }
+      }
+    }
+
+    function realizarLogout(forced = false) {
+      localStorage.removeItem('ALISON_GESTOR_TOKEN');
+      document.getElementById('loginOverlay').classList.remove('hidden');
+      document.getElementById('userDropdown').classList.remove('active');
+      if(!forced) showNotification('Sessão criptografada encerrada com segurança.');
+    }
+
+    /* =========================================================
+       2. INTEGRAÇÃO COM A API (DADOS FINANCEIROS)
+       ========================================================= */
+
+    async function carregarDadosAPI(notificar = false) {
+      try {
+        const resOs = await apiFetch(`/api/os/historico`);
+        if (resOs.ok) {
+          osList = await resOs.json();
+          atualizarTabela(osList);
+          atualizarAutoSuggest();
+        }
+
+        let periodoApi = "dia";
+        if(filtroPeriodoAtual === "7dias") periodoApi = "semana";
+        if(filtroPeriodoAtual === "mes") periodoApi = "mes";
+        if(filtroPeriodoAtual === "ano" || filtroPeriodoAtual === "tudo") periodoApi = "ano";
+
+        const resFin = await apiFetch(`/api/financeiro/resumo?periodo=${periodoApi}`);
+        if (resFin.ok) {
+          const fin = await resFin.json();
+          document.getElementById('kpiServicos').textContent = fin.quantidade_servicos;
+          document.getElementById('kpiFaturamento').textContent = formatarMoeda(fin.faturamento_bruto);
+          document.getElementById('kpiCustos').textContent = formatarMoeda(fin.custos_pecas);
+          document.getElementById('kpiLucro').textContent = formatarMoeda(fin.lucro_liquido);
+        }
+
+        const resGrafico = await apiFetch(`/api/financeiro/grafico`);
+        if (resGrafico.ok) {
+          const dadosGrafico = await resGrafico.json();
+          atualizarGrafico(dadosGrafico);
+        }
+
+        atualizarTabelaLancamentos();
+        if(notificar) showNotification("Dados sincronizados com o servidor.");
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    async function adicionarOS(e) {
+      e.preventDefault();
+      const cliente = document.getElementById('formCliente').value.trim();
+      const aparelho = document.getElementById('formAparelho').value.trim();
+      const servico = document.getElementById('formServico').value.trim();
+      const valor = parseFloat(document.getElementById('formValor').value) || 0;
+      const custo = parseFloat(document.getElementById('formCusto').value) || 0;
+      const status = document.getElementById('formStatus').value;
+
+      try {
+        const url = new URL(`${API_BASE_URL}/api/os/`);
+        url.searchParams.append("cliente_nome", cliente);
+        url.searchParams.append("aparelho", aparelho);
+        url.searchParams.append("servico", servico);
+        url.searchParams.append("valor", valor);
+        url.searchParams.append("custo", custo);
+        url.searchParams.append("status", status);
+
+        const response = await apiFetch(url.pathname + url.search, { method: 'POST' });
+        
+        if (response.ok) {
+          adicionarNotificacao(`OS cadastrada para ${cliente}`);
+          document.getElementById('osForm').reset();
+          document.getElementById('formCusto').value = '0.00';
+          showNotification('Ordem salva com sucesso no Banco de Dados!');
+          carregarDadosAPI();
+        }
+      } catch (error) {
+        showNotification('Erro ao salvar OS na API.');
+      }
+    }
+
+    async function alternarStatusOS(id) {
+      const os = osList.find(o => o.id == id);
+      if (!os) return;
+      
+      const seq = ['Na Fila', 'Em Andamento', 'Concluído', 'Cancelado'];
+      const novoStatus = seq[(seq.indexOf(os.status) + 1) % seq.length];
+
+      try {
+        const url = new URL(`${API_BASE_URL}/api/os/${id}/status`);
+        url.searchParams.append("status", novoStatus);
+        const response = await apiFetch(url.pathname + url.search, { method: 'PUT' });
+        if (response.ok) {
+          showNotification(`Status atualizado para "${novoStatus}"`);
+          carregarDadosAPI();
+        }
+      } catch (error) {
+        showNotification('Erro ao atualizar status na API.');
+      }
+    }
+
+    function abrirEdicaoOS(id) {
+      const os = osList.find(o => o.id == id);
+      if (!os) return;
+      document.getElementById('editOSId').value = os.id;
+      document.getElementById('editCliente').value = os.cliente_nome || os.cliente;
+      document.getElementById('editAparelho').value = os.aparelho;
+      document.getElementById('editServico').value = os.servico;
+      document.getElementById('editValor').value = os.valor;
+      document.getElementById('editCusto').value = os.custo || 0;
+      document.getElementById('editStatus').value = os.status;
+      abrirModal('modalOS');
+    }
+
+    async function salvarEdicaoOS(e) {
+      e.preventDefault();
+      const id = document.getElementById('editOSId').value;
+      const cliente = document.getElementById('editCliente').value.trim();
+      const aparelho = document.getElementById('editAparelho').value.trim();
+      const servico = document.getElementById('editServico').value.trim();
+      const valor = parseFloat(document.getElementById('editValor').value) || 0;
+      const custo = parseFloat(document.getElementById('editCusto').value) || 0;
+      const status = document.getElementById('editStatus').value;
+
+      try {
+        const url = new URL(`${API_BASE_URL}/api/os/${id}`);
+        url.searchParams.append("cliente_nome", cliente);
+        url.searchParams.append("aparelho", aparelho);
+        url.searchParams.append("servico", servico);
+        url.searchParams.append("valor", valor);
+        url.searchParams.append("custo", custo);
+        url.searchParams.append("status", status);
+
+        const response = await apiFetch(url.pathname + url.search, { method: 'PUT' });
+        if (response.ok) {
+          fecharModal('modalOS');
+          showNotification('OS atualizada com sucesso no banco de dados!');
+          carregarDadosAPI();
+        }
+      } catch (error) {
+        showNotification('Erro de conexão ao tentar editar a OS.');
+      }
+    }
+
+    async function excluirOS(id) {
+      if (confirm('Atenção: Deseja realmente excluir esta Ordem de Serviço do banco de dados?')) {
+        try {
+          const response = await apiFetch(`/api/os/${id}`, { method: 'DELETE' });
+          if (response.ok) {
+            showNotification('Ordem de serviço excluída definitivamente!');
+            carregarDadosAPI();
+          }
+        } catch (error) {
+          showNotification('Erro de conexão ao tentar deletar a OS.');
+        }
+      }
+    }
+
+    function mudarPeriodo(periodo) {
+      filtroPeriodoAtual = periodo;
+      showNotification(`Filtro alterado.`);
+      carregarDadosAPI(); 
+    }
+
+    function atualizarGrafico(dadosDaApi) {
+      const ctx = document.getElementById('financialChart').getContext('2d');
+      if (chartInstance) chartInstance.destroy();
+      
+      chartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: dadosDaApi.labels.reverse(),
+          datasets: [
+            { label: 'Faturamento Bruto', data: dadosDaApi.faturamento.reverse(), backgroundColor: '#00ff66', borderRadius: 6 },
+            { label: 'Lucro Líquido', data: dadosDaApi.lucro.reverse(), backgroundColor: '#6efeb0', borderRadius: 6 }
+          ]
+        },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { ticks: { color: '#8cb19a' } }, y: { ticks: { color: '#8cb19a' } } } }
+      });
+    }
+
+    function atualizarTabela(lista) {
+      const tbody = document.getElementById('corpoTabelaAparelhos');
+      tbody.innerHTML = '';
+      if (lista.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:20px; color:var(--text-muted);">Nenhum registro encontrado.</td></tr>`;
+        return;
+      }
+      lista.slice(0, 7).forEach(item => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><div class="client-device-cell"><span class="client-name">${escapeHTML(item.cliente_nome || item.cliente)}</span><span class="device-name">${escapeHTML(item.aparelho)}</span></div></td>
+          <td style="font-weight:600; color:#d0f0dc;">${escapeHTML(item.servico)}</td>
+          <td><span class="status-badge ${obterClasseStatus(item.status)}" onclick="alternarStatusOS(${item.id})">${escapeHTML(item.status)}</span></td>
+          <td class="val-text-green">${formatarMoeda(item.valor)}</td>
+          <td style="text-align: right; white-space: nowrap;">
+            <button class="btn-table-action" onclick="abrirEdicaoOS(${item.id})" title="Editar"><i class="fa-solid fa-pen"></i></button>
+            <button class="btn-table-action delete" onclick="excluirOS(${item.id})" title="Excluir"><i class="fa-solid fa-trash"></i></button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function pesquisarOS(term) {
+      term = term.toLowerCase().trim();
+      const res = osList.filter(o => (o.cliente_nome||'').toLowerCase().includes(term) || (o.aparelho||'').toLowerCase().includes(term) || (o.servico||'').toLowerCase().includes(term));
+      atualizarTabela(res);
+    }
+    function handleGlobalSearch(term) { pesquisarOS(term); }
+
+    function atualizarAutoSuggest() {
+      const cli = [...new Set(osList.map(o => o.cliente_nome))];
+      const ap = [...new Set(osList.map(o => o.aparelho))];
+      const serv = [...new Set(osList.map(o => o.servico))];
+      preencherDatalist('clientesDatalist', cli);
+      preencherDatalist('aparelhosDatalist', ap);
+      preencherDatalist('servicosDatalist', serv);
+    }
+    function preencherDatalist(id, arr) {
+      const el = document.getElementById(id);
+      if (!el) return; el.innerHTML = '';
+      arr.forEach(i => { if(i){ const opt = document.createElement('option'); opt.value = i; el.appendChild(opt); }});
+    }
+
+    function obterClasseStatus(st) {
+      if (st === 'Concluído') return 'status-concluido';
+      if (st === 'Em Andamento') return 'status-andamento';
+      if (st === 'Na Fila') return 'status-fila';
+      return 'status-cancelado';
+    }
+
+    function formatarMoeda(val) {
+      return 'R$ ' + parseFloat(val || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    /* =========================================================
+       3. ESTATÍSTICAS E RELATÓRIOS (MODAIS VIA API JWT)
+       ========================================================= */
+
+    function navegarPara(tab) {
+      document.querySelectorAll('#sidebarNav .nav-item').forEach(li => li.classList.toggle('active', li.getAttribute('data-tab') === tab));
+      if (tab === 'inicio') window.scrollTo({ top: 0, behavior: 'smooth' });
+      else if (tab === 'financeiro') abrirModalLancamentos();
+      else if (tab === 'clientes') abrirModalClientes();
+      else if (tab === 'servicos') abrirModalServicos();
+      else if (tab === 'aparelhos') abrirModalAparelhos();
+      else if (tab === 'relatorios') abrirModalRelatorios();
+      else if (tab === 'configuracoes') abrirConfiguracoes();
+      document.getElementById('sidebar').classList.remove('open');
+    }
+
+    async function abrirModalClientes() {
+      const tbody = document.getElementById('clientesTbody'); 
+      tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding:20px; color:var(--neon-green);">Carregando dados do servidor...</td></tr>';
+      abrirModal('modalClientes');
+      try {
+        const res = await apiFetch(`/api/estatisticas/clientes`);
+        if (res.ok) {
+          const dados = await res.json();
+          tbody.innerHTML = '';
+          if(dados.length === 0) { tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:var(--text-muted);">Nenhum cliente registrado.</td></tr>'; return; }
+          dados.forEach(d => {
+            tbody.innerHTML += `<tr><td style="font-weight:700;">${escapeHTML(d.cliente)}</td><td>${d.servicos} serviço(s)</td><td>Diversos</td><td style="text-align:right;" class="val-text-green">${formatarMoeda(d.total_gasto)}</td></tr>`;
+          });
+        }
+      } catch (e) { tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:var(--neon-red);">Erro ao buscar clientes.</td></tr>'; }
+    }
+
+    async function abrirModalServicos() {
+      const tbody = document.getElementById('servicosTbody'); 
+      tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding:20px; color:var(--neon-green);">Carregando dados do servidor...</td></tr>';
+      abrirModal('modalServicos');
+      try {
+        const res = await apiFetch(`/api/estatisticas/servicos`);
+        if (res.ok) {
+          const dados = await res.json();
+          tbody.innerHTML = '';
+          if(dados.length === 0) { tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:var(--text-muted);">Nenhum serviço registrado.</td></tr>'; return; }
+          dados.forEach(d => {
+            tbody.innerHTML += `<tr><td style="font-weight:700;">${escapeHTML(d.servico)}</td><td>${d.quantidade}</td><td>${formatarMoeda(d.preco_medio)}</td><td style="text-align:right;" class="val-text-green">${formatarMoeda(d.total_gerado)}</td></tr>`;
+          });
+        }
+      } catch (e) { tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:var(--neon-red);">Erro ao buscar serviços.</td></tr>'; }
+    }
+
+    async function abrirModalAparelhos() {
+      const tbody = document.getElementById('aparelhosTbody'); 
+      tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding:20px; color:var(--neon-green);">Carregando dados do servidor...</td></tr>';
+      abrirModal('modalAparelhos');
+      try {
+        const res = await apiFetch(`/api/estatisticas/aparelhos`);
+        if (res.ok) {
+          const dados = await res.json();
+          tbody.innerHTML = '';
+          if(dados.length === 0) { tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:var(--text-muted);">Nenhum aparelho registrado.</td></tr>'; return; }
+          dados.forEach(d => {
+            tbody.innerHTML += `<tr><td style="font-weight:700;">${escapeHTML(d.aparelho)}</td><td>${d.quantidade}</td><td>Diversos</td><td style="text-align:right;" class="val-text-green">${formatarMoeda(d.total_gerado)}</td></tr>`;
+          });
+        }
+      } catch (e) { tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:var(--neon-red);">Erro ao buscar aparelhos.</td></tr>'; }
+    }
+
+    function abrirModalRelatorios() {
+      const kpiFat = document.getElementById('kpiFaturamento').textContent;
+      const kpiCust = document.getElementById('kpiCustos').textContent;
+      const kpiLuc = document.getElementById('kpiLucro').textContent;
+      
+      document.getElementById('relFaturamento').textContent = kpiFat;
+      document.getElementById('relCustos').textContent = kpiCust;
+      document.getElementById('relLucro').textContent = kpiLuc;
+      
+      const tbody = document.getElementById('relatorioTbody'); tbody.innerHTML = '';
+      if(osList.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; color:var(--text-muted);">Nenhum dado para o relatório.</td></tr>';
+      } else {
+          osList.forEach(o => {
+            const lucroBruto = (o.valor || 0) - (o.custo || 0);
+            tbody.innerHTML += `<tr><td>#${o.id.toString().slice(-4)}</td><td>${escapeHTML(o.cliente_nome)}</td><td>${escapeHTML(o.aparelho)}</td><td>${escapeHTML(o.servico)}</td><td>${escapeHTML(o.data||'')}</td><td><span class="status-badge ${obterClasseStatus(o.status)}">${o.status}</span></td><td style="text-align:right;" class="val-text-green">${formatarMoeda(lucroBruto)}</td></tr>`;
+          });
+      }
+      abrirModal('modalRelatorios');
+    }
+
+    function exportarRelatorioCompletoCSV() {
+      let csv = 'ID;CLIENTE;APARELHO;SERVICO;VALOR;CUSTO;LUCRO\n';
+      osList.forEach(o => {
+        const lucro = (o.valor || 0) - (o.custo || 0);
+        csv += `"${o.id}";"${o.cliente_nome}";"${o.aparelho}";"${o.servico}";"${o.valor}";"${o.custo}";"${lucro}"\n`;
+      });
+      baixarArquivo(csv, 'relatorio_geral.csv', 'text/csv');
+      showNotification('Relatório exportado!');
+    }
+
+    /* =========================================================
+       4. LANÇAMENTOS AVULSOS
+       ========================================================= */
+
+    function definirDataHojeFormularios() {
+      const hoje = new Date().toISOString().split('T')[0];
+      const dataInput = document.getElementById('avulsoData');
+      if (dataInput) dataInput.value = hoje;
+    }
+
+    function abrirNovoLancamentoModal() { abrirModal('modalNovoLancamento'); }
+    function salvarLancamentoAvulso(e) {
+      e.preventDefault();
+      const tipo = document.getElementById('avulsoTipo').value;
+      const desc = document.getElementById('avulsoDesc').value.trim();
+      const valor = parseFloat(document.getElementById('avulsoValor').value) || 0;
+      const dataRaw = document.getElementById('avulsoData').value;
+      let dataFmt = dataRaw.includes('-') ? dataRaw.split('-').reverse().join('/') : dataRaw;
+
+      lancamentosList.unshift({ id: Date.now(), data: dataFmt, desc, tipo, valor, isAvulso: true });
+      localStorage.setItem(STORAGE_KEY_LANCAMENTOS, JSON.stringify(lancamentosList));
+      fecharModal('modalNovoLancamento');
+      atualizarTabelaLancamentos();
+      carregarDadosAPI();
+      showNotification('Lançamento avulso salvo!');
+    }
+
+    function abrirModalLancamentos() { filtrarTabelaModalLancamentos('todos'); abrirModal('modalLancamentos'); }
+    function filtrarTabelaModalLancamentos(tipo) {
+      const tbody = document.getElementById('modalLancamentosTbody');
+      tbody.innerHTML = '';
+      const data = tipo === 'todos' ? lancamentosList : lancamentosList.filter(l => l.tipo === tipo);
+      data.forEach(l => {
+        const isRec = l.tipo === 'Receita';
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${escapeHTML(l.data)}</td><td>${escapeHTML(l.desc)}</td><td style="color:${isRec?'var(--neon-green)':'var(--neon-red)'}; font-weight:700;">${escapeHTML(l.tipo)}</td><td class="${isRec?'val-text-green':'val-text-red'}">${isRec?'+':'-'} ${formatarMoeda(l.valor)}</td><td style="text-align:right;"><button class="btn-table-action delete" onclick="excluirLanc(${l.id})"><i class="fa-solid fa-trash"></i></button></td>`;
+        tbody.appendChild(tr);
+      });
+    }
+    function excluirLanc(id) {
+      lancamentosList = lancamentosList.filter(l => l.id != id);
+      localStorage.setItem(STORAGE_KEY_LANCAMENTOS, JSON.stringify(lancamentosList));
+      filtrarTabelaModalLancamentos('todos');
+      atualizarTabelaLancamentos();
+      carregarDadosAPI();
+      showNotification('Lançamento excluído.');
+    }
+    function exportarLancamentosCSV() {
+      let csv = 'DATA;DESCRIÇÃO;TIPO;VALOR\n';
+      lancamentosList.forEach(l => csv += `"${l.data}";"${l.desc}";"${l.tipo}";"${l.valor.toFixed(2)}"\n`);
+      baixarArquivo(csv, 'lancamentos.csv', 'text/csv');
+      showNotification('CSV exportado!');
+    }
+
+    function atualizarTabelaLancamentos() {
+      const tbody = document.getElementById('corpoTabelaLancamentos');
+      if(!tbody) return;
+      tbody.innerHTML = '';
+      lancamentosList.slice(0, 6).forEach(l => {
+        const isRec = l.tipo === 'Receita';
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td style="color:var(--text-muted); font-size:0.8rem;">${escapeHTML(l.data)}</td><td style="font-weight:600;">${escapeHTML(l.desc)}</td><td style="color:${isRec ? 'var(--neon-green)' : 'var(--neon-red)'}; font-weight:700;">${escapeHTML(l.tipo)}</td><td style="text-align: right;" class="${isRec ? 'val-text-green' : 'val-text-red'}">${isRec ? '+ ' : '- '} ${formatarMoeda(l.valor)}</td>`;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function irParaInicio() { navegarPara('inicio'); }
+    function abrirModal(id) { document.getElementById(id).classList.add('show'); }
+    function fecharModal(id) { document.getElementById(id).classList.remove('show'); }
+
+    function abrirConfiguracoes() { abrirModal('modalConfiguracoes'); }
+    function fazerBackupJSON() {
+      baixarArquivo(JSON.stringify({ lancamentosList, notificacoesList }, null, 2), 'backup_local.json', 'application/json');
+      showNotification('Backup local baixado!');
+    }
+    function resetarDadosFabrica() {
+      if (confirm('Atenção: Essa ação irá limpar sua sessão e todos os dados armazenados localmente no navegador.')) {
+        localStorage.clear();
+        location.reload();
+      }
+    }
+
+    function adicionarNotificacao(txt) {
+      notificacoesList.unshift({ id: Date.now(), text: txt, time: new Date().toLocaleTimeString('pt-BR', { hour:'2-digit', minute:'2-digit' }) });
+      localStorage.setItem(STORAGE_KEY_NOTIFS, JSON.stringify(notificacoesList));
+      atualizarNotificacoesUI();
+    }
+    function atualizarNotificacoesUI() {
+      const el = document.getElementById('notifList'); if (!el) return;
+      el.innerHTML = '';
+      notificacoesList.slice(0,5).forEach(n => el.innerHTML += `<div class="notif-item"><span>${escapeHTML(n.text)}</span><small>${n.time}</small></div>`);
+    }
+    function limparNotificacoes() { notificacoesList = []; localStorage.removeItem(STORAGE_KEY_NOTIFS); atualizarNotificacoesUI(); }
+    function toggleNotificacoesDropdown() { document.getElementById('notifDropdown').classList.toggle('active'); document.getElementById('userDropdown').classList.remove('active'); }
+    function toggleUserDropdown() { document.getElementById('userDropdown').classList.toggle('active'); document.getElementById('notifDropdown').classList.remove('active'); }
+
+    function iniciarRelogio() { setInterval(() => { const el = document.getElementById('currentTime'); if (el) el.textContent = new Date().toLocaleTimeString('pt-BR'); }, 1000); }
+    function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
+    function showNotification(msg) {
+      const c = document.getElementById('toastContainer');
+      const t = document.createElement('div'); t.className = 'toast';
+      t.innerHTML = `<i class="fa-solid fa-circle-check" style="color:var(--neon-green);"></i><span>${escapeHTML(msg)}</span>`;
+      c.appendChild(t); setTimeout(() => t.remove(), 3500);
+    }
+    function baixarArquivo(content, name, mime) {
+      const b = new Blob([content], { type: mime });
+      const u = URL.createObjectURL(b);
+      const a = document.createElement('a'); a.href = u; a.download = name; a.click(); URL.revokeObjectURL(u);
+    }
+    function escapeHTML(str) { return String(str||'').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+
+    function iniciarCanvasMatrix() {
+      const c = document.getElementById('matrix-canvas'); if (!c) return;
+      const ctx = c.getContext('2d');
+      let w = c.width = window.innerWidth, h = c.height = window.innerHeight;
+      window.addEventListener('resize', () => { w = c.width = window.innerWidth; h = c.height = window.innerHeight; });
+      const cols = Math.floor(w / 30) + 1, ypos = Array(cols).fill(0);
+      setInterval(() => {
+        ctx.fillStyle = 'rgba(2, 6, 4, 0.15)'; ctx.fillRect(0, 0, w, h);
+        ctx.fillStyle = '#00ff66'; ctx.font = '12pt monospace';
+        ypos.forEach((y, i) => { ctx.fillText(String.fromCharCode(Math.floor(Math.random()*94)+33), i*30, y); if (y > 1000) ypos[i] = 0; else ypos[i] = y + 20; });
+      }, 80);
+    }
+  </script>
+</body>
+</html>
