@@ -508,7 +508,19 @@
                   <datalist id="clientesDatalist"></datalist>
                 </div>
               </div>
-
+<div class="form-group">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <label>Data de Realização</label>
+                  <div style="display: flex; gap: 6px;">
+                    <button type="button" class="btn-secondary" style="padding: 2px 8px; font-size: 0.72rem;" onclick="setOsDataOntem()">Ontem</button>
+                    <button type="button" class="btn-secondary" style="padding: 2px 8px; font-size: 0.72rem;" onclick="setOsDataHoje()">Hoje</button>
+                  </div>
+                </div>
+                <div class="input-icon-box">
+                  <i class="fa-regular fa-calendar"></i>
+                  <input type="date" id="formOsData" required>
+                </div>
+              </div>
               <div class="form-group">
                 <label>Aparelho</label>
                 <div class="input-icon-box">
