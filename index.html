@@ -227,6 +227,75 @@
       .user-info-text { display: none; }
       .dashboard-controls { width: 100%; justify-content: space-between; }
     }
+
+    /* =========================================
+       GAMIFICAÇÃO E METAS
+       ========================================= */
+    .gamification-container {
+      background: rgba(6, 20, 12, 0.7);
+      border: 1px solid rgba(0, 255, 102, 0.2);
+      border-radius: 12px;
+      padding: 18px 24px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s ease;
+    }
+    .gamification-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .gamification-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .gamification-title i {
+      color: #ffd700; /* Dourado */
+      font-size: 1.2rem;
+      filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.6));
+    }
+    .gamification-values {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--neon-green);
+    }
+    .progress-bar-bg {
+      width: 100%;
+      height: 14px;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 255, 102, 0.15);
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%; /* Inicia zerado, o JS vai alterar */
+      background: linear-gradient(90deg, #00b347 0%, #00ff73 100%);
+      box-shadow: 0 0 15px rgba(0, 255, 102, 0.8);
+      transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1), background 0.5s, box-shadow 0.5s;
+      border-radius: 8px;
+    }
+
+    /* Animação quando a meta for batida */
+    .celebration-mode {
+      animation: pulseGold 2s infinite;
+      border-color: rgba(255, 215, 0, 0.5);
+    }
+    @keyframes pulseGold {
+      0% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.2); }
+      50% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.6), inset 0 0 15px rgba(255, 215, 0, 0.2); }
+      100% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.2); }
+    }
   </style>
 </head>
 <body>
@@ -455,6 +524,25 @@
             <button class="ctrl-pill" onclick="carregarDadosAPI(true)" title="Recarregar Dados">
               <i class="fa-solid fa-rotate" style="color: var(--neon-green);"></i>
             </button>
+          </div>
+        </div>
+
+        <!-- GAMIFICAÇÃO / BARRA DE META -->
+        <div class="gamification-container" id="gamificationBox">
+          <div class="gamification-header">
+            <div class="gamification-title">
+              <i class="fa-solid fa-trophy"></i> 
+              Progresso da Meta
+              <button class="btn-table-action" onclick="editarMeta()" title="Alterar Meta" style="margin-left: 8px; font-size: 0.8rem; color: var(--text-muted);">
+                <i class="fa-solid fa-pen"></i>
+              </button>
+            </div>
+            <div class="gamification-values" id="metaTextValues">
+              R$ 0,00 / R$ 5.000,00
+            </div>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="metaProgressBar"></div>
           </div>
         </div>
 
@@ -1274,6 +1362,52 @@
       if (dataOsInput) dataOsInput.value = hoje;
     }
 
+    /* =========================================================
+       GAMIFICAÇÃO E METAS
+       ========================================================= */
+    let metaFinanceiraAtual = parseFloat(localStorage.getItem('ALISON_META_FINANCEIRA')) || 5000;
+
+    function atualizarBarraDeMeta(faturamento_bruto) {
+      metaFinanceiraAtual = parseFloat(localStorage.getItem('ALISON_META_FINANCEIRA')) || 5000;
+      
+      let porcentagem = (faturamento_bruto / metaFinanceiraAtual) * 100;
+      if (porcentagem > 100) porcentagem = 100;
+
+      document.getElementById('metaTextValues').innerHTML = `${formatarMoeda(faturamento_bruto)} <span style="color:var(--text-muted); font-size:0.9rem;">/ ${formatarMoeda(metaFinanceiraAtual)}</span> <span style="font-size:0.8rem; color:#fff;">(${porcentagem.toFixed(0)}%)</span>`;
+      
+      const barra = document.getElementById('metaProgressBar');
+      const container = document.getElementById('gamificationBox');
+
+      setTimeout(() => { barra.style.width = `${porcentagem}%`; }, 100);
+
+      if (porcentagem >= 100 && faturamento_bruto > 0) {
+        container.classList.add('celebration-mode');
+        barra.style.background = 'linear-gradient(90deg, #ffd700 0%, #ffea00 100%)'; 
+        barra.style.boxShadow = '0 0 20px #ffea00';
+      } else {
+        container.classList.remove('celebration-mode');
+        barra.style.background = 'linear-gradient(90deg, #00b347 0%, #00ff73 100%)'; 
+        barra.style.boxShadow = '0 0 15px rgba(0, 255, 102, 0.8)';
+      }
+    }
+
+    function editarMeta() {
+      const valorAtual = metaFinanceiraAtual.toFixed(2);
+      const novaMeta = prompt("🔥 Defina sua nova meta de faturamento (digite apenas os números, ex: 10000):", valorAtual);
+      
+      if (novaMeta !== null && novaMeta.trim() !== "" && !isNaN(novaMeta)) {
+        const valorNumerico = parseFloat(novaMeta);
+        if (valorNumerico > 0) {
+          localStorage.setItem('ALISON_META_FINANCEIRA', valorNumerico);
+          metaFinanceiraAtual = valorNumerico;
+          showNotification(`Nova meta traçada: ${formatarMoeda(valorNumerico)}! Vamos pra cima! 🚀`);
+          carregarDadosAPI(); 
+        } else {
+          showNotification("A meta precisa ser maior que zero.");
+        }
+      }
+    }
+
     async function carregarDadosAPI(notificar = false) {
       try {
         const resOs = await apiFetch(`/api/os/historico`);
@@ -1301,6 +1435,8 @@
           document.getElementById('kpiFaturamento').textContent = formatarMoeda(fin.faturamento_bruto);
           document.getElementById('kpiCustos').textContent = formatarMoeda(fin.custos_pecas);
           document.getElementById('kpiLucro').textContent = formatarMoeda(fin.lucro_liquido);
+          
+          atualizarBarraDeMeta(fin.faturamento_bruto);
         }
 
         const resGrafico = await apiFetch(`/api/financeiro/grafico`);
