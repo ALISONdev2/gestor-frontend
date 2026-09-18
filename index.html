@@ -508,7 +508,8 @@
                   <datalist id="clientesDatalist"></datalist>
                 </div>
               </div>
-<div class="form-group">
+              
+              <div class="form-group">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                   <label>Data de Realização</label>
                   <div style="display: flex; gap: 6px;">
@@ -521,6 +522,7 @@
                   <input type="date" id="formOsData" required>
                 </div>
               </div>
+
               <div class="form-group">
                 <label>Aparelho</label>
                 <div class="input-icon-box">
@@ -1245,6 +1247,33 @@
        3. INTEGRAÇÃO COM A API E LÓGICA DO PAINEL
        ========================================================= */
 
+    function formatDateISO(d) {
+      const yyyy = d.getFullYear();
+      const mm = String(d.getMonth() + 1).padStart(2, '0');
+      const dd = String(d.getDate()).padStart(2, '0');
+      return `${yyyy}-${mm}-${dd}`;
+    }
+
+    function setOsDataHoje() {
+      const el = document.getElementById('formOsData');
+      if (el) el.value = formatDateISO(new Date());
+    }
+
+    function setOsDataOntem() {
+      const ontem = new Date();
+      ontem.setDate(ontem.getDate() - 1);
+      const el = document.getElementById('formOsData');
+      if (el) el.value = formatDateISO(ontem);
+    }
+
+    function definirDataHojeFormularios() {
+      const hoje = formatDateISO(new Date());
+      const dataInput = document.getElementById('avulsoData');
+      if (dataInput) dataInput.value = hoje;
+      const dataOsInput = document.getElementById('formOsData');
+      if (dataOsInput) dataOsInput.value = hoje;
+    }
+
     async function carregarDadosAPI(notificar = false) {
       try {
         const resOs = await apiFetch(`/api/os/historico`);
@@ -1292,6 +1321,7 @@
       const valor = parseFloat(document.getElementById('formValor').value) || 0;
       const custo = parseFloat(document.getElementById('formCusto').value) || 0;
       const status = document.getElementById('formStatus').value;
+      const dataOS = document.getElementById('formOsData').value;
 
       try {
         const url = new URL(`${API_BASE_URL}/api/os/`);
@@ -1301,11 +1331,14 @@
         url.searchParams.append("valor", valor);
         url.searchParams.append("custo", custo);
         url.searchParams.append("status", status);
+        url.searchParams.append("data", dataOS);
+
         const response = await apiFetch(url.pathname + url.search, { method: 'POST' });
         if (response.ok) {
           adicionarNotificacao(`OS cadastrada para ${cliente}`);
           document.getElementById('osForm').reset();
           document.getElementById('formCusto').value = '0.00';
+          definirDataHojeFormularios();
           showNotification('Ordem salva com sucesso no Banco de Dados!');
           carregarDadosAPI();
         }
@@ -1335,6 +1368,14 @@
       document.getElementById('editValor').value = os.valor;
       document.getElementById('editCusto').value = os.custo || 0;
       document.getElementById('editStatus').value = os.status;
+      
+      if (os.data && os.data.includes('/')) {
+        const [d, m, y] = os.data.split('/');
+        document.getElementById('editData').value = `${y}-${m}-${d}`;
+      } else {
+        document.getElementById('editData').value = formatDateISO(new Date());
+      }
+
       abrirModal('modalOS');
     }
 
@@ -1347,6 +1388,7 @@
       const valor = parseFloat(document.getElementById('editValor').value) || 0;
       const custo = parseFloat(document.getElementById('editCusto').value) || 0;
       const status = document.getElementById('editStatus').value;
+      const dataOS = document.getElementById('editData').value;
 
       try {
         const url = new URL(`${API_BASE_URL}/api/os/${id}`);
@@ -1356,6 +1398,8 @@
         url.searchParams.append("valor", valor);
         url.searchParams.append("custo", custo);
         url.searchParams.append("status", status);
+        url.searchParams.append("data", dataOS);
+
         const response = await apiFetch(url.pathname + url.search, { method: 'PUT' });
         if (response.ok) { fecharModal('modalOS'); showNotification('OS atualizada!'); carregarDadosAPI(); }
       } catch (error) { showNotification('Erro de conexão ao tentar editar a OS.'); }
@@ -1550,12 +1594,6 @@
     /* =========================================================
        5. LANÇAMENTOS AVULSOS
        ========================================================= */
-
-    function definirDataHojeFormularios() {
-      const hoje = new Date().toISOString().split('T')[0];
-      const dataInput = document.getElementById('avulsoData');
-      if (dataInput) dataInput.value = hoje;
-    }
 
     function abrirNovoLancamentoModal() { abrirModal('modalNovoLancamento'); }
     
