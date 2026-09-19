@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consulta de Aparelho</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <style>
+    :root {
+      --bg: #040806;
+      --green: #00ff66;
+      --card-bg: rgba(6, 20, 12, 0.85);
+      --border: rgba(0, 255, 102, 0.3);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg); color: #fff; font-family: 'Inter', sans-serif;
+      min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px;
+      background-image: radial-gradient(circle at 50% 10%, rgba(0, 255, 102, 0.08) 0%, transparent 60%);
+    }
+    
+    .search-container {
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px;
+      padding: 40px 30px; width: 100%; max-width: 400px; text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    }
+
+    .brand-icon { font-size: 3rem; color: var(--green); margin-bottom: 15px; filter: drop-shadow(0 0 10px var(--green)); }
+    h1 { font-family: 'Orbitron', sans-serif; font-size: 1.4rem; margin-bottom: 5px; }
+    p { color: #82a892; font-size: 0.9rem; margin-bottom: 25px; line-height: 1.5; }
+
+    .input-box {
+      display: flex; align-items: center; background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--border); border-radius: 12px; padding: 12px 15px; margin-bottom: 20px;
+    }
+    .input-box i { color: var(--green); margin-right: 10px; }
+    .input-box input {
+      flex: 1; background: transparent; border: none; outline: none; color: #fff;
+      font-size: 1.1rem; font-weight: 600; font-family: 'Inter', sans-serif;
+    }
+
+    .btn-search {
+      width: 100%; background: linear-gradient(90deg, #00d957 0%, #00ff73 100%);
+      color: #011408; border: none; border-radius: 12px; padding: 14px;
+      font-size: 1rem; font-weight: 800; cursor: pointer;
+      box-shadow: 0 0 15px rgba(0, 255, 115, 0.4); transition: transform 0.2s;
+    }
+    .btn-search:active { transform: scale(0.98); }
+
+    .result-card {
+      display: none; margin-top: 25px; background: rgba(0, 0, 0, 0.4);
+      border-radius: 12px; padding: 20px; text-align: left; border: 1px solid rgba(255, 255, 255, 0.1);
+      animation: slideUp 0.3s ease-out;
+    }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .result-item { margin-bottom: 12px; }
+    .result-label { font-size: 0.75rem; color: #82a892; text-transform: uppercase; font-weight: 600; display: block; }
+    .result-value { font-size: 1.1rem; font-weight: 700; color: #fff; }
+    
+    .status-badge {
+      display: inline-block; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 800; margin-top: 5px;
+    }
+    .status-concluido { background: rgba(0, 255, 102, 0.18); border: 1px solid var(--green); color: var(--green); }
+    .status-andamento { background: rgba(0, 180, 255, 0.18); border: 1px solid #00d9ff; color: #00d9ff; }
+    .status-fila { background: rgba(255, 191, 0, 0.18); border: 1px solid #ffbf00; color: #ffbf00; }
+
+    .error-msg { color: var(--neon-red); font-size: 0.85rem; margin-top: 15px; display: none; font-weight: 600; }
+  </script>
+</head>
+<body>
+
+  <div class="search-container">
+    <i class="fa-solid fa-mobile-screen brand-icon"></i>
+    <h1>Acompanhe seu Aparelho</h1>
+    <p>Digite o número da sua Ordem de Serviço (OS) para consultar o status em tempo real.</p>
+
+    <form onsubmit="consultarOS(event)">
+      <div class="input-box">
+        <i class="fa-solid fa-hashtag"></i>
+        <input type="number" id="osNumber" placeholder="Ex: 1045" required>
+      </div>
+      <button type="submit" class="btn-search" id="btnSubmit">Consultar Status</button>
+      <div class="error-msg" id="errorMsg">Ordem de Serviço não encontrada.</div>
+    </form>
+
+    <div class="result-card" id="resultCard">
+      <div class="result-item">
+        <span class="result-label">Cliente</span>
+        <span class="result-value" id="resCliente">--</span>
+      </div>
+      <div class="result-item">
+        <span class="result-label">Aparelho</span>
+        <span class="result-value" id="resAparelho">--</span>
+      </div>
+      <div class="result-item">
+        <span class="result-label">Status Atual</span>
+        <span class="status-badge" id="resStatus">--</span>
+      </div>
+      <div class="result-item" style="margin-bottom: 0; margin-top: 15px; text-align: center; font-size: 0.8rem; color: #82a892;">
+        Última atualização: <span id="resData">--</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const API_BASE_URL = "https://alison-sistema-gestao.onrender.com";
+
+    async function consultarOS(event) {
+      event.preventDefault();
+      
+      const osNumber = document.getElementById('osNumber').value;
+      const btn = document.getElementById('btnSubmit');
+      const errorMsg = document.getElementById('errorMsg');
+      const resultCard = document.getElementById('resultCard');
+
+      btn.innerText = "Buscando...";
+      btn.disabled = true;
+      errorMsg.style.display = "none";
+      resultCard.style.display = "none";
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/public/os/${osNumber}`);
+        
+        if (response.ok) {
+          const data = await response.json();
+          
+          document.getElementById('resCliente').innerText = data.cliente;
+          document.getElementById('resAparelho').innerText = data.aparelho;
+          document.getElementById('resData').innerText = data.data_atualizacao;
+          
+          const statusBadge = document.getElementById('resStatus');
+          statusBadge.innerText = data.status;
+          
+          statusBadge.className = "status-badge"; // reset
+          if (data.status === 'Concluído') statusBadge.classList.add('status-concluido');
+          else if (data.status === 'Em Andamento') statusBadge.classList.add('status-andamento');
+          else statusBadge.classList.add('status-fila');
+
+          resultCard.style.display = "block";
+        } else {
+          errorMsg.style.display = "block";
+        }
+      } catch (error) {
+        errorMsg.innerText = "Erro de conexão. Tente novamente.";
+        errorMsg.style.display = "block";
+      } finally {
+        btn.innerText = "Consultar Status";
+        btn.disabled = false;
+      }
+    }
+  </script>
+</body>
+</html>
