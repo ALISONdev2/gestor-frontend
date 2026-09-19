@@ -259,7 +259,7 @@
       letter-spacing: 1px;
     }
     .gamification-title i {
-      color: #ffd700; /* Dourado */
+      color: #ffd700;
       font-size: 1.2rem;
       filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.6));
     }
@@ -531,7 +531,7 @@
           </div>
         </div>
 
-       <!-- GAMIFICAÇÃO / BARRA DE META -->
+        <!-- GAMIFICAÇÃO / BARRA DE META -->
         <div class="gamification-container" id="gamificationBox">
           <div class="gamification-header">
             <div class="gamification-title">
@@ -1520,23 +1520,6 @@
         if (valorNumerico > 0) {
           localStorage.setItem(chaveStorage, valorNumerico);
           showNotification(`Nova Meta ${rotuloMeta} definida: ${formatarMoeda(valorNumerico)}! 🚀`);
-          carregarDadosAPI(); 
-        } else {
-          showNotification("A meta precisa ser maior que zero.");
-        }
-      }
-    }
-
-    function editarMeta() {
-      const valorAtual = metaFinanceiraAtual.toFixed(2);
-      const novaMeta = prompt("🔥 Defina sua nova meta de faturamento (digite apenas os números, ex: 10000):", valorAtual);
-      
-      if (novaMeta !== null && novaMeta.trim() !== "" && !isNaN(novaMeta)) {
-        const valorNumerico = parseFloat(novaMeta);
-        if (valorNumerico > 0) {
-          localStorage.setItem('ALISON_META_FINANCEIRA', valorNumerico);
-          metaFinanceiraAtual = valorNumerico;
-          showNotification(`Nova meta traçada: ${formatarMoeda(valorNumerico)}! Vamos pra cima! 🚀`);
           carregarDadosAPI(); 
         } else {
           showNotification("A meta precisa ser maior que zero.");
