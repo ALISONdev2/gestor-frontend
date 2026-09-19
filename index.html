@@ -1278,7 +1278,84 @@
         showNotification("Erro de conexão.");
       }
     }
+// Função para Mostrar/Ocultar Senha
+    function togglePassword(inputId, iconId) {
+      const input = document.getElementById(inputId);
+      const icon = document.getElementById(iconId);
+      if (input.type === "password") {
+        input.type = "text";
+        icon.classList.replace("fa-eye", "fa-eye-slash");
+        icon.style.color = "var(--neon-green)";
+      } else {
+        input.type = "password";
+        icon.classList.replace("fa-eye-slash", "fa-eye");
+        icon.style.color = "var(--text-muted)";
+      }
+    }
 
+    // Função de Login atualizada com Loading State e Lembrar-me
+    async function realizarLogin(event) {
+      event.preventDefault();
+      
+      // Feedback visual do botão
+      const btn = document.getElementById('btnLoginSubmit');
+      const span = btn.querySelector('span');
+      const icon = btn.querySelector('i');
+      const originalText = span.innerText;
+      const originalIcon = icon.className;
+      
+      btn.disabled = true;
+      span.innerText = "Autenticando...";
+      icon.className = "fa-solid fa-circle-notch fa-spin";
+
+      const user = document.getElementById('loginUser').value.trim();
+      const pass = document.getElementById('loginPass').value;
+      const remember = document.getElementById('rememberUser').checked;
+
+      const formData = new URLSearchParams();
+      formData.append("username", user);
+      formData.append("password", pass);
+
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
+          method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: formData
+        });
+        const data = await res.json();
+        
+        if (res.ok) {
+          localStorage.setItem('ALISON_GESTOR_TOKEN', data.access_token);
+          
+          if(remember) {
+             localStorage.setItem('ALISON_SAVED_USER', user);
+          } else {
+             localStorage.removeItem('ALISON_SAVED_USER');
+          }
+
+          document.getElementById('loginOverlay').classList.add('hidden');
+          verificarPermissoesAdminUI();
+          showNotification(`Bem-vindo! Sessão protegida iniciada.`);
+          carregarDadosAPI();
+        } else { 
+          showNotification(data.detail || "Erro de login."); 
+        }
+      } catch (error) { 
+        showNotification("Erro ao conectar ao servidor."); 
+      } finally {
+        // Restaura o botão independente de sucesso ou erro
+        btn.disabled = false;
+        span.innerText = originalText;
+        icon.className = originalIcon;
+      }
+    }
+
+    // Preenche o usuário salvo se a opção "Lembrar-me" foi marcada anteriormente
+    window.addEventListener('DOMContentLoaded', () => {
+       const savedUser = localStorage.getItem('ALISON_SAVED_USER');
+       if(savedUser) {
+          document.getElementById('loginUser').value = savedUser;
+          document.getElementById('rememberUser').checked = true;
+       }
+    });
     /* =========================================================
        2. FUNÇÕES ADMIN DE ASSINATURA E BLOQUEIO
        ========================================================= */
