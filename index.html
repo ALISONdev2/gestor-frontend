@@ -279,14 +279,13 @@
     }
     .progress-bar-fill {
       height: 100%;
-      width: 0%; /* Inicia zerado, o JS vai alterar */
+      width: 0%;
       background: linear-gradient(90deg, #00b347 0%, #00ff73 100%);
       box-shadow: 0 0 15px rgba(0, 255, 102, 0.8);
       transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1), background 0.5s, box-shadow 0.5s;
       border-radius: 8px;
     }
 
-    /* Animação quando a meta for batida */
     .celebration-mode {
       animation: pulseGold 2s infinite;
       border-color: rgba(255, 215, 0, 0.5);
@@ -521,6 +520,11 @@
               <span>Lançamento</span>
             </button>
 
+            <!-- NOVO BOTÃO FECHAR CAIXA -->
+            <button class="ctrl-pill" onclick="abrirFechamentoCaixa()" style="border-color: #ffd700; color: #ffd700;" title="Fechamento de Caixa do Dia">
+              <i class="fa-solid fa-lock"></i> <span>Fechar Caixa</span>
+            </button>
+
             <button class="ctrl-pill" onclick="carregarDadosAPI(true)" title="Recarregar Dados">
               <i class="fa-solid fa-rotate" style="color: var(--neon-green);"></i>
             </button>
@@ -643,6 +647,18 @@
                     <i class="fa-solid fa-receipt"></i>
                     <input type="number" step="0.01" min="0" id="formCusto" placeholder="R$ 0,00" value="0.00" required>
                   </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Método de Pagamento</label>
+                <div class="input-icon-box"><i class="fa-solid fa-money-bill-transfer"></i>
+                  <select id="formMetodo" required>
+                    <option value="Dinheiro" selected>Dinheiro Espécie</option>
+                    <option value="PIX">PIX</option>
+                    <option value="Cartão de Crédito">Cartão de Crédito</option>
+                    <option value="Cartão de Débito">Cartão de Débito</option>
+                  </select>
                 </div>
               </div>
 
@@ -821,6 +837,17 @@
           <div class="form-group"><label>Custo (R$)</label><div class="input-icon-box"><i class="fa-solid fa-receipt"></i><input type="number" step="0.01" min="0" id="editCusto" required></div></div>
         </div>
         <div class="form-group">
+          <label>Método de Pagamento</label>
+          <div class="input-icon-box"><i class="fa-solid fa-money-bill-transfer"></i>
+            <select id="editMetodo" required>
+              <option value="Dinheiro" selected>Dinheiro Espécie</option>
+              <option value="PIX">PIX</option>
+              <option value="Cartão de Crédito">Cartão de Crédito</option>
+              <option value="Cartão de Débito">Cartão de Débito</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
           <label>Status Atual da OS</label>
           <div class="input-icon-box"><i class="fa-regular fa-clipboard"></i>
             <select id="editStatus">
@@ -886,6 +913,17 @@
         <div class="form-row-2col">
           <div class="form-group"><label>Valor (R$)</label><div class="input-icon-box"><i class="fa-solid fa-dollar-sign"></i><input type="number" step="0.01" min="0.01" id="avulsoValor" placeholder="0,00" required></div></div>
           <div class="form-group"><label>Data</label><div class="input-icon-box"><i class="fa-regular fa-calendar"></i><input type="date" id="avulsoData" required></div></div>
+        </div>
+        <div class="form-group">
+          <label>Método de Pagamento</label>
+          <div class="input-icon-box"><i class="fa-solid fa-money-bill-transfer"></i>
+            <select id="avulsoMetodo" required>
+              <option value="Dinheiro" selected>Dinheiro Espécie</option>
+              <option value="PIX">PIX</option>
+              <option value="Cartão de Crédito">Cartão de Crédito</option>
+              <option value="Cartão de Débito">Cartão de Débito</option>
+            </select>
+          </div>
         </div>
         <div class="modal-btn-row">
           <button type="button" class="btn-secondary" onclick="fecharModal('modalNovoLancamento')">Cancelar</button>
@@ -981,13 +1019,11 @@
         <button class="modal-close-btn" onclick="fecharModal('modalConfiguracoes')">&times;</button>
       </div>
       <div style="display:flex; flex-direction:column; gap:16px;">
-        
         <!-- INFO DA CONTA -->
         <div style="border-bottom:1px solid rgba(0,255,102,0.2); padding-bottom:16px;">
           <h4 style="font-size:0.9rem; color:var(--neon-green); margin-bottom:10px;"><i class="fa-solid fa-id-card"></i> Detalhes da Sessão</h4>
           <div class="form-group"><label>Autenticado como</label><div class="input-icon-box"><i class="fa-solid fa-user"></i><input type="text" id="configAdminName" value="Carregando..." disabled></div></div>
         </div>
-
         <!-- FORMULÁRIO DE TROCA DE SENHA / USUÁRIO -->
         <div style="padding-bottom:16px;">
           <h4 style="font-size:0.9rem; color:var(--neon-green); margin-bottom:10px;"><i class="fa-solid fa-user-pen"></i> Alterar Credenciais de Acesso</h4>
@@ -1010,12 +1046,50 @@
             <small style="color:var(--text-muted); font-size: 0.75rem;">Nota: Ao atualizar, sua sessão atual será encerrada por segurança.</small>
           </form>
         </div>
-
         <!-- ZONA DE PERIGO -->
         <div style="border-top:1px solid rgba(255,51,75,0.3); padding-top:16px;">
           <h4 style="font-size:0.9rem; color:var(--neon-red); margin-bottom:8px;">Zona de Perigo</h4>
           <button class="btn-secondary" style="color:var(--neon-red); border-color:var(--neon-red);" onclick="resetarDadosFabrica()"><i class="fa-solid fa-triangle-exclamation"></i> Limpar Sessão Local</button>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE FECHAMENTO DE CAIXA -->
+  <div class="modal-backdrop" id="modalFechamento">
+    <div class="modal-box">
+      <div class="modal-box-header">
+        <h3 style="color: #ffd700;"><i class="fa-solid fa-cash-register"></i> Fechamento de Caixa Diário</h3>
+        <button class="modal-close-btn" onclick="fecharModal('modalFechamento')">&times;</button>
+      </div>
+      
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <span style="font-size: 0.9rem; color: var(--text-muted);">Data do Fechamento:</span>
+        <input type="date" id="fechamentoDataFiltro" onchange="carregarFechamentoCaixa()" style="background: rgba(1, 14, 7, 0.85); border: 1px solid rgba(0, 255, 102, 0.35); color: #fff; padding: 6px 12px; border-radius: 8px; outline: none;">
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; justify-content: space-between; padding: 12px; background: rgba(0, 255, 102, 0.05); border-radius: 8px; border-left: 3px solid #00d9ff;">
+          <span style="font-weight: 600;"><i class="fa-brands fa-pix" style="color: #00d9ff; width: 20px;"></i> PIX</span>
+          <span id="fechaPix" style="font-weight: 700; font-family: 'Rajdhani', sans-serif;">R$ 0,00</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; padding: 12px; background: rgba(0, 255, 102, 0.05); border-radius: 8px; border-left: 3px solid #ff9900;">
+          <span style="font-weight: 600;"><i class="fa-regular fa-credit-card" style="color: #ff9900; width: 20px;"></i> Cartão de Crédito</span>
+          <span id="fechaCredito" style="font-weight: 700; font-family: 'Rajdhani', sans-serif;">R$ 0,00</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; padding: 12px; background: rgba(0, 255, 102, 0.05); border-radius: 8px; border-left: 3px solid #00ff66;">
+          <span style="font-weight: 600;"><i class="fa-solid fa-credit-card" style="color: #00ff66; width: 20px;"></i> Cartão de Débito</span>
+          <span id="fechaDebito" style="font-weight: 700; font-family: 'Rajdhani', sans-serif;">R$ 0,00</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; padding: 12px; background: rgba(0, 255, 102, 0.05); border-radius: 8px; border-left: 3px solid #82a892;">
+          <span style="font-weight: 600;"><i class="fa-solid fa-money-bill-wave" style="color: #82a892; width: 20px;"></i> Dinheiro Espécie</span>
+          <span id="fechaDinheiro" style="font-weight: 700; font-family: 'Rajdhani', sans-serif;">R$ 0,00</span>
+        </div>
+      </div>
+
+      <div style="margin-top: 20px; border-top: 1px solid rgba(0, 255, 102, 0.2); padding-top: 15px; display: flex; justify-content: space-between; align-items: center;">
+        <span style="font-size: 1rem; color: #fff; font-weight: 700;">TOTAL ENTRADAS</span>
+        <span id="fechaTotal" style="font-size: 1.6rem; color: #ffd700; font-weight: 800; font-family: 'Rajdhani', sans-serif;">R$ 0,00</span>
       </div>
     </div>
   </div>
@@ -1458,6 +1532,7 @@
       const custo = parseFloat(document.getElementById('formCusto').value) || 0;
       const status = document.getElementById('formStatus').value;
       const dataOS = document.getElementById('formOsData').value;
+      const metodo = document.getElementById('formMetodo').value;
 
       try {
         const url = new URL(`${API_BASE_URL}/api/os/`);
@@ -1468,6 +1543,7 @@
         url.searchParams.append("custo", custo);
         url.searchParams.append("status", status);
         url.searchParams.append("data", dataOS);
+        url.searchParams.append("metodo_pagamento", metodo);
 
         const response = await apiFetch(url.pathname + url.search, { method: 'POST' });
         if (response.ok) {
@@ -1504,6 +1580,7 @@
       document.getElementById('editValor').value = os.valor;
       document.getElementById('editCusto').value = os.custo || 0;
       document.getElementById('editStatus').value = os.status;
+      document.getElementById('editMetodo').value = os.metodo_pagamento || "Dinheiro";
       
       if (os.data && os.data.includes('/')) {
         const [d, m, y] = os.data.split('/');
@@ -1525,6 +1602,7 @@
       const custo = parseFloat(document.getElementById('editCusto').value) || 0;
       const status = document.getElementById('editStatus').value;
       const dataOS = document.getElementById('editData').value;
+      const metodo = document.getElementById('editMetodo').value;
 
       try {
         const url = new URL(`${API_BASE_URL}/api/os/${id}`);
@@ -1535,6 +1613,7 @@
         url.searchParams.append("custo", custo);
         url.searchParams.append("status", status);
         url.searchParams.append("data", dataOS);
+        url.searchParams.append("metodo_pagamento", metodo);
 
         const response = await apiFetch(url.pathname + url.search, { method: 'PUT' });
         if (response.ok) { fecharModal('modalOS'); showNotification('OS atualizada!'); carregarDadosAPI(); }
@@ -1728,7 +1807,7 @@
     }
 
     /* =========================================================
-       5. LANÇAMENTOS AVULSOS
+       5. LANÇAMENTOS AVULSOS E FECHAMENTO
        ========================================================= */
 
     function abrirNovoLancamentoModal() { abrirModal('modalNovoLancamento'); }
@@ -1739,6 +1818,7 @@
       const descricao = document.getElementById('avulsoDesc').value.trim();
       const valor = parseFloat(document.getElementById('avulsoValor').value) || 0;
       const dataRaw = document.getElementById('avulsoData').value;
+      const metodo = document.getElementById('avulsoMetodo').value;
 
       try {
         const url = new URL(`${API_BASE_URL}/api/lancamentos/`);
@@ -1746,6 +1826,7 @@
         url.searchParams.append("tipo", tipo);
         url.searchParams.append("valor", valor);
         url.searchParams.append("data", dataRaw);
+        url.searchParams.append("metodo_pagamento", metodo);
 
         const response = await apiFetch(url.pathname + url.search, { method: 'POST' });
         
@@ -1810,6 +1891,30 @@
         tr.innerHTML = `<td style="color:var(--text-muted); font-size:0.8rem;">${escapeHTML(l.data)}</td><td style="font-weight:600;">${escapeHTML(l.descricao)}</td><td style="color:${isRec ? 'var(--neon-green)' : 'var(--neon-red)'}; font-weight:700;">${escapeHTML(l.tipo)}</td><td style="text-align: right;" class="${isRec ? 'val-text-green' : 'val-text-red'}">${isRec ? '+ ' : '- '} ${formatarMoeda(l.valor)}</td>`;
         tbody.appendChild(tr);
       });
+    }
+
+    function abrirFechamentoCaixa() {
+      const inputData = document.getElementById('fechamentoDataFiltro');
+      if(!inputData.value) inputData.value = formatDateISO(new Date());
+      abrirModal('modalFechamento');
+      carregarFechamentoCaixa();
+    }
+
+    async function carregarFechamentoCaixa() {
+      const dataSelecionada = document.getElementById('fechamentoDataFiltro').value;
+      try {
+        const res = await apiFetch(`/api/financeiro/fechamento?data=${dataSelecionada}`);
+        if (res.ok) {
+          const data = await res.json();
+          document.getElementById('fechaPix').textContent = formatarMoeda(data.totais["PIX"] || 0);
+          document.getElementById('fechaCredito').textContent = formatarMoeda(data.totais["Cartão de Crédito"] || 0);
+          document.getElementById('fechaDebito').textContent = formatarMoeda(data.totais["Cartão de Débito"] || 0);
+          document.getElementById('fechaDinheiro').textContent = formatarMoeda(data.totais["Dinheiro"] || 0);
+          document.getElementById('fechaTotal').textContent = formatarMoeda(data.total_geral || 0);
+        }
+      } catch (e) {
+        showNotification("Erro ao processar fechamento de caixa.");
+      }
     }
 
     /* =========================================================
