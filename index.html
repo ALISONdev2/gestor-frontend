@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ALISON GESTOR FINANCEIRO - SEGURANÇA MÁXIMA</title>
+  <title>GESTOR FINANCEIRO - SEGURANÇA MÁXIMA</title>
   <!-- Google Fonts & Font Awesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -66,9 +66,7 @@
     .login-hint { margin-top: 18px; text-align: center; font-size: 0.78rem; color: var(--text-muted); line-height: 1.4; }
     .login-hint strong { color: var(--neon-green); }
 
-    /* =========================================
-       LOGIN PREMIUM REFINEMENTS
-       ========================================= */
+    /* LOGIN PREMIUM REFINEMENTS */
     .premium-login-card {
       background: rgba(4, 12, 8, 0.75) !important;
       backdrop-filter: blur(16px);
@@ -77,61 +75,18 @@
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), inset 0 0 0 1px rgba(255, 255, 255, 0.05) !important;
       border-radius: 20px !important;
     }
-    .login-input-box {
-      padding-right: 14px;
-    }
-    .toggle-pwd {
-      color: var(--text-muted) !important;
-      cursor: pointer;
-      margin-left: auto;
-      margin-right: 0 !important;
-      transition: color 0.2s;
-    }
-    .toggle-pwd:hover {
-      color: var(--text-white) !important;
-    }
-    .login-options-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.8rem;
-      margin-top: -6px;
-      margin-bottom: 6px;
-    }
-    .remember-me {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--text-muted);
-      cursor: pointer;
-    }
-    .remember-me input {
-      accent-color: var(--neon-green);
-      cursor: pointer;
-    }
-    .forgot-pwd {
-      color: var(--neon-green);
-      text-decoration: none;
-      font-weight: 600;
-      transition: opacity 0.2s;
-    }
-    .forgot-pwd:hover {
-      opacity: 0.8;
-      text-decoration: underline;
-    }
-    .btn-loading i {
-      animation: fa-spin 1s infinite linear;
-    }
-    .login-btn-submit:disabled {
-      opacity: 0.7;
-      cursor: not-allowed;
-      transform: none !important;
-      box-shadow: none !important;
-    }
+    .login-input-box { padding-right: 14px; }
+    .toggle-pwd { color: var(--text-muted) !important; cursor: pointer; margin-left: auto; margin-right: 0 !important; transition: color 0.2s; }
+    .toggle-pwd:hover { color: var(--text-white) !important; }
+    .login-options-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; margin-top: -6px; margin-bottom: 6px; }
+    .remember-me { display: flex; align-items: center; gap: 6px; color: var(--text-muted); cursor: pointer; }
+    .remember-me input { accent-color: var(--neon-green); cursor: pointer; }
+    .forgot-pwd { color: var(--neon-green); text-decoration: none; font-weight: 600; transition: opacity 0.2s; }
+    .forgot-pwd:hover { opacity: 0.8; text-decoration: underline; }
+    .btn-loading i { animation: fa-spin 1s infinite linear; }
+    .login-btn-submit:disabled { opacity: 0.7; cursor: not-allowed; transform: none !important; box-shadow: none !important; }
 
-    /* =========================================
-       PAINEL GERAL
-       ========================================= */
+    /* PAINEL GERAL */
     .app-container { position: relative; z-index: 1; display: flex; flex-direction: column; min-height: 100vh; }
     header.main-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 28px; background: linear-gradient(180deg, rgba(5, 18, 10, 0.96) 0%, rgba(2, 8, 4, 0.92) 100%); border-bottom: 1px solid rgba(0, 255, 115, 0.28); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8), 0 2px 10px rgba(0, 255, 102, 0.12); position: sticky; top: 0; z-index: 100; }
     .header-left { display: flex; align-items: center; gap: 14px; }
@@ -211,7 +166,7 @@
     .input-icon-box i { color: var(--neon-green); font-size: 0.95rem; margin-right: 10px; width: 18px; text-align: center; }
     .input-icon-box input, .input-icon-box select { flex: 1; background: transparent; border: none; outline: none; color: #fff; font-size: 0.9rem; font-family: 'Inter', sans-serif; }
     .form-row-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .btn-submit-os { margin-top: 8px; background: linear-gradient(90deg, #00d957 0%, #00ff73 100%); color: #011408; border: none; border-radius: 12px; padding: 13px; font-size: 0.98rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 0 20px rgba(0, 255, 115, 0.5); }
+    .btn-submit-os { margin-top: 8px; background: linear-gradient(90deg, #00d957 0%, #00ff73 100%); color: #011408; border: none; border-radius: 12px; padding: 13px; font-size: 0.98rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 0 20px rgba(0, 255, 115, 0.5); transition: all 0.25s ease; }
     .btn-submit-os:hover { box-shadow: 0 0 30px rgba(0, 255, 115, 0.8); }
 
     .chart-container-panel { display: flex; flex-direction: column; height: 100%; }
@@ -294,102 +249,25 @@
       .dashboard-controls { width: 100%; justify-content: space-between; }
     }
 
-    /* =========================================
-       GAMIFICAÇÃO E METAS
-       ========================================= */
-    .gamification-container {
-      background: rgba(6, 20, 12, 0.7);
-      border: 1px solid rgba(0, 255, 102, 0.2);
-      border-radius: 12px;
-      padding: 18px 24px;
-      margin-bottom: 24px;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-      transition: all 0.3s ease;
-    }
-    .gamification-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 12px;
-    }
-    .gamification-title {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: #fff;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    .gamification-title i {
-      color: #ffd700;
-      font-size: 1.2rem;
-      filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.6));
-    }
-    .gamification-values {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--neon-green);
-    }
-    .progress-bar-bg {
-      width: 100%;
-      height: 14px;
-      background: rgba(0, 0, 0, 0.6);
-      border-radius: 8px;
-      overflow: hidden;
-      border: 1px solid rgba(0, 255, 102, 0.15);
-    }
-    .progress-bar-fill {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #00b347 0%, #00ff73 100%);
-      box-shadow: 0 0 15px rgba(0, 255, 102, 0.8);
-      transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1), background 0.5s, box-shadow 0.5s;
-      border-radius: 8px;
-    }
+    /* GAMIFICAÇÃO E METAS */
+    .gamification-container { background: rgba(6, 20, 12, 0.7); border: 1px solid rgba(0, 255, 102, 0.2); border-radius: 12px; padding: 18px 24px; margin-bottom: 24px; position: relative; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); transition: all 0.3s ease; }
+    .gamification-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .gamification-title { display: flex; align-items: center; gap: 10px; font-size: 0.95rem; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 1px; }
+    .gamification-title i { color: #ffd700; font-size: 1.2rem; filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.6)); }
+    .gamification-values { font-family: 'Rajdhani', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--neon-green); }
+    .progress-bar-bg { width: 100%; height: 14px; background: rgba(0, 0, 0, 0.6); border-radius: 8px; overflow: hidden; border: 1px solid rgba(0, 255, 102, 0.15); }
+    .progress-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #00b347 0%, #00ff73 100%); box-shadow: 0 0 15px rgba(0, 255, 102, 0.8); transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1), background 0.5s, box-shadow 0.5s; border-radius: 8px; }
+    .celebration-mode { animation: pulseGold 2s infinite; border-color: rgba(255, 215, 0, 0.5); }
+    @keyframes pulseGold { 0% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.2); } 50% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.6), inset 0 0 15px rgba(255, 215, 0, 0.2); } 100% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.2); } }
 
-    .celebration-mode {
-      animation: pulseGold 2s infinite;
-      border-color: rgba(255, 215, 0, 0.5);
-    }
-    @keyframes pulseGold {
-      0% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.2); }
-      50% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.6), inset 0 0 15px rgba(255, 215, 0, 0.2); }
-      100% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.2); }
-    }
-    /* =========================================
-       ESTILIZAÇÃO PREMIUM DOS SELECTS
-       ========================================= */
-    /* Remove a seta padrão do navegador e coloca uma verde neon moderna */
+    /* ESTILIZAÇÃO PREMIUM DOS SELECTS */
     select {
-      appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
+      appearance: none; -webkit-appearance: none; -moz-appearance: none;
       background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300ff66' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") !important;
-      background-repeat: no-repeat !important;
-      background-position: right 0px center !important;
-      background-size: 16px !important;
-      padding-right: 24px !important;
-      cursor: pointer;
+      background-repeat: no-repeat !important; background-position: right 0px center !important; background-size: 16px !important; padding-right: 24px !important; cursor: pointer;
     }
-
-    /* Modifica a caixa que abre ao clicar (dropdown) */
-    select option {
-      background-color: #040c08; /* Fundo escuro combinando com o tema */
-      color: #fff; /* Texto branco */
-      font-weight: 600;
-      padding: 12px;
-    }
-
-    /* Quando você passar o mouse ou selecionar uma opção */
-    select option:checked {
-      background-color: rgba(0, 255, 102, 0.2);
-      color: var(--neon-green);
-    }
+    select option { background-color: #040c08; color: #fff; font-weight: 600; padding: 12px; }
+    select option:checked { background-color: rgba(0, 255, 102, 0.2); color: var(--neon-green); }
   </style>
 </head>
 <body>
@@ -411,14 +289,14 @@
     </div>
   </div>
 
-  <!-- TELA DE LOGIN PREMIUM / AUTENTICAÇÃO COM APROVAÇÃO E JWT -->
+  <!-- TELA DE LOGIN PREMIUM -->
   <div class="login-overlay" id="loginOverlay">
     <div class="login-card premium-login-card">
       <div class="login-header-brand">
         <svg class="login-logo-svg" viewBox="0 0 24 24">
           <path d="M3.5 18.5H20.5V20.5H3.5V18.5ZM5.5 16.5H8.5V9.5H5.5V16.5ZM10.5 16.5H13.5V5.5H10.5V16.5ZM15.5 16.5H18.5V12.5H15.5V16.5ZM6.5 7.5L12 2L17.5 7.5L16 9L12 5L8 9L6.5 7.5Z"/>
         </svg>
-        <h1>ALISON</h1>
+        <h1 class="brand-title">ALISON</h1>
         <p>GESTOR FINANCEIRO</p>
       </div>
 
@@ -436,7 +314,6 @@
             <input type="text" id="loginUser" placeholder="Ex: alison" required>
           </div>
         </div>
-
         <div class="login-form-group">
           <label>Senha</label>
           <div class="login-input-box">
@@ -445,21 +322,14 @@
             <i class="fa-solid fa-eye toggle-pwd" id="eyeLogin" onclick="togglePassword('loginPass', 'eyeLogin')"></i>
           </div>
         </div>
-
         <div class="login-options-row">
-          <label class="remember-me">
-            <input type="checkbox" id="rememberUser"> Lembrar de mim
-          </label>
+          <label class="remember-me"><input type="checkbox" id="rememberUser"> Lembrar de mim</label>
           <a href="#" class="forgot-pwd" onclick="alert('Entre em contato com o Administrador pelo WhatsApp para redefinir sua credencial.')">Esqueceu a senha?</a>
         </div>
-
         <button type="submit" class="login-btn-submit" id="btnLoginSubmit">
           <i class="fa-solid fa-right-to-bracket"></i> <span>Acessar Painel</span>
         </button>
-
-        <div class="login-hint">
-          <i class="fa-solid fa-lock" style="font-size: 0.7rem;"></i> Ambiente seguro e criptografado ponta a ponta.
-        </div>
+        <div class="login-hint"><i class="fa-solid fa-lock" style="font-size: 0.7rem;"></i> Ambiente seguro e criptografado ponta a ponta.</div>
       </form>
 
       <!-- FORMULÁRIO DE REGISTRO -->
@@ -471,7 +341,6 @@
             <input type="text" id="regName" placeholder="Ex: Carlos Técnico" required>
           </div>
         </div>
-
         <div class="login-form-group">
           <label>Nome de Usuário (Login)</label>
           <div class="login-input-box">
@@ -479,7 +348,6 @@
             <input type="text" id="regUser" placeholder="Ex: carlos" required>
           </div>
         </div>
-
         <div class="login-form-group">
           <label>Criar Senha</label>
           <div class="login-input-box">
@@ -488,13 +356,10 @@
             <i class="fa-solid fa-eye toggle-pwd" id="eyeReg" onclick="togglePassword('regPass', 'eyeReg')"></i>
           </div>
         </div>
-
         <button type="submit" class="login-btn-submit" id="btnRegSubmit">
           <i class="fa-solid fa-paper-plane"></i> <span>Enviar Solicitação</span>
         </button>
-        <div class="login-hint">
-          <span style="color:#f39c12;">Sua conta ficará pendente até aprovação do administrador.</span>
-        </div>
+        <div class="login-hint"><span style="color:#f39c12;">Sua conta ficará pendente até aprovação do administrador.</span></div>
       </form>
     </div>
   </div>
@@ -552,12 +417,10 @@
 
         <div class="dropdown-box" id="userDropdown" style="width: 250px; right: 0;">
           <h4><i class="fa-solid fa-user-gear"></i> Sessão JWT</h4>
-          <!-- SAAS: INFO DE ASSINATURA -->
           <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid rgba(0,255,102,0.2);">
             <div style="margin-bottom: 4px;">Plano: <strong id="lblPlano" style="color:var(--text-white);">--</strong></div>
             <div>Validade: <strong id="lblVencimento" style="color:var(--text-white);">--</strong></div>
           </div>
-          
           <div style="display:flex; flex-direction:column; gap:8px;">
             <button class="btn-secondary" style="text-align:left; font-size:0.85rem;" onclick="abrirPainelUsuarios(); toggleUserDropdown();" id="btnAdminUsuarios" style="display:none;">
               <i class="fa-solid fa-user-check"></i> Gerenciar Assinantes <span id="pendingBadgeCount" style="background:var(--neon-red); padding:2px 6px; border-radius:10px; font-size:0.7rem; float:right; display:none;">0</span>
@@ -584,12 +447,13 @@
             <li class="nav-item" data-tab="aparelhos"><a onclick="navegarPara('aparelhos')"><i class="fa-solid fa-mobile-screen-button"></i> Aparelhos</a></li>
             <li class="nav-item" data-tab="relatorios"><a onclick="navegarPara('relatorios')"><i class="fa-solid fa-chart-column"></i> Relatórios</a></li>
             <li class="nav-item" data-tab="configuracoes"><a onclick="navegarPara('configuracoes')"><i class="fa-solid fa-gear"></i> Configurações</a></li>
+            <li class="nav-item"><a href="tv.html" target="_blank" style="color: #00d9ff;"><i class="fa-solid fa-tv" style="color: #00d9ff;"></i> Painel da TV</a></li>
           </ul>
         </nav>
 
         <div class="sidebar-brand-box">
           <div class="brand-crown-icon"><i class="fa-solid fa-crown"></i></div>
-          <div class="sidebar-brand-title">ALISON</div>
+          <div class="sidebar-brand-title brand-title">ALISON</div>
           <div class="sidebar-brand-sub">GESTOR FINANCEIRO</div>
           <div class="sidebar-brand-motto">"Seu dinheiro em boas mãos!"</div>
           <div class="sidebar-brand-chart-icon"><i class="fa-solid fa-chart-line"></i></div>
@@ -645,50 +509,27 @@
                 <i class="fa-solid fa-pen"></i>
               </button>
             </div>
-            <div class="gamification-values" id="metaTextValues">
-              R$ 0,00 / R$ 0,00
-            </div>
+            <div class="gamification-values" id="metaTextValues">R$ 0,00 / R$ 0,00</div>
           </div>
-          <div class="progress-bar-bg">
-            <div class="progress-bar-fill" id="metaProgressBar"></div>
-          </div>
+          <div class="progress-bar-bg"><div class="progress-bar-fill" id="metaProgressBar"></div></div>
         </div>
 
         <section class="financial-cards-grid">
           <div class="kpi-card green" onclick="navegarPara('servicos')" style="cursor:pointer;" title="Serviços">
             <div class="kpi-icon-wrapper"><i class="fa-solid fa-wrench"></i></div>
-            <div class="kpi-data">
-              <span class="kpi-title">SERVIÇOS</span>
-              <span class="kpi-value" id="kpiServicos">0</span>
-              <span class="kpi-growth green"><i class="fa-solid fa-arrow-up"></i> <span style="color: var(--text-muted);">no período</span></span>
-            </div>
+            <div class="kpi-data"><span class="kpi-title">SERVIÇOS</span><span class="kpi-value" id="kpiServicos">0</span><span class="kpi-growth green"><i class="fa-solid fa-arrow-up"></i> <span style="color: var(--text-muted);">no período</span></span></div>
           </div>
-
           <div class="kpi-card green" onclick="navegarPara('financeiro')" style="cursor:pointer;" title="Faturamento">
             <div class="kpi-icon-wrapper"><i class="fa-solid fa-chart-line"></i></div>
-            <div class="kpi-data">
-              <span class="kpi-title">FATURAMENTO</span>
-              <span class="kpi-value" id="kpiFaturamento">R$ 0,00</span>
-              <span class="kpi-growth green"><i class="fa-solid fa-arrow-up"></i> <span style="color: var(--text-muted);">no período</span></span>
-            </div>
+            <div class="kpi-data"><span class="kpi-title">FATURAMENTO</span><span class="kpi-value" id="kpiFaturamento">R$ 0,00</span><span class="kpi-growth green"><i class="fa-solid fa-arrow-up"></i> <span style="color: var(--text-muted);">no período</span></span></div>
           </div>
-
           <div class="kpi-card red" onclick="navegarPara('financeiro')" style="cursor:pointer;" title="Custos">
             <div class="kpi-icon-wrapper"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div class="kpi-data">
-              <span class="kpi-title">CUSTOS</span>
-              <span class="kpi-value" id="kpiCustos" style="color: #ff99a8;">R$ 0,00</span>
-              <span class="kpi-growth red"><i class="fa-solid fa-arrow-down"></i> <span style="color: var(--text-muted);">em relação ao faturamento</span></span>
-            </div>
+            <div class="kpi-data"><span class="kpi-title">CUSTOS</span><span class="kpi-value" id="kpiCustos" style="color: #ff99a8;">R$ 0,00</span><span class="kpi-growth red"><i class="fa-solid fa-arrow-down"></i> <span style="color: var(--text-muted);">em relação ao faturamento</span></span></div>
           </div>
-
           <div class="kpi-card green" onclick="navegarPara('relatorios')" style="cursor:pointer;" title="Lucro">
             <div class="kpi-icon-wrapper"><i class="fa-solid fa-wallet"></i></div>
-            <div class="kpi-data">
-              <span class="kpi-title">LUCRO LÍQUIDO</span>
-              <span class="kpi-value" id="kpiLucro">R$ 0,00</span>
-              <span class="kpi-growth green"><i class="fa-solid fa-arrow-up"></i> <span style="color: var(--text-muted);">margem líquida</span></span>
-            </div>
+            <div class="kpi-data"><span class="kpi-title">LUCRO LÍQUIDO</span><span class="kpi-value" id="kpiLucro">R$ 0,00</span><span class="kpi-growth green"><i class="fa-solid fa-arrow-up"></i> <span style="color: var(--text-muted);">margem líquida</span></span></div>
           </div>
         </section>
 
@@ -696,64 +537,20 @@
           <div class="panel-card">
             <div class="panel-header"><div class="panel-header-title"><i class="fa-solid fa-wrench"></i> Nova Ordem de Serviço</div></div>
             <form id="osForm" class="os-form" onsubmit="adicionarOS(event)">
-              <div class="form-group">
-                <label>Nome do Cliente</label>
-                <div class="input-icon-box">
-                  <i class="fa-regular fa-user"></i>
-                  <input type="text" id="formCliente" placeholder="Ex: Maria Silva" required list="clientesDatalist">
-                  <datalist id="clientesDatalist"></datalist>
-                </div>
-              </div>
-              
+              <div class="form-group"><label>Nome do Cliente</label><div class="input-icon-box"><i class="fa-regular fa-user"></i><input type="text" id="formCliente" placeholder="Ex: Maria Silva" required list="clientesDatalist"><datalist id="clientesDatalist"></datalist></div></div>
               <div class="form-group">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                   <label>Data de Realização</label>
-                  <div style="display: flex; gap: 6px;">
-                    <button type="button" class="btn-secondary" style="padding: 2px 8px; font-size: 0.72rem;" onclick="setOsDataOntem()">Ontem</button>
-                    <button type="button" class="btn-secondary" style="padding: 2px 8px; font-size: 0.72rem;" onclick="setOsDataHoje()">Hoje</button>
-                  </div>
+                  <div style="display: flex; gap: 6px;"><button type="button" class="btn-secondary" style="padding: 2px 8px; font-size: 0.72rem;" onclick="setOsDataOntem()">Ontem</button><button type="button" class="btn-secondary" style="padding: 2px 8px; font-size: 0.72rem;" onclick="setOsDataHoje()">Hoje</button></div>
                 </div>
-                <div class="input-icon-box">
-                  <i class="fa-regular fa-calendar"></i>
-                  <input type="date" id="formOsData" required>
-                </div>
+                <div class="input-icon-box"><i class="fa-regular fa-calendar"></i><input type="date" id="formOsData" required></div>
               </div>
-
-              <div class="form-group">
-                <label>Aparelho</label>
-                <div class="input-icon-box">
-                  <i class="fa-solid fa-mobile-screen"></i>
-                  <input type="text" id="formAparelho" placeholder="Ex: SM-A165F" required list="aparelhosDatalist">
-                  <datalist id="aparelhosDatalist"></datalist>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label>Serviço Realizado</label>
-                <div class="input-icon-box">
-                  <i class="fa-solid fa-tag"></i>
-                  <input type="text" id="formServico" placeholder="Ex: Remoção FRP" required list="servicosDatalist">
-                  <datalist id="servicosDatalist"></datalist>
-                </div>
-              </div>
-
+              <div class="form-group"><label>Aparelho</label><div class="input-icon-box"><i class="fa-solid fa-mobile-screen"></i><input type="text" id="formAparelho" placeholder="Ex: SM-A165F" required list="aparelhosDatalist"><datalist id="aparelhosDatalist"></datalist></div></div>
+              <div class="form-group"><label>Serviço Realizado</label><div class="input-icon-box"><i class="fa-solid fa-tag"></i><input type="text" id="formServico" placeholder="Ex: Remoção FRP" required list="servicosDatalist"><datalist id="servicosDatalist"></datalist></div></div>
               <div class="form-row-2col">
-                <div class="form-group">
-                  <label>Valor (R$)</label>
-                  <div class="input-icon-box">
-                    <i class="fa-solid fa-dollar-sign"></i>
-                    <input type="number" step="0.01" min="0" id="formValor" placeholder="R$ 0,00" required>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label>Custo (R$)</label>
-                  <div class="input-icon-box">
-                    <i class="fa-solid fa-receipt"></i>
-                    <input type="number" step="0.01" min="0" id="formCusto" placeholder="R$ 0,00" value="0.00" required>
-                  </div>
-                </div>
+                <div class="form-group"><label>Valor (R$)</label><div class="input-icon-box"><i class="fa-solid fa-dollar-sign"></i><input type="number" step="0.01" min="0" id="formValor" placeholder="R$ 0,00" required></div></div>
+                <div class="form-group"><label>Custo (R$)</label><div class="input-icon-box"><i class="fa-solid fa-receipt"></i><input type="number" step="0.01" min="0" id="formCusto" placeholder="R$ 0,00" value="0.00" required></div></div>
               </div>
-
               <div class="form-group">
                 <label>Método de Pagamento</label>
                 <div class="input-icon-box"><i class="fa-solid fa-money-bill-transfer"></i>
@@ -765,11 +562,9 @@
                   </select>
                 </div>
               </div>
-
               <div class="form-group">
                 <label>Status Atual da OS</label>
-                <div class="input-icon-box">
-                  <i class="fa-regular fa-clipboard"></i>
+                <div class="input-icon-box"><i class="fa-regular fa-clipboard"></i>
                   <select id="formStatus">
                     <option value="Na Fila">Na Fila (Aguardando)</option>
                     <option value="Em Andamento">Em Andamento</option>
@@ -778,26 +573,16 @@
                   </select>
                 </div>
               </div>
-
-              <button type="submit" class="btn-submit-os">
-                <i class="fa-solid fa-floppy-disk"></i> Salvar Ordem
-              </button>
+              <button type="submit" class="btn-submit-os"><i class="fa-solid fa-floppy-disk"></i> Salvar Ordem</button>
             </form>
           </div>
 
           <div class="panel-card chart-container-panel">
             <div class="panel-header">
-              <div class="panel-header-title">
-                <i class="fa-solid fa-chart-column"></i> <span id="chartTitleText">Desempenho Financeiro</span>
-              </div>
-              <div class="chart-legend-custom">
-                <div class="legend-item"><span class="legend-box gross"></span><span>Faturamento Bruto</span></div>
-                <div class="legend-item"><span class="legend-box net"></span><span>Lucro Líquido</span></div>
-              </div>
+              <div class="panel-header-title"><i class="fa-solid fa-chart-column"></i> <span id="chartTitleText">Desempenho Financeiro</span></div>
+              <div class="chart-legend-custom"><div class="legend-item"><span class="legend-box gross"></span><span>Faturamento Bruto</span></div><div class="legend-item"><span class="legend-box net"></span><span>Lucro Líquido</span></div></div>
             </div>
-            <div class="chart-wrapper-inner">
-              <canvas id="financialChart"></canvas>
-            </div>
+            <div class="chart-wrapper-inner"><canvas id="financialChart"></canvas></div>
           </div>
         </div>
 
@@ -805,23 +590,11 @@
           <div class="panel-card" id="painelAparelhos">
             <div class="panel-header">
               <div class="panel-header-title"><i class="fa-solid fa-mobile-screen-button"></i> Controle de Aparelhos</div>
-              <div class="table-search-box">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="searchAparelhosInput" placeholder="Buscar OS..." oninput="pesquisarOS(this.value)">
-              </div>
+              <div class="table-search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="searchAparelhosInput" placeholder="Buscar OS..." oninput="pesquisarOS(this.value)"></div>
             </div>
-
             <div class="aparelhos-table-wrapper">
               <table class="styled-table" id="tabelaAparelhos">
-                <thead>
-                  <tr>
-                    <th>CLIENTE / APARELHO</th>
-                    <th>SERVIÇO</th>
-                    <th>STATUS DA OS</th>
-                    <th>VALOR</th>
-                    <th style="text-align: right;">AÇÕES</th>
-                  </tr>
-                </thead>
+                <thead><tr><th>CLIENTE / APARELHO</th><th>SERVIÇO</th><th>STATUS DA OS</th><th>VALOR</th><th style="text-align: right;">AÇÕES</th></tr></thead>
                 <tbody id="corpoTabelaAparelhos"></tbody>
               </table>
             </div>
@@ -832,322 +605,69 @@
               <div class="panel-header-title"><i class="fa-solid fa-list-check"></i> Últimos Lançamentos</div>
               <a class="link-ver-todos" onclick="abrirModalLancamentos()">Ver todos <i class="fa-solid fa-arrow-right"></i></a>
             </div>
-
             <div class="lancamentos-table-wrapper">
               <table class="styled-table" id="tabelaLancamentos">
-                <thead>
-                  <tr>
-                    <th>DATA</th>
-                    <th>DESCRIÇÃO</th>
-                    <th>TIPO</th>
-                    <th style="text-align: right;">VALOR</th>
-                  </tr>
-                </thead>
+                <thead><tr><th>DATA</th><th>DESCRIÇÃO</th><th>TIPO</th><th style="text-align: right;">VALOR</th></tr></thead>
                 <tbody id="corpoTabelaLancamentos"></tbody>
               </table>
             </div>
-          </div>
-        </div>
-
-        <div class="bottom-motto-bar">
-          <div class="bottom-motto-left">
-            <i class="fa-solid fa-chart-line"></i>
-            <span>Mais controle, mais lucro!</span>
-          </div>
-          <div class="cyber-circuit-deco">
-            <div class="cyber-line l1"></div>
-            <div class="cyber-line l2"></div>
-            <div class="cyber-line l3"></div>
           </div>
         </div>
       </main>
     </div>
   </div>
 
-  <!-- =========================================================
-       MODAIS - SAAS E GESTÃO
-       ========================================================= -->
-  
-  <div class="modal-backdrop" id="modalUsuarios">
-    <div class="modal-box modal-large">
-      <div class="modal-box-header">
-        <h3><i class="fa-solid fa-user-check"></i> Gerenciar Assinaturas (Admin)</h3>
-        <button class="modal-close-btn" onclick="fecharModal('modalUsuarios')">&times;</button>
-      </div>
-      <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:15px;">
-        Controle o acesso, planos e liberação dos seus usuários.
-      </p>
-      <div style="max-height: 400px; overflow-y: auto;">
-        <table class="styled-table">
-          <thead>
-            <tr>
-              <th>LOGIN</th>
-              <th>PLANO</th>
-              <th>VENCIMENTO</th>
-              <th>STATUS</th>
-              <th style="text-align: right;">AÇÕES</th>
-            </tr>
-          </thead>
-          <tbody id="usuariosPendentesTbody"></tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal-backdrop" id="modalRenovar">
-    <div class="modal-box">
-      <div class="modal-box-header">
-        <h3><i class="fa-solid fa-calendar-plus"></i> Renovar Assinatura</h3>
-        <button class="modal-close-btn" onclick="fecharModal('modalRenovar')">&times;</button>
-      </div>
-      <form onsubmit="confirmarRenovacao(event)" class="os-form">
-        <input type="hidden" id="renovarLoginUser">
-        <div class="form-group">
-          <label>Selecione o Plano que o cliente pagou:</label>
-          <div class="input-icon-box">
-            <select id="renovarPlano" required style="width: 100%; border:none; background:transparent; color:#fff; outline:none;">
-              <option value="30|Plano Mensal">1 Mês (30 dias)</option>
-              <option value="90|Plano Trimestral">3 Meses (90 dias)</option>
-              <option value="180|Plano Semestral">6 Meses (180 dias)</option>
-              <option value="365|Plano Anual">1 Ano (365 dias)</option>
-            </select>
-          </div>
-        </div>
-        <div class="modal-btn-row">
-          <button type="submit" class="btn-action-neon">Confirmar Pagamento</button>
-        </div>
-      </form>
-    </div>
-  </div>
+  <!-- MODAIS RESTANTES -->
+  <div class="modal-backdrop" id="modalUsuarios"><div class="modal-box modal-large"><div class="modal-box-header"><h3><i class="fa-solid fa-user-check"></i> Gerenciar Assinaturas (Admin)</h3><button class="modal-close-btn" onclick="fecharModal('modalUsuarios')">&times;</button></div><p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:15px;">Controle o acesso, planos e liberação dos seus usuários.</p><div style="max-height: 400px; overflow-y: auto;"><table class="styled-table"><thead><tr><th>LOGIN</th><th>PLANO</th><th>VENCIMENTO</th><th>STATUS</th><th style="text-align: right;">AÇÕES</th></tr></thead><tbody id="usuariosPendentesTbody"></tbody></table></div></div></div>
+  <div class="modal-backdrop" id="modalRenovar"><div class="modal-box"><div class="modal-box-header"><h3><i class="fa-solid fa-calendar-plus"></i> Renovar Assinatura</h3><button class="modal-close-btn" onclick="fecharModal('modalRenovar')">&times;</button></div><form onsubmit="confirmarRenovacao(event)" class="os-form"><input type="hidden" id="renovarLoginUser"><div class="form-group"><label>Selecione o Plano que o cliente pagou:</label><div class="input-icon-box"><select id="renovarPlano" required style="width: 100%; border:none; background:transparent; color:#fff; outline:none;"><option value="30|Plano Mensal">1 Mês (30 dias)</option><option value="90|Plano Trimestral">3 Meses (90 dias)</option><option value="180|Plano Semestral">6 Meses (180 dias)</option><option value="365|Plano Anual">1 Ano (365 dias)</option></select></div></div><div class="modal-btn-row"><button type="submit" class="btn-action-neon">Confirmar Pagamento</button></div></form></div></div>
 
   <!-- MODAL DE EDIÇÃO OS -->
-  <div class="modal-backdrop" id="modalOS">
-    <div class="modal-box">
-      <div class="modal-box-header">
-        <h3><i class="fa-solid fa-pen-to-square"></i> Editar Ordem de Serviço</h3>
-        <button class="modal-close-btn" onclick="fecharModal('modalOS')">&times;</button>
-      </div>
-      <form id="editOSForm" class="os-form" onsubmit="salvarEdicaoOS(event)">
-        <input type="hidden" id="editOSId">
-        <div class="form-group">
-          <label>Data da OS</label>
-          <div class="input-icon-box"><i class="fa-regular fa-calendar"></i><input type="date" id="editData" required></div>
-        </div>
-        <div class="form-group"><label>Nome do Cliente</label><div class="input-icon-box"><i class="fa-regular fa-user"></i><input type="text" id="editCliente" required></div></div>
-        <div class="form-group"><label>Aparelho</label><div class="input-icon-box"><i class="fa-solid fa-mobile-screen"></i><input type="text" id="editAparelho" required></div></div>
-        <div class="form-group"><label>Serviço Realizado</label><div class="input-icon-box"><i class="fa-solid fa-tag"></i><input type="text" id="editServico" required></div></div>
-        <div class="form-row-2col">
-          <div class="form-group"><label>Valor (R$)</label><div class="input-icon-box"><i class="fa-solid fa-dollar-sign"></i><input type="number" step="0.01" min="0" id="editValor" required></div></div>
-          <div class="form-group"><label>Custo (R$)</label><div class="input-icon-box"><i class="fa-solid fa-receipt"></i><input type="number" step="0.01" min="0" id="editCusto" required></div></div>
-        </div>
-        <div class="form-group">
-          <label>Método de Pagamento</label>
-          <div class="input-icon-box"><i class="fa-solid fa-money-bill-transfer"></i>
-            <select id="editMetodo" required>
-              <option value="Dinheiro" selected>Dinheiro Espécie</option>
-              <option value="PIX">PIX</option>
-              <option value="Cartão de Crédito">Cartão de Crédito</option>
-              <option value="Cartão de Débito">Cartão de Débito</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Status Atual da OS</label>
-          <div class="input-icon-box"><i class="fa-regular fa-clipboard"></i>
-            <select id="editStatus">
-              <option value="Na Fila">Na Fila (Aguardando)</option>
-              <option value="Em Andamento">Em Andamento</option>
-              <option value="Concluído">Concluído</option>
-              <option value="Cancelado">Cancelado</option>
-            </select>
-          </div>
-        </div>
-        <div class="modal-btn-row">
-          <button type="button" class="btn-secondary" onclick="fecharModal('modalOS')">Cancelar</button>
-          <button type="submit" class="btn-action-neon">Atualizar Ordem</button>
-        </div>
-      </form>
-    </div>
-  </div>
+  <div class="modal-backdrop" id="modalOS"><div class="modal-box"><div class="modal-box-header"><h3><i class="fa-solid fa-pen-to-square"></i> Editar Ordem de Serviço</h3><button class="modal-close-btn" onclick="fecharModal('modalOS')">&times;</button></div><form id="editOSForm" class="os-form" onsubmit="salvarEdicaoOS(event)"><input type="hidden" id="editOSId"><div class="form-group"><label>Data da OS</label><div class="input-icon-box"><i class="fa-regular fa-calendar"></i><input type="date" id="editData" required></div></div><div class="form-group"><label>Nome do Cliente</label><div class="input-icon-box"><i class="fa-regular fa-user"></i><input type="text" id="editCliente" required></div></div><div class="form-group"><label>Aparelho</label><div class="input-icon-box"><i class="fa-solid fa-mobile-screen"></i><input type="text" id="editAparelho" required></div></div><div class="form-group"><label>Serviço Realizado</label><div class="input-icon-box"><i class="fa-solid fa-tag"></i><input type="text" id="editServico" required></div></div><div class="form-row-2col"><div class="form-group"><label>Valor (R$)</label><div class="input-icon-box"><i class="fa-solid fa-dollar-sign"></i><input type="number" step="0.01" min="0" id="editValor" required></div></div><div class="form-group"><label>Custo (R$)</label><div class="input-icon-box"><i class="fa-solid fa-receipt"></i><input type="number" step="0.01" min="0" id="editCusto" required></div></div></div><div class="form-group"><label>Método de Pagamento</label><div class="input-icon-box"><i class="fa-solid fa-money-bill-transfer"></i><select id="editMetodo" required><option value="Dinheiro" selected>Dinheiro Espécie</option><option value="PIX">PIX</option><option value="Cartão de Crédito">Cartão de Crédito</option><option value="Cartão de Débito">Cartão de Débito</option></select></div></div><div class="form-group"><label>Status Atual da OS</label><div class="input-icon-box"><i class="fa-regular fa-clipboard"></i><select id="editStatus"><option value="Na Fila">Na Fila (Aguardando)</option><option value="Em Andamento">Em Andamento</option><option value="Concluído">Concluído</option><option value="Cancelado">Cancelado</option></select></div></div><div class="modal-btn-row"><button type="button" class="btn-secondary" onclick="fecharModal('modalOS')">Cancelar</button><button type="submit" class="btn-action-neon">Atualizar Ordem</button></div></form></div></div>
 
   <!-- MODAIS FINANCEIRO -->
-  <div class="modal-backdrop" id="modalLancamentos">
-    <div class="modal-box modal-large">
-      <div class="modal-box-header">
-        <h3><i class="fa-solid fa-list-check"></i> Todos os Lançamentos Financeiros</h3>
-        <button class="modal-close-btn" onclick="fecharModal('modalLancamentos')">&times;</button>
-      </div>
-      <div style="display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; justify-content: space-between;">
-        <div style="display:flex; gap:10px;">
-          <button class="btn-secondary" onclick="filtrarTabelaModalLancamentos('todos')">Todos</button>
-          <button class="btn-secondary" onclick="filtrarTabelaModalLancamentos('Receita')">Receitas</button>
-          <button class="btn-secondary" onclick="filtrarTabelaModalLancamentos('Despesa')">Despesas</button>
-        </div>
-        <div style="display:flex; gap:10px;">
-          <button class="btn-action-neon" onclick="abrirNovoLancamentoModal()"><i class="fa-solid fa-plus"></i> Novo</button>
-          <button class="btn-secondary" onclick="exportarLancamentosCSV()"><i class="fa-solid fa-file-csv"></i> Exportar CSV</button>
-        </div>
-      </div>
-      <div style="max-height: 420px; overflow-y: auto;">
-        <table class="styled-table">
-          <thead><tr><th>DATA</th><th>DESCRIÇÃO</th><th>TIPO</th><th>VALOR</th><th style="text-align: right;">AÇÃO</th></tr></thead>
-          <tbody id="modalLancamentosTbody"></tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+  <div class="modal-backdrop" id="modalLancamentos"><div class="modal-box modal-large"><div class="modal-box-header"><h3><i class="fa-solid fa-list-check"></i> Todos os Lançamentos Financeiros</h3><button class="modal-close-btn" onclick="fecharModal('modalLancamentos')">&times;</button></div><div style="display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; justify-content: space-between;"><div style="display:flex; gap:10px;"><button class="btn-secondary" onclick="filtrarTabelaModalLancamentos('todos')">Todos</button><button class="btn-secondary" onclick="filtrarTabelaModalLancamentos('Receita')">Receitas</button><button class="btn-secondary" onclick="filtrarTabelaModalLancamentos('Despesa')">Despesas</button></div><div style="display:flex; gap:10px;"><button class="btn-action-neon" onclick="abrirNovoLancamentoModal()"><i class="fa-solid fa-plus"></i> Novo</button><button class="btn-secondary" onclick="exportarLancamentosCSV()"><i class="fa-solid fa-file-csv"></i> Exportar CSV</button></div></div><div style="max-height: 420px; overflow-y: auto;"><table class="styled-table"><thead><tr><th>DATA</th><th>DESCRIÇÃO</th><th>TIPO</th><th>VALOR</th><th style="text-align: right;">AÇÃO</th></tr></thead><tbody id="modalLancamentosTbody"></tbody></table></div></div></div>
+  <div class="modal-backdrop" id="modalNovoLancamento"><div class="modal-box"><div class="modal-box-header"><h3><i class="fa-solid fa-hand-holding-dollar"></i> Novo Lançamento Financeiro</h3><button class="modal-close-btn" onclick="fecharModal('modalNovoLancamento')">&times;</button></div><form onsubmit="salvarLancamentoAvulso(event)" class="os-form"><div class="form-group"><label>Tipo do Lançamento</label><div class="input-icon-box"><i class="fa-solid fa-arrows-split-up-and-left"></i><select id="avulsoTipo" required><option value="Receita" selected>Receita (Entrada / Venda)</option><option value="Despesa">Despesa (Saída / Compra / Custos)</option></select></div></div><div class="form-group"><label>Descrição</label><div class="input-icon-box"><i class="fa-solid fa-pen-nib"></i><input type="text" id="avulsoDesc" placeholder="Ex: Compra de telas" required></div></div><div class="form-row-2col"><div class="form-group"><label>Valor (R$)</label><div class="input-icon-box"><i class="fa-solid fa-dollar-sign"></i><input type="number" step="0.01" min="0.01" id="avulsoValor" placeholder="0,00" required></div></div><div class="form-group"><label>Data</label><div class="input-icon-box"><i class="fa-regular fa-calendar"></i><input type="date" id="avulsoData" required></div></div></div><div class="form-group"><label>Método de Pagamento</label><div class="input-icon-box"><i class="fa-solid fa-money-bill-transfer"></i><select id="avulsoMetodo" required><option value="Dinheiro" selected>Dinheiro Espécie</option><option value="PIX">PIX</option><option value="Cartão de Crédito">Cartão de Crédito</option><option value="Cartão de Débito">Cartão de Débito</option></select></div></div><div class="modal-btn-row"><button type="button" class="btn-secondary" onclick="fecharModal('modalNovoLancamento')">Cancelar</button><button type="submit" class="btn-action-neon">Confirmar Lançamento</button></div></form></div></div>
+  <div class="modal-backdrop" id="modalClientes"><div class="modal-box modal-large"><div class="modal-box-header"><h3><i class="fa-solid fa-users"></i> Gestão de Clientes</h3><button class="modal-close-btn" onclick="fecharModal('modalClientes')">&times;</button></div><div style="max-height: 400px; overflow-y: auto;"><table class="styled-table"><thead><tr><th>CLIENTE</th><th>SERVIÇOS</th><th>CONTATO</th><th style="text-align: right;">TOTAL GASTO</th></tr></thead><tbody id="clientesTbody"></tbody></table></div></div></div>
+  <div class="modal-backdrop" id="modalServicos"><div class="modal-box modal-large"><div class="modal-box-header"><h3><i class="fa-solid fa-wrench"></i> Catálogo de Serviços</h3><button class="modal-close-btn" onclick="fecharModal('modalServicos')">&times;</button></div><div style="max-height: 400px; overflow-y: auto;"><table class="styled-table"><thead><tr><th>SERVIÇO</th><th>QUANTIDADE</th><th>PREÇO MÉDIO</th><th style="text-align: right;">TOTAL GERADO</th></tr></thead><tbody id="servicosTbody"></tbody></table></div></div></div>
+  <div class="modal-backdrop" id="modalAparelhos"><div class="modal-box modal-large"><div class="modal-box-header"><h3><i class="fa-solid fa-mobile-screen-button"></i> Inventário de Modelos</h3><button class="modal-close-btn" onclick="fecharModal('modalAparelhos')">&times;</button></div><div style="max-height: 400px; overflow-y: auto;"><table class="styled-table"><thead><tr><th>MODELO</th><th>MANUTENÇÕES</th><th>CATEGORIA</th><th style="text-align: right;">FATURAMENTO</th></tr></thead><tbody id="aparelhosTbody"></tbody></table></div></div></div>
+  <div class="modal-backdrop" id="modalRelatorios"><div class="modal-box modal-large"><div class="modal-box-header"><h3><i class="fa-solid fa-chart-column"></i> Relatório Financeiro Executivo</h3><button class="modal-close-btn" onclick="fecharModal('modalRelatorios')">&times;</button></div><div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; margin-bottom: 20px;"><div style="background: rgba(0,255,102,0.06); border:1px solid rgba(0,255,102,0.3); border-radius:12px; padding:12px; text-align:center;"><div style="font-size:0.75rem; color:var(--text-muted);">FATURAMENTO BRUTO</div><div style="font-size:1.4rem; font-weight:700; color:var(--neon-green);" id="relFaturamento">R$ 0,00</div></div><div style="background: rgba(255,51,75,0.06); border:1px solid rgba(255,51,75,0.3); border-radius:12px; padding:12px; text-align:center;"><div style="font-size:0.75rem; color:var(--text-muted);">CUSTOS TOTAIS</div><div style="font-size:1.4rem; font-weight:700; color:var(--neon-red);" id="relCustos">R$ 0,00</div></div><div style="background: rgba(0,255,102,0.06); border:1px solid rgba(0,255,102,0.3); border-radius:12px; padding:12px; text-align:center;"><div style="font-size:0.75rem; color:var(--text-muted);">LUCRO LÍQUIDO</div><div style="font-size:1.4rem; font-weight:700; color:var(--neon-green);" id="relLucro">R$ 0,00</div></div></div><div class="modal-btn-row" style="justify-content: flex-start; margin-bottom: 15px;"><button class="btn-action-neon" onclick="window.print()"><i class="fa-solid fa-print"></i> Imprimir</button><button class="btn-secondary" onclick="exportarRelatorioCompletoCSV()"><i class="fa-solid fa-file-excel"></i> Baixar CSV</button></div><div style="max-height: 280px; overflow-y: auto;"><table class="styled-table"><thead><tr><th>ID</th><th>CLIENTE</th><th>APARELHO</th><th>SERVIÇO</th><th>DATA</th><th>STATUS</th><th style="text-align: right;">LUCRO</th></tr></thead><tbody id="relatorioTbody"></tbody></table></div></div></div>
+  <div class="modal-backdrop" id="modalFechamento"><div class="modal-box"><div class="modal-box-header"><h3 style="color: #ffd700;"><i class="fa-solid fa-cash-register"></i> Fechamento de Caixa Diário</h3><button class="modal-close-btn" onclick="fecharModal('modalFechamento')">&times;</button></div><div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;"><span style="font-size: 0.9rem; color: var(--text-muted);">Data do Fechamento:</span><input type="date" id="fechamentoDataFiltro" onchange="carregarFechamentoCaixa()" style="background: rgba(1, 14, 7, 0.85); border: 1px solid rgba(0, 255, 102, 0.35); color: #fff; padding: 6px 12px; border-radius: 8px; outline: none;"></div><div style="display: flex; flex-direction: column; gap: 12px;"><div style="display: flex; justify-content: space-between; padding: 12px; background: rgba(0, 255, 102, 0.05); border-radius: 8px; border-left: 3px solid #00d9ff;"><span style="font-weight: 600;"><i class="fa-brands fa-pix" style="color: #00d9ff; width: 20px;"></i> PIX</span><span id="fechaPix" style="font-weight: 700; font-family: 'Rajdhani', sans-serif;">R$ 0,00</span></div><div style="display: flex; justify-content: space-between; padding: 12px; background: rgba(0, 255, 102, 0.05); border-radius: 8px; border-left: 3px solid #ff9900;"><span style="font-weight: 600;"><i class="fa-regular fa-credit-card" style="color: #ff9900; width: 20px;"></i> Cartão de Crédito</span><span id="fechaCredito" style="font-weight: 700; font-family: 'Rajdhani', sans-serif;">R$ 0,00</span></div><div style="display: flex; justify-content: space-between; padding: 12px; background: rgba(0, 255, 102, 0.05); border-radius: 8px; border-left: 3px solid #00ff66;"><span style="font-weight: 600;"><i class="fa-solid fa-credit-card" style="color: #00ff66; width: 20px;"></i> Cartão de Débito</span><span id="fechaDebito" style="font-weight: 700; font-family: 'Rajdhani', sans-serif;">R$ 0,00</span></div><div style="display: flex; justify-content: space-between; padding: 12px; background: rgba(0, 255, 102, 0.05); border-radius: 8px; border-left: 3px solid #82a892;"><span style="font-weight: 600;"><i class="fa-solid fa-money-bill-wave" style="color: #82a892; width: 20px;"></i> Dinheiro Espécie</span><span id="fechaDinheiro" style="font-weight: 700; font-family: 'Rajdhani', sans-serif;">R$ 0,00</span></div></div><div style="margin-top: 20px; border-top: 1px solid rgba(0, 255, 102, 0.2); padding-top: 15px; display: flex; justify-content: space-between; align-items: center;"><span style="font-size: 1rem; color: #fff; font-weight: 700;">TOTAL ENTRADAS</span><span id="fechaTotal" style="font-size: 1.6rem; color: #ffd700; font-weight: 800; font-family: 'Rajdhani', sans-serif;">R$ 0,00</span></div></div></div>
 
-  <div class="modal-backdrop" id="modalNovoLancamento">
-    <div class="modal-box">
-      <div class="modal-box-header">
-        <h3><i class="fa-solid fa-hand-holding-dollar"></i> Novo Lançamento Financeiro</h3>
-        <button class="modal-close-btn" onclick="fecharModal('modalNovoLancamento')">&times;</button>
-      </div>
-      <form onsubmit="salvarLancamentoAvulso(event)" class="os-form">
-        <div class="form-group">
-          <label>Tipo do Lançamento</label>
-          <div class="input-icon-box"><i class="fa-solid fa-arrows-split-up-and-left"></i>
-            <select id="avulsoTipo" required>
-              <option value="Receita" selected>Receita (Entrada / Venda)</option>
-              <option value="Despesa">Despesa (Saída / Compra / Custos)</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group"><label>Descrição</label><div class="input-icon-box"><i class="fa-solid fa-pen-nib"></i><input type="text" id="avulsoDesc" placeholder="Ex: Compra de telas" required></div></div>
-        <div class="form-row-2col">
-          <div class="form-group"><label>Valor (R$)</label><div class="input-icon-box"><i class="fa-solid fa-dollar-sign"></i><input type="number" step="0.01" min="0.01" id="avulsoValor" placeholder="0,00" required></div></div>
-          <div class="form-group"><label>Data</label><div class="input-icon-box"><i class="fa-regular fa-calendar"></i><input type="date" id="avulsoData" required></div></div>
-        </div>
-        <div class="form-group">
-          <label>Método de Pagamento</label>
-          <div class="input-icon-box"><i class="fa-solid fa-money-bill-transfer"></i>
-            <select id="avulsoMetodo" required>
-              <option value="Dinheiro" selected>Dinheiro Espécie</option>
-              <option value="PIX">PIX</option>
-              <option value="Cartão de Crédito">Cartão de Crédito</option>
-              <option value="Cartão de Débito">Cartão de Débito</option>
-            </select>
-          </div>
-        </div>
-        <div class="modal-btn-row">
-          <button type="button" class="btn-secondary" onclick="fecharModal('modalNovoLancamento')">Cancelar</button>
-          <button type="submit" class="btn-action-neon">Confirmar Lançamento</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <div class="modal-backdrop" id="modalClientes">
-    <div class="modal-box modal-large">
-      <div class="modal-box-header">
-        <h3><i class="fa-solid fa-users"></i> Gestão de Clientes</h3>
-        <button class="modal-close-btn" onclick="fecharModal('modalClientes')">&times;</button>
-      </div>
-      <div style="max-height: 400px; overflow-y: auto;">
-        <table class="styled-table">
-          <thead><tr><th>CLIENTE</th><th>SERVIÇOS</th><th>CONTATO</th><th style="text-align: right;">TOTAL GASTO</th></tr></thead>
-          <tbody id="clientesTbody"></tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal-backdrop" id="modalServicos">
-    <div class="modal-box modal-large">
-      <div class="modal-box-header">
-        <h3><i class="fa-solid fa-wrench"></i> Catálogo de Serviços</h3>
-        <button class="modal-close-btn" onclick="fecharModal('modalServicos')">&times;</button>
-      </div>
-      <div style="max-height: 400px; overflow-y: auto;">
-        <table class="styled-table">
-          <thead><tr><th>SERVIÇO</th><th>QUANTIDADE</th><th>PREÇO MÉDIO</th><th style="text-align: right;">TOTAL GERADO</th></tr></thead>
-          <tbody id="servicosTbody"></tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal-backdrop" id="modalAparelhos">
-    <div class="modal-box modal-large">
-      <div class="modal-box-header">
-        <h3><i class="fa-solid fa-mobile-screen-button"></i> Inventário de Modelos</h3>
-        <button class="modal-close-btn" onclick="fecharModal('modalAparelhos')">&times;</button>
-      </div>
-      <div style="max-height: 400px; overflow-y: auto;">
-        <table class="styled-table">
-          <thead><tr><th>MODELO</th><th>MANUTENÇÕES</th><th>CATEGORIA</th><th style="text-align: right;">FATURAMENTO</th></tr></thead>
-          <tbody id="aparelhosTbody"></tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal-backdrop" id="modalRelatorios">
-    <div class="modal-box modal-large">
-      <div class="modal-box-header">
-        <h3><i class="fa-solid fa-chart-column"></i> Relatório Financeiro Executivo</h3>
-        <button class="modal-close-btn" onclick="fecharModal('modalRelatorios')">&times;</button>
-      </div>
-      <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; margin-bottom: 20px;">
-        <div style="background: rgba(0,255,102,0.06); border:1px solid rgba(0,255,102,0.3); border-radius:12px; padding:12px; text-align:center;">
-          <div style="font-size:0.75rem; color:var(--text-muted);">FATURAMENTO BRUTO</div>
-          <div style="font-size:1.4rem; font-weight:700; color:var(--neon-green);" id="relFaturamento">R$ 0,00</div>
-        </div>
-        <div style="background: rgba(255,51,75,0.06); border:1px solid rgba(255,51,75,0.3); border-radius:12px; padding:12px; text-align:center;">
-          <div style="font-size:0.75rem; color:var(--text-muted);">CUSTOS TOTAIS</div>
-          <div style="font-size:1.4rem; font-weight:700; color:var(--neon-red);" id="relCustos">R$ 0,00</div>
-        </div>
-        <div style="background: rgba(0,255,102,0.06); border:1px solid rgba(0,255,102,0.3); border-radius:12px; padding:12px; text-align:center;">
-          <div style="font-size:0.75rem; color:var(--text-muted);">LUCRO LÍQUIDO</div>
-          <div style="font-size:1.4rem; font-weight:700; color:var(--neon-green);" id="relLucro">R$ 0,00</div>
-        </div>
-      </div>
-      <div class="modal-btn-row" style="justify-content: flex-start; margin-bottom: 15px;">
-        <button class="btn-action-neon" onclick="window.print()"><i class="fa-solid fa-print"></i> Imprimir</button>
-        <button class="btn-secondary" onclick="exportarRelatorioCompletoCSV()"><i class="fa-solid fa-file-excel"></i> Baixar CSV</button>
-      </div>
-      <div style="max-height: 280px; overflow-y: auto;">
-        <table class="styled-table">
-          <thead><tr><th>ID</th><th>CLIENTE</th><th>APARELHO</th><th>SERVIÇO</th><th>DATA</th><th>STATUS</th><th style="text-align: right;">LUCRO</th></tr></thead>
-          <tbody id="relatorioTbody"></tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL CONFIGURAÇÕES E ATUALIZAR SENHA -->
+  <!-- MODAL CONFIGURAÇÕES E ATUALIZAR SENHA (ATUALIZADO COM WHITE-LABEL) -->
   <div class="modal-backdrop" id="modalConfiguracoes">
     <div class="modal-box">
       <div class="modal-box-header">
-        <h3><i class="fa-solid fa-gear"></i> Configurações da Conta</h3>
+        <h3><i class="fa-solid fa-gear"></i> Configurações do Sistema</h3>
         <button class="modal-close-btn" onclick="fecharModal('modalConfiguracoes')">&times;</button>
       </div>
       <div style="display:flex; flex-direction:column; gap:16px;">
+        
         <!-- INFO DA CONTA -->
         <div style="border-bottom:1px solid rgba(0,255,102,0.2); padding-bottom:16px;">
           <h4 style="font-size:0.9rem; color:var(--neon-green); margin-bottom:10px;"><i class="fa-solid fa-id-card"></i> Detalhes da Sessão</h4>
           <div class="form-group"><label>Autenticado como</label><div class="input-icon-box"><i class="fa-solid fa-user"></i><input type="text" id="configAdminName" value="Carregando..." disabled></div></div>
         </div>
-        <!-- FORMULÁRIO DE TROCA DE SENHA / USUÁRIO -->
+
+        <!-- PERSONALIZAÇÃO DA LOJA (NOVO) -->
+        <div style="border-bottom:1px solid rgba(0,255,102,0.2); padding-bottom:16px;">
+          <h4 style="font-size:0.9rem; color:var(--neon-green); margin-bottom:10px;"><i class="fa-solid fa-store"></i> Personalização (Sua Loja)</h4>
+          <div class="form-group">
+            <label>Nome da sua Assistência (Aparece nos recibos e no painel)</label>
+            <div class="input-icon-box">
+              <i class="fa-solid fa-shop"></i>
+              <input type="text" id="configNomeLoja" placeholder="Ex: CELL FIX GESTOR">
+            </div>
+          </div>
+          <button type="button" class="btn-action-neon" style="align-self: flex-start; padding: 8px 14px; font-size: 0.8rem; margin-top:8px;" onclick="salvarPersonalizacao()"><i class="fa-solid fa-floppy-disk"></i> Salvar Marca</button>
+        </div>
+
+        <!-- FORMULÁRIO DE TROCA DE SENHA -->
         <div style="padding-bottom:16px;">
           <h4 style="font-size:0.9rem; color:var(--neon-green); margin-bottom:10px;"><i class="fa-solid fa-user-pen"></i> Alterar Credenciais de Acesso</h4>
           <form onsubmit="alterarCredenciais(event)" style="display:flex; flex-direction:column; gap:12px;">
-            <div class="form-group">
-              <label>Novo Login (Nome de Usuário)</label>
-              <div class="input-icon-box">
-                <i class="fa-solid fa-at"></i>
-                <input type="text" id="updateLogin" placeholder="Deixe em branco para não alterar">
-              </div>
-            </div>
-            <div class="form-group">
-              <label>Nova Senha</label>
-              <div class="input-icon-box">
-                <i class="fa-solid fa-lock"></i>
-                <input type="password" id="updatePass" placeholder="Deixe em branco para não alterar">
-              </div>
-            </div>
+            <div class="form-group"><label>Novo Login</label><div class="input-icon-box"><i class="fa-solid fa-at"></i><input type="text" id="updateLogin" placeholder="Deixe em branco para não alterar"></div></div>
+            <div class="form-group"><label>Nova Senha</label><div class="input-icon-box"><i class="fa-solid fa-lock"></i><input type="password" id="updatePass" placeholder="Deixe em branco para não alterar"></div></div>
             <button type="submit" class="btn-action-neon" style="align-self: flex-start; padding: 10px 18px; font-size: 0.85rem;"><i class="fa-solid fa-floppy-disk"></i> Atualizar Dados</button>
-            <small style="color:var(--text-muted); font-size: 0.75rem;">Nota: Ao atualizar, sua sessão atual será encerrada por segurança.</small>
           </form>
         </div>
         <!-- ZONA DE PERIGO -->
@@ -1159,48 +679,8 @@
     </div>
   </div>
 
-  <!-- MODAL DE FECHAMENTO DE CAIXA -->
-  <div class="modal-backdrop" id="modalFechamento">
-    <div class="modal-box">
-      <div class="modal-box-header">
-        <h3 style="color: #ffd700;"><i class="fa-solid fa-cash-register"></i> Fechamento de Caixa Diário</h3>
-        <button class="modal-close-btn" onclick="fecharModal('modalFechamento')">&times;</button>
-      </div>
-      
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-        <span style="font-size: 0.9rem; color: var(--text-muted);">Data do Fechamento:</span>
-        <input type="date" id="fechamentoDataFiltro" onchange="carregarFechamentoCaixa()" style="background: rgba(1, 14, 7, 0.85); border: 1px solid rgba(0, 255, 102, 0.35); color: #fff; padding: 6px 12px; border-radius: 8px; outline: none;">
-      </div>
-
-      <div style="display: flex; flex-direction: column; gap: 12px;">
-        <div style="display: flex; justify-content: space-between; padding: 12px; background: rgba(0, 255, 102, 0.05); border-radius: 8px; border-left: 3px solid #00d9ff;">
-          <span style="font-weight: 600;"><i class="fa-brands fa-pix" style="color: #00d9ff; width: 20px;"></i> PIX</span>
-          <span id="fechaPix" style="font-weight: 700; font-family: 'Rajdhani', sans-serif;">R$ 0,00</span>
-        </div>
-        <div style="display: flex; justify-content: space-between; padding: 12px; background: rgba(0, 255, 102, 0.05); border-radius: 8px; border-left: 3px solid #ff9900;">
-          <span style="font-weight: 600;"><i class="fa-regular fa-credit-card" style="color: #ff9900; width: 20px;"></i> Cartão de Crédito</span>
-          <span id="fechaCredito" style="font-weight: 700; font-family: 'Rajdhani', sans-serif;">R$ 0,00</span>
-        </div>
-        <div style="display: flex; justify-content: space-between; padding: 12px; background: rgba(0, 255, 102, 0.05); border-radius: 8px; border-left: 3px solid #00ff66;">
-          <span style="font-weight: 600;"><i class="fa-solid fa-credit-card" style="color: #00ff66; width: 20px;"></i> Cartão de Débito</span>
-          <span id="fechaDebito" style="font-weight: 700; font-family: 'Rajdhani', sans-serif;">R$ 0,00</span>
-        </div>
-        <div style="display: flex; justify-content: space-between; padding: 12px; background: rgba(0, 255, 102, 0.05); border-radius: 8px; border-left: 3px solid #82a892;">
-          <span style="font-weight: 600;"><i class="fa-solid fa-money-bill-wave" style="color: #82a892; width: 20px;"></i> Dinheiro Espécie</span>
-          <span id="fechaDinheiro" style="font-weight: 700; font-family: 'Rajdhani', sans-serif;">R$ 0,00</span>
-        </div>
-      </div>
-
-      <div style="margin-top: 20px; border-top: 1px solid rgba(0, 255, 102, 0.2); padding-top: 15px; display: flex; justify-content: space-between; align-items: center;">
-        <span style="font-size: 1rem; color: #fff; font-weight: 700;">TOTAL ENTRADAS</span>
-        <span id="fechaTotal" style="font-size: 1.6rem; color: #ffd700; font-weight: 800; font-family: 'Rajdhani', sans-serif;">R$ 0,00</span>
-      </div>
-    </div>
-  </div>
-
   <div class="toast-container" id="toastContainer"></div>
 
-  <!-- SCRIPT COMPLETO -->
   <script>
     const API_BASE_URL = "https://alison-sistema-gestao.onrender.com";
     const STORAGE_KEY_NOTIFS = 'ALISON_GESTOR_NOTIFS_V4';
@@ -1217,8 +697,8 @@
       iniciarRelogio();
       atualizarNotificacoesUI();
       definirDataHojeFormularios();
+      aplicarPersonalizacao();
       
-      // Carrega usuário salvo do "Lembrar-me"
       const savedUser = localStorage.getItem('ALISON_SAVED_USER');
       if(savedUser) {
          const loginUserEl = document.getElementById('loginUser');
@@ -1231,10 +711,6 @@
         carregarDadosAPI();
       }
     });
-
-    /* =========================================================
-       1. FUNÇÕES LOCAIS E JWT
-       ========================================================= */
 
     async function apiFetch(endpoint, options = {}) {
       const token = localStorage.getItem('ALISON_GESTOR_TOKEN');
@@ -1251,6 +727,74 @@
       return res;
     }
 
+    /* =========================================================
+       WHITE-LABEL / PERSONALIZAÇÃO
+       ========================================================= */
+    function salvarPersonalizacao() {
+        const novoNome = document.getElementById('configNomeLoja').value.trim();
+        if(novoNome) {
+            localStorage.setItem('ALISON_NOME_LOJA', novoNome);
+            aplicarPersonalizacao();
+            showNotification('Nome da loja atualizado com sucesso!');
+        }
+    }
+
+    function aplicarPersonalizacao() {
+        const nome = localStorage.getItem('ALISON_NOME_LOJA') || 'ALISON';
+        document.querySelectorAll('.brand-title').forEach(el => el.textContent = nome);
+        const inputConfig = document.getElementById('configNomeLoja');
+        if(inputConfig) inputConfig.value = nome;
+    }
+
+    /* =========================================================
+       BOTÕES NOVOS DA TABELA (WHATSAPP E IMPRESSÃO)
+       ========================================================= */
+    function enviarWhatsApp(cliente, aparelho, servico, valor, status) {
+        let msg = '';
+        if (status === 'Concluído') {
+            msg = `Olá ${cliente}! Boas notícias: seu ${aparelho} já está pronto! 🎉\nO serviço de ${servico} ficou no valor de ${formatarMoeda(valor)}.\nJá pode vir retirar!`;
+        } else {
+            msg = `Olá ${cliente}! Passando para informar que seu ${aparelho} está com o status: *${status}* no nosso sistema. Qualquer novidade te aviso!`;
+        }
+        const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
+        window.open(url, '_blank');
+    }
+
+    function imprimirCupom(id, cliente, aparelho, servico, valor) {
+        const nomeLoja = localStorage.getItem('ALISON_NOME_LOJA') || 'ALISON ASSISTÊNCIA';
+        const dataHoje = new Date().toLocaleDateString('pt-BR');
+        
+        const conteudo = `
+            <html><head><title>Recibo de Serviço</title><style>
+                body { font-family: 'Courier New', Courier, monospace; width: 58mm; margin: 0; padding: 5px; font-size: 11px; color: #000; }
+                .center { text-align: center; }
+                .bold { font-weight: bold; }
+                .line { border-bottom: 1px dashed #000; margin: 8px 0; }
+                h2 { font-size: 16px; margin: 5px 0; }
+            </style></head><body>
+            <div class="center bold"><h2>${nomeLoja}</h2></div>
+            <div class="center">COMPROVANTE DE SERVICO</div>
+            <div class="center">Data: ${dataHoje}</div>
+            <div class="line"></div>
+            <div><b>OS N:</b> #${id.toString().padStart(4, '0')}</div>
+            <div><b>CLIENTE:</b> ${cliente}</div>
+            <div><b>APARELHO:</b> ${aparelho}</div>
+            <div><b>SERVICO:</b> ${servico}</div>
+            <div class="line"></div>
+            <div class="center bold" style="font-size: 14px;">TOTAL: ${formatarMoeda(valor)}</div>
+            <div class="line"></div>
+            <div class="center" style="font-size: 10px;">Garantia de 90 dias para defeitos de fabricacao da peca.<br>Nao cobrimos mau uso ou contato com agua.<br><br>Obrigado pela preferencia!</div>
+            <script>window.print(); setTimeout(() => window.close(), 500);<\/script>
+            </body></html>
+        `;
+        const janela = window.open('', '', 'width=300,height=500');
+        janela.document.write(conteudo);
+        janela.document.close();
+    }
+
+    /* =========================================================
+       LOGIN E PERMISSÕES
+       ========================================================= */
     async function verificarPermissoesAdminUI() {
       const btnAdmin = document.getElementById('btnAdminUsuarios');
       try {
@@ -1259,14 +803,10 @@
             const user = await res.json();
             document.getElementById('displayAdminName').textContent = user.nome;
             document.getElementById('configAdminName').value = user.nome + " (" + user.login + ")";
-            
             if (document.getElementById('lblPlano')) document.getElementById('lblPlano').textContent = user.plano;
             if (document.getElementById('lblVencimento')) document.getElementById('lblVencimento').textContent = user.valido_ate;
             
-            if(user.bloqueado) {
-                document.getElementById('blockOverlay').classList.remove('hidden');
-                return; 
-            }
+            if(user.bloqueado) { document.getElementById('blockOverlay').classList.remove('hidden'); return; }
 
             if (user.role === 'admin') {
               document.getElementById('displayAdminRole').textContent = "Master Admin";
@@ -1282,13 +822,8 @@
 
     function verificarSessao() {
       const token = localStorage.getItem('ALISON_GESTOR_TOKEN');
-      const overlay = document.getElementById('loginOverlay');
-      if (token) {
-        overlay.classList.add('hidden');
-        verificarPermissoesAdminUI();
-      } else {
-        overlay.classList.remove('hidden');
-      }
+      if (token) { document.getElementById('loginOverlay').classList.add('hidden'); verificarPermissoesAdminUI(); } 
+      else { document.getElementById('loginOverlay').classList.remove('hidden'); }
     }
 
     function switchLoginTab(tab) {
@@ -1321,51 +856,33 @@
 
     async function realizarLogin(event) {
       event.preventDefault();
-      
       const btn = document.getElementById('btnLoginSubmit');
       const span = btn.querySelector('span');
       const icon = btn.querySelector('i');
       const originalText = span.innerText;
       const originalIcon = icon.className;
       
-      btn.disabled = true;
-      span.innerText = "Autenticando...";
-      icon.className = "fa-solid fa-circle-notch fa-spin";
+      btn.disabled = true; span.innerText = "Autenticando..."; icon.className = "fa-solid fa-circle-notch fa-spin";
 
       const user = document.getElementById('loginUser').value.trim();
       const pass = document.getElementById('loginPass').value;
       const remember = document.getElementById('rememberUser').checked;
-
-      const formData = new URLSearchParams();
-      formData.append("username", user);
-      formData.append("password", pass);
+      const formData = new URLSearchParams(); formData.append("username", user); formData.append("password", pass);
 
       try {
-        const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
-          method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: formData
-        });
+        const res = await fetch(`${API_BASE_URL}/api/auth/login`, { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: formData });
         const data = await res.json();
-        
         if (res.ok) {
           localStorage.setItem('ALISON_GESTOR_TOKEN', data.access_token);
-          
           if(remember) localStorage.setItem('ALISON_SAVED_USER', user);
           else localStorage.removeItem('ALISON_SAVED_USER');
-
           document.getElementById('loginOverlay').classList.add('hidden');
           verificarPermissoesAdminUI();
           showNotification(`Bem-vindo! Sessão protegida iniciada.`);
           carregarDadosAPI();
-        } else { 
-          showNotification(data.detail || "Erro de login."); 
-        }
-      } catch (error) { 
-        showNotification("Erro ao conectar ao servidor."); 
-      } finally {
-        btn.disabled = false;
-        span.innerText = originalText;
-        icon.className = originalIcon;
-      }
+        } else { showNotification(data.detail || "Erro de login."); }
+      } catch (error) { showNotification("Erro ao conectar ao servidor."); } 
+      finally { btn.disabled = false; span.innerText = originalText; icon.className = originalIcon; }
     }
 
     async function solicitarCadastro(event) {
@@ -1373,33 +890,19 @@
       const nome = document.getElementById('regName').value.trim();
       const login = document.getElementById('regUser').value.trim();
       const senha = document.getElementById('regPass').value;
-      
       const btn = document.getElementById('btnRegSubmit');
-      const span = btn.querySelector('span');
-      const icon = btn.querySelector('i');
-      const originalText = span.innerText;
-      const originalIcon = icon.className;
+      const span = btn.querySelector('span'); const icon = btn.querySelector('i');
+      const originalText = span.innerText; const originalIcon = icon.className;
       
       if (senha.length < 6) { showNotification('Senha mínima de 6 caracteres.'); return; }
       
-      btn.disabled = true;
-      span.innerText = "Enviando...";
-      icon.className = "fa-solid fa-circle-notch fa-spin";
-
+      btn.disabled = true; span.innerText = "Enviando..."; icon.className = "fa-solid fa-circle-notch fa-spin";
       try {
-        const res = await fetch(`${API_BASE_URL}/api/auth/register`, {
-          method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ nome, login, senha })
-        });
+        const res = await fetch(`${API_BASE_URL}/api/auth/register`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ nome, login, senha }) });
         const data = await res.json();
-        if(res.ok) { showNotification(data.mensagem); switchLoginTab('login'); } 
-        else { showNotification(data.detail); }
-      } catch (error) { 
-        showNotification("Erro na solicitação."); 
-      } finally {
-        btn.disabled = false;
-        span.innerText = originalText;
-        icon.className = originalIcon;
-      }
+        if(res.ok) { showNotification(data.mensagem); switchLoginTab('login'); } else { showNotification(data.detail); }
+      } catch (error) { showNotification("Erro na solicitação."); } 
+      finally { btn.disabled = false; span.innerText = originalText; icon.className = originalIcon; }
     }
 
     function realizarLogout(forced = false) {
@@ -1415,34 +918,22 @@
       e.preventDefault();
       const novo_login = document.getElementById('updateLogin').value.trim();
       const nova_senha = document.getElementById('updatePass').value;
-
       if (!novo_login && !nova_senha) { showNotification("Preencha pelo menos um campo para atualizar."); return; }
       if (nova_senha && nova_senha.length < 6) { showNotification("A nova senha deve ter no mínimo 6 caracteres."); return; }
-
       try {
-        const res = await apiFetch('/api/auth/update-credentials', {
-          method: 'PUT', headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({ novo_login: novo_login, nova_senha: nova_senha })
-        });
-
+        const res = await apiFetch('/api/auth/update-credentials', { method: 'PUT', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ novo_login: novo_login, nova_senha: nova_senha }) });
         if (res.ok) {
           const data = await res.json();
-          showNotification(data.msg);
-          fecharModal('modalConfiguracoes');
-          document.getElementById('updateLogin').value = "";
-          document.getElementById('updatePass').value = "";
+          showNotification(data.msg); fecharModal('modalConfiguracoes');
+          document.getElementById('updateLogin').value = ""; document.getElementById('updatePass').value = "";
           setTimeout(() => { realizarLogout(true); }, 2000);
-        } else {
-          const err = await res.json();
-          showNotification(err.detail || "Erro ao atualizar credenciais.");
-        }
+        } else { const err = await res.json(); showNotification(err.detail || "Erro ao atualizar credenciais."); }
       } catch(err) { showNotification("Erro de conexão."); }
     }
 
     /* =========================================================
-       2. FUNÇÕES ADMIN DE ASSINATURA E BLOQUEIO
+       GESTÃO DE ASSINATURAS E USUÁRIOS ADMIN
        ========================================================= */
-
     async function atualizarBadgePendentes() {
       try {
         const res = await apiFetch('/api/usuarios/pendentes');
@@ -1462,143 +953,61 @@
       const tbody = document.getElementById('usuariosPendentesTbody'); 
       tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 20px; color:var(--neon-green);">Carregando usuários do servidor...</td></tr>';
       abrirModal('modalUsuarios');
-
       try {
         const res = await apiFetch('/api/usuarios/pendentes');
         if (res.ok) {
           const solicitantes = await res.json();
           tbody.innerHTML = '';
-          if (solicitantes.length === 0) {
-            tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 20px; color:var(--text-muted);">Nenhum usuário registrado além do admin.</td></tr>`;
-            return;
-          }
+          if (solicitantes.length === 0) { tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 20px; color:var(--text-muted);">Nenhum usuário registrado além do admin.</td></tr>`; return; }
           solicitantes.forEach(u => {
-            const isPend = u.status === 'pendente';
-            const isBlock = u.status === 'bloqueado';
+            const isPend = u.status === 'pendente'; const isBlock = u.status === 'bloqueado';
             const stColor = isPend ? '#f39c12' : (isBlock ? 'var(--neon-red)' : 'var(--neon-green)');
-            
-            const tr = document.createElement('tr');
-            let acoes = '';
-
+            const tr = document.createElement('tr'); let acoes = '';
             if (isPend) {
-                acoes = `
-                  <button class="btn-action-neon" style="padding:5px 10px; font-size:0.75rem;" onclick="aprovarUsuario('${u.login}')">Aprovar</button>
-                  <button class="btn-secondary" style="padding:5px 10px; font-size:0.75rem; color:var(--neon-red);" onclick="rejeitarUsuario('${u.login}')">Rejeitar</button>
-                `;
+                acoes = `<button class="btn-action-neon" style="padding:5px 10px; font-size:0.75rem;" onclick="aprovarUsuario('${u.login}')">Aprovar</button> <button class="btn-secondary" style="padding:5px 10px; font-size:0.75rem; color:var(--neon-red);" onclick="rejeitarUsuario('${u.login}')">Rejeitar</button>`;
             } else {
-                acoes = `
-                  <button class="btn-action-neon" style="padding:5px 10px; font-size:0.75rem;" onclick="abrirRenovacao('${u.login}')">Renovar</button>
-                  ${isBlock 
-                    ? `<button class="btn-secondary" style="padding:5px 10px; font-size:0.75rem; color:var(--neon-green);" onclick="desbloquearUsuario('${u.login}')" title="Desbloquear Conta"><i class="fa-solid fa-unlock"></i></button>`
-                    : `<button class="btn-secondary" style="padding:5px 10px; font-size:0.75rem; color:var(--neon-red);" onclick="bloquearUsuario('${u.login}')" title="Bloquear Conta"><i class="fa-solid fa-ban"></i></button>`
-                  }
-                  <button class="btn-secondary" style="padding:5px 10px; font-size:0.75rem; color:var(--neon-red);" onclick="rejeitarUsuario('${u.login}')" title="Excluir"><i class="fa-solid fa-trash"></i></button>
-                `;
+                acoes = `<button class="btn-action-neon" style="padding:5px 10px; font-size:0.75rem;" onclick="abrirRenovacao('${u.login}')">Renovar</button> ${isBlock ? `<button class="btn-secondary" style="padding:5px 10px; font-size:0.75rem; color:var(--neon-green);" onclick="desbloquearUsuario('${u.login}')" title="Desbloquear Conta"><i class="fa-solid fa-unlock"></i></button>` : `<button class="btn-secondary" style="padding:5px 10px; font-size:0.75rem; color:var(--neon-red);" onclick="bloquearUsuario('${u.login}')" title="Bloquear Conta"><i class="fa-solid fa-ban"></i></button>`} <button class="btn-secondary" style="padding:5px 10px; font-size:0.75rem; color:var(--neon-red);" onclick="rejeitarUsuario('${u.login}')" title="Excluir"><i class="fa-solid fa-trash"></i></button>`;
             }
-
-            tr.innerHTML = `
-              <td style="font-weight:700;">${escapeHTML(u.login)}</td>
-              <td>${escapeHTML(u.plano || 'N/A')}</td>
-              <td>${escapeHTML(u.valido_ate || 'N/A')}</td>
-              <td><span style="color:${stColor}; font-weight:700; text-transform:uppercase; font-size:0.75rem;">${u.status}</span></td>
-              <td style="text-align:right; white-space:nowrap;">${acoes}</td>
-            `;
+            tr.innerHTML = `<td style="font-weight:700;">${escapeHTML(u.login)}</td><td>${escapeHTML(u.plano || 'N/A')}</td><td>${escapeHTML(u.valido_ate || 'N/A')}</td><td><span style="color:${stColor}; font-weight:700; text-transform:uppercase; font-size:0.75rem;">${u.status}</span></td><td style="text-align:right; white-space:nowrap;">${acoes}</td>`;
             tbody.appendChild(tr);
           });
         }
       } catch (error) { tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:var(--neon-red);">Erro ou acesso negado.</td></tr>`; }
     }
 
-    async function aprovarUsuario(login) {
-      try {
-        const res = await apiFetch(`/api/usuarios/${login}/aprovar`, { method: "PUT" });
-        if(res.ok) { showNotification(`Usuário aprovado!`); atualizarBadgePendentes(); abrirPainelUsuarios(); }
-      } catch(e) { showNotification("Erro ao aprovar usuário."); }
-    }
+    async function aprovarUsuario(login) { try { const res = await apiFetch(`/api/usuarios/${login}/aprovar`, { method: "PUT" }); if(res.ok) { showNotification(`Usuário aprovado!`); atualizarBadgePendentes(); abrirPainelUsuarios(); } } catch(e) { showNotification("Erro ao aprovar usuário."); } }
+    async function bloquearUsuario(login) { if(confirm(`Bloquear o acesso de ${login}? Eles não poderão acessar o sistema.`)) { try { const res = await apiFetch(`/api/usuarios/${login}/bloquear`, { method: "PUT" }); if(res.ok) { showNotification(`Usuário bloqueado.`); abrirPainelUsuarios(); } } catch(e) { showNotification("Erro ao bloquear."); } } }
+    async function desbloquearUsuario(login) { try { const res = await apiFetch(`/api/usuarios/${login}/desbloquear`, { method: "PUT" }); if(res.ok) { showNotification(`Usuário desbloqueado.`); abrirPainelUsuarios(); } } catch(e) { showNotification("Erro ao desbloquear."); } }
+    async function rejeitarUsuario(login) { if (confirm(`Remover definitivamente o usuário "${login}" e apagar seus dados?`)) { try { const res = await apiFetch(`/api/usuarios/${login}/rejeitar`, { method: "DELETE" }); if(res.ok) { showNotification(`Usuário removido.`); atualizarBadgePendentes(); abrirPainelUsuarios(); } } catch(e) { showNotification("Erro ao rejeitar usuário."); } } }
 
-    async function bloquearUsuario(login) {
-      if(confirm(`Bloquear o acesso de ${login}? Eles não poderão acessar o sistema.`)) {
-        try {
-          const res = await apiFetch(`/api/usuarios/${login}/bloquear`, { method: "PUT" });
-          if(res.ok) { showNotification(`Usuário bloqueado.`); abrirPainelUsuarios(); }
-        } catch(e) { showNotification("Erro ao bloquear."); }
-      }
-    }
-
-    async function desbloquearUsuario(login) {
-      try {
-        const res = await apiFetch(`/api/usuarios/${login}/desbloquear`, { method: "PUT" });
-        if(res.ok) { showNotification(`Usuário desbloqueado.`); abrirPainelUsuarios(); }
-      } catch(e) { showNotification("Erro ao desbloquear."); }
-    }
-
-    async function rejeitarUsuario(login) {
-      if (confirm(`Remover definitivamente o usuário "${login}" e apagar seus dados?`)) {
-        try {
-          const res = await apiFetch(`/api/usuarios/${login}/rejeitar`, { method: "DELETE" });
-          if(res.ok) { showNotification(`Usuário removido.`); atualizarBadgePendentes(); abrirPainelUsuarios(); }
-        } catch(e) { showNotification("Erro ao rejeitar usuário."); }
-      }
-    }
-
-    function abrirRenovacao(login) {
-        document.getElementById('renovarLoginUser').value = login;
-        abrirModal('modalRenovar');
-    }
-
+    function abrirRenovacao(login) { document.getElementById('renovarLoginUser').value = login; abrirModal('modalRenovar'); }
     async function confirmarRenovacao(e) {
         e.preventDefault();
         const login = document.getElementById('renovarLoginUser').value;
         const planoVal = document.getElementById('renovarPlano').value.split('|');
-        const dias = parseInt(planoVal[0]);
-        const planoNome = planoVal[1];
-
         try {
-            const res = await apiFetch(`/api/usuarios/${login}/renovar`, {
-                method: 'PUT', headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({dias: dias, plano: planoNome})
-            });
-            if(res.ok) {
-                fecharModal('modalRenovar');
-                showNotification(`Assinatura de ${login} renovada com sucesso!`);
-                abrirPainelUsuarios();
-            }
+            const res = await apiFetch(`/api/usuarios/${login}/renovar`, { method: 'PUT', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({dias: parseInt(planoVal[0]), plano: planoVal[1]}) });
+            if(res.ok) { fecharModal('modalRenovar'); showNotification(`Assinatura de ${login} renovada com sucesso!`); abrirPainelUsuarios(); }
         } catch(err) { showNotification("Erro ao renovar"); }
     }
 
     /* =========================================================
-       3. INTEGRAÇÃO COM A API E LÓGICA DO PAINEL
+       DATAS RETROATIVAS
        ========================================================= */
-
     function formatDateISO(d) {
-      const yyyy = d.getFullYear();
-      const mm = String(d.getMonth() + 1).padStart(2, '0');
-      const dd = String(d.getDate()).padStart(2, '0');
+      const yyyy = d.getFullYear(); const mm = String(d.getMonth() + 1).padStart(2, '0'); const dd = String(d.getDate()).padStart(2, '0');
       return `${yyyy}-${mm}-${dd}`;
     }
-
-    function setOsDataHoje() {
-      const el = document.getElementById('formOsData');
-      if (el) el.value = formatDateISO(new Date());
-    }
-
-    function setOsDataOntem() {
-      const ontem = new Date();
-      ontem.setDate(ontem.getDate() - 1);
-      const el = document.getElementById('formOsData');
-      if (el) el.value = formatDateISO(ontem);
-    }
-
+    function setOsDataHoje() { const el = document.getElementById('formOsData'); if (el) el.value = formatDateISO(new Date()); }
+    function setOsDataOntem() { const ontem = new Date(); ontem.setDate(ontem.getDate() - 1); const el = document.getElementById('formOsData'); if (el) el.value = formatDateISO(ontem); }
     function definirDataHojeFormularios() {
       const hoje = formatDateISO(new Date());
-      const dataInput = document.getElementById('avulsoData');
-      if (dataInput) dataInput.value = hoje;
-      const dataOsInput = document.getElementById('formOsData');
-      if (dataOsInput) dataOsInput.value = hoje;
+      const dataInput = document.getElementById('avulsoData'); if (dataInput) dataInput.value = hoje;
+      const dataOsInput = document.getElementById('formOsData'); if (dataOsInput) dataOsInput.value = hoje;
     }
 
     /* =========================================================
-       GAMIFICAÇÃO E METAS (DIÁRIA, SEMANAL, MENSAL, ANUAL)
+       GAMIFICAÇÃO E METAS
        ========================================================= */
     function obterMetas() {
       return {
@@ -1610,81 +1019,54 @@
     }
 
     function atualizarBarraDeMeta(faturamento_bruto) {
-      const metas = obterMetas();
-      
-      let metaAtual = metas.mensal;
-      let rotuloMeta = "Mensal";
-
+      const metas = obterMetas(); let metaAtual = metas.mensal; let rotuloMeta = "Mensal";
       if (filtroPeriodoAtual === 'hoje') { metaAtual = metas.diaria; rotuloMeta = "Diária"; } 
       else if (filtroPeriodoAtual === '7dias') { metaAtual = metas.semanal; rotuloMeta = "Semanal"; } 
       else if (filtroPeriodoAtual === 'mes') { metaAtual = metas.mensal; rotuloMeta = "Mensal"; } 
       else if (filtroPeriodoAtual === 'ano' || filtroPeriodoAtual === 'tudo') { metaAtual = metas.anual; rotuloMeta = "Anual"; }
 
-      let porcentagem = (faturamento_bruto / metaAtual) * 100;
-      if (porcentagem > 100) porcentagem = 100;
-
+      let porcentagem = (faturamento_bruto / metaAtual) * 100; if (porcentagem > 100) porcentagem = 100;
       document.getElementById('metaTitleText').innerHTML = `<i class="fa-solid fa-trophy"></i> Meta ${rotuloMeta}`;
       document.getElementById('metaTextValues').innerHTML = `${formatarMoeda(faturamento_bruto)} <span style="color:var(--text-muted); font-size:0.9rem;">/ ${formatarMoeda(metaAtual)}</span> <span style="font-size:0.8rem; color:#fff;">(${porcentagem.toFixed(0)}%)</span>`;
       
-      const barra = document.getElementById('metaProgressBar');
-      const container = document.getElementById('gamificationBox');
-
+      const barra = document.getElementById('metaProgressBar'); const container = document.getElementById('gamificationBox');
       setTimeout(() => { barra.style.width = `${porcentagem}%`; }, 100);
-
       if (porcentagem >= 100 && faturamento_bruto > 0) {
-        container.classList.add('celebration-mode');
-        barra.style.background = 'linear-gradient(90deg, #ffd700 0%, #ffea00 100%)'; 
-        barra.style.boxShadow = '0 0 20px #ffea00';
+        container.classList.add('celebration-mode'); barra.style.background = 'linear-gradient(90deg, #ffd700 0%, #ffea00 100%)'; barra.style.boxShadow = '0 0 20px #ffea00';
       } else {
-        container.classList.remove('celebration-mode');
-        barra.style.background = 'linear-gradient(90deg, #00b347 0%, #00ff73 100%)'; 
-        barra.style.boxShadow = '0 0 15px rgba(0, 255, 102, 0.8)';
+        container.classList.remove('celebration-mode'); barra.style.background = 'linear-gradient(90deg, #00b347 0%, #00ff73 100%)'; barra.style.boxShadow = '0 0 15px rgba(0, 255, 102, 0.8)';
       }
     }
 
     function editarMeta() {
-      const metas = obterMetas();
-      let chaveStorage = 'ALISON_META_MENSAL';
-      let rotuloMeta = 'Mensal';
-      let valorAtual = metas.mensal;
-
+      const metas = obterMetas(); let chaveStorage = 'ALISON_META_MENSAL'; let rotuloMeta = 'Mensal'; let valorAtual = metas.mensal;
       if (filtroPeriodoAtual === 'hoje') { chaveStorage = 'ALISON_META_DIARIA'; rotuloMeta = 'Diária'; valorAtual = metas.diaria; } 
       else if (filtroPeriodoAtual === '7dias') { chaveStorage = 'ALISON_META_SEMANAL'; rotuloMeta = 'Semanal'; valorAtual = metas.semanal; } 
       else if (filtroPeriodoAtual === 'ano' || filtroPeriodoAtual === 'tudo') { chaveStorage = 'ALISON_META_ANUAL'; rotuloMeta = 'Anual'; valorAtual = metas.anual; }
 
       const novaMeta = prompt(`🔥 Defina sua nova Meta ${rotuloMeta} (digite apenas números):`, valorAtual.toFixed(2));
-      
       if (novaMeta !== null && novaMeta.trim() !== "" && !isNaN(novaMeta)) {
         const valorNumerico = parseFloat(novaMeta);
-        if (valorNumerico > 0) {
-          localStorage.setItem(chaveStorage, valorNumerico);
-          showNotification(`Nova Meta ${rotuloMeta} definida: ${formatarMoeda(valorNumerico)}! 🚀`);
-          carregarDadosAPI(); 
-        } else {
-          showNotification("A meta precisa ser maior que zero.");
-        }
+        if (valorNumerico > 0) { localStorage.setItem(chaveStorage, valorNumerico); showNotification(`Nova Meta ${rotuloMeta} definida: ${formatarMoeda(valorNumerico)}! 🚀`); carregarDadosAPI(); } 
+        else { showNotification("A meta precisa ser maior que zero."); }
       }
     }
 
+    /* =========================================================
+       API FETCH CORE 
+       ========================================================= */
     async function carregarDadosAPI(notificar = false) {
       try {
         const resOs = await apiFetch(`/api/os/historico`);
-        if (resOs.ok) {
-          osList = await resOs.json();
-          atualizarTabela(osList);
-          atualizarAutoSuggest();
-        }
+        if (resOs.ok) { osList = await resOs.json(); atualizarTabela(osList); atualizarAutoSuggest(); }
 
         const resLanc = await apiFetch(`/api/lancamentos/`);
-        if (resLanc.ok) {
-          lancamentosList = await resLanc.json();
-          atualizarTabelaLancamentos();
-        }
+        if (resLanc.ok) { lancamentosList = await resLanc.json(); atualizarTabelaLancamentos(); }
 
         let periodoApi = "dia";
         if(filtroPeriodoAtual === "7dias") periodoApi = "semana";
-        if(filtroPeriodoAtual === "mes") periodoApi = "mes";
-        if(filtroPeriodoAtual === "ano" || filtroPeriodoAtual === "tudo") periodoApi = "ano";
+        else if(filtroPeriodoAtual === "mes") periodoApi = "mes";
+        else if(filtroPeriodoAtual === "ano" || filtroPeriodoAtual === "tudo") periodoApi = "ano";
 
         const resFin = await apiFetch(`/api/financeiro/resumo?periodo=${periodoApi}`);
         if (resFin.ok) {
@@ -1693,15 +1075,11 @@
           document.getElementById('kpiFaturamento').textContent = formatarMoeda(fin.faturamento_bruto);
           document.getElementById('kpiCustos').textContent = formatarMoeda(fin.custos_pecas);
           document.getElementById('kpiLucro').textContent = formatarMoeda(fin.lucro_liquido);
-          
           atualizarBarraDeMeta(fin.faturamento_bruto);
         }
 
         const resGrafico = await apiFetch(`/api/financeiro/grafico`);
-        if (resGrafico.ok) {
-          const dadosGrafico = await resGrafico.json();
-          atualizarGrafico(dadosGrafico);
-        }
+        if (resGrafico.ok) { const dadosGrafico = await resGrafico.json(); atualizarGrafico(dadosGrafico); }
 
         if(notificar) showNotification("Dados sincronizados com o servidor.");
       } catch (error) {}
@@ -1709,95 +1087,56 @@
 
     async function adicionarOS(e) {
       e.preventDefault();
-      const cliente = document.getElementById('formCliente').value.trim();
-      const aparelho = document.getElementById('formAparelho').value.trim();
-      const servico = document.getElementById('formServico').value.trim();
-      const valor = parseFloat(document.getElementById('formValor').value) || 0;
-      const custo = parseFloat(document.getElementById('formCusto').value) || 0;
-      const status = document.getElementById('formStatus').value;
-      const dataOS = document.getElementById('formOsData').value;
-      const metodo = document.getElementById('formMetodo').value;
+      const cliente = document.getElementById('formCliente').value.trim(); const aparelho = document.getElementById('formAparelho').value.trim(); const servico = document.getElementById('formServico').value.trim();
+      const valor = parseFloat(document.getElementById('formValor').value) || 0; const custo = parseFloat(document.getElementById('formCusto').value) || 0;
+      const status = document.getElementById('formStatus').value; const dataOS = document.getElementById('formOsData').value; const metodo = document.getElementById('formMetodo').value;
 
       try {
         const url = new URL(`${API_BASE_URL}/api/os/`);
-        url.searchParams.append("cliente_nome", cliente);
-        url.searchParams.append("aparelho", aparelho);
-        url.searchParams.append("servico", servico);
-        url.searchParams.append("valor", valor);
-        url.searchParams.append("custo", custo);
-        url.searchParams.append("status", status);
-        url.searchParams.append("data", dataOS);
-        url.searchParams.append("metodo_pagamento", metodo);
+        url.searchParams.append("cliente_nome", cliente); url.searchParams.append("aparelho", aparelho); url.searchParams.append("servico", servico);
+        url.searchParams.append("valor", valor); url.searchParams.append("custo", custo); url.searchParams.append("status", status);
+        url.searchParams.append("data", dataOS); url.searchParams.append("metodo_pagamento", metodo);
 
         const response = await apiFetch(url.pathname + url.search, { method: 'POST' });
         if (response.ok) {
-          adicionarNotificacao(`OS cadastrada para ${cliente}`);
-          document.getElementById('osForm').reset();
-          document.getElementById('formCusto').value = '0.00';
-          definirDataHojeFormularios();
-          showNotification('Ordem salva com sucesso no Banco de Dados!');
-          carregarDadosAPI();
+          adicionarNotificacao(`OS cadastrada para ${cliente}`); document.getElementById('osForm').reset(); document.getElementById('formCusto').value = '0.00';
+          definirDataHojeFormularios(); showNotification('Ordem salva com sucesso no Banco de Dados!'); carregarDadosAPI();
         }
       } catch (error) { showNotification('Erro ao salvar OS na API.'); }
     }
 
     async function alternarStatusOS(id) {
-      const os = osList.find(o => o.id == id);
-      if (!os) return;
+      const os = osList.find(o => o.id == id); if (!os) return;
       const seq = ['Na Fila', 'Em Andamento', 'Concluído', 'Cancelado'];
       const novoStatus = seq[(seq.indexOf(os.status) + 1) % seq.length];
       try {
-        const url = new URL(`${API_BASE_URL}/api/os/${id}/status`);
-        url.searchParams.append("status", novoStatus);
+        const url = new URL(`${API_BASE_URL}/api/os/${id}/status`); url.searchParams.append("status", novoStatus);
         const response = await apiFetch(url.pathname + url.search, { method: 'PUT' });
         if (response.ok) { showNotification(`Status atualizado para "${novoStatus}"`); carregarDadosAPI(); }
       } catch (error) { showNotification('Erro ao atualizar status na API.'); }
     }
 
     function abrirEdicaoOS(id) {
-      const os = osList.find(o => o.id == id);
-      if (!os) return;
-      document.getElementById('editOSId').value = os.id;
-      document.getElementById('editCliente').value = os.cliente_nome || os.cliente;
-      document.getElementById('editAparelho').value = os.aparelho;
-      document.getElementById('editServico').value = os.servico;
-      document.getElementById('editValor').value = os.valor;
-      document.getElementById('editCusto').value = os.custo || 0;
-      document.getElementById('editStatus').value = os.status;
-      document.getElementById('editMetodo').value = os.metodo_pagamento || "Dinheiro";
-      
-      if (os.data && os.data.includes('/')) {
-        const [d, m, y] = os.data.split('/');
-        document.getElementById('editData').value = `${y}-${m}-${d}`;
-      } else {
-        document.getElementById('editData').value = formatDateISO(new Date());
-      }
-
+      const os = osList.find(o => o.id == id); if (!os) return;
+      document.getElementById('editOSId').value = os.id; document.getElementById('editCliente').value = os.cliente_nome || os.cliente;
+      document.getElementById('editAparelho').value = os.aparelho; document.getElementById('editServico').value = os.servico;
+      document.getElementById('editValor').value = os.valor; document.getElementById('editCusto').value = os.custo || 0;
+      document.getElementById('editStatus').value = os.status; document.getElementById('editMetodo').value = os.metodo_pagamento || "Dinheiro";
+      if (os.data && os.data.includes('/')) { const [d, m, y] = os.data.split('/'); document.getElementById('editData').value = `${y}-${m}-${d}`; } else { document.getElementById('editData').value = formatDateISO(new Date()); }
       abrirModal('modalOS');
     }
 
     async function salvarEdicaoOS(e) {
       e.preventDefault();
-      const id = document.getElementById('editOSId').value;
-      const cliente = document.getElementById('editCliente').value.trim();
-      const aparelho = document.getElementById('editAparelho').value.trim();
-      const servico = document.getElementById('editServico').value.trim();
-      const valor = parseFloat(document.getElementById('editValor').value) || 0;
-      const custo = parseFloat(document.getElementById('editCusto').value) || 0;
-      const status = document.getElementById('editStatus').value;
-      const dataOS = document.getElementById('editData').value;
-      const metodo = document.getElementById('editMetodo').value;
+      const id = document.getElementById('editOSId').value; const cliente = document.getElementById('editCliente').value.trim(); const aparelho = document.getElementById('editAparelho').value.trim();
+      const servico = document.getElementById('editServico').value.trim(); const valor = parseFloat(document.getElementById('editValor').value) || 0; const custo = parseFloat(document.getElementById('editCusto').value) || 0;
+      const status = document.getElementById('editStatus').value; const dataOS = document.getElementById('editData').value; const metodo = document.getElementById('editMetodo').value;
 
       try {
         const url = new URL(`${API_BASE_URL}/api/os/${id}`);
-        url.searchParams.append("cliente_nome", cliente);
-        url.searchParams.append("aparelho", aparelho);
-        url.searchParams.append("servico", servico);
-        url.searchParams.append("valor", valor);
-        url.searchParams.append("custo", custo);
-        url.searchParams.append("status", status);
-        url.searchParams.append("data", dataOS);
-        url.searchParams.append("metodo_pagamento", metodo);
+        url.searchParams.append("cliente_nome", cliente); url.searchParams.append("aparelho", aparelho); url.searchParams.append("servico", servico);
+        url.searchParams.append("valor", valor); url.searchParams.append("custo", custo); url.searchParams.append("status", status);
+        url.searchParams.append("data", dataOS); url.searchParams.append("metodo_pagamento", metodo);
 
         const response = await apiFetch(url.pathname + url.search, { method: 'PUT' });
         if (response.ok) { fecharModal('modalOS'); showNotification('OS atualizada!'); carregarDadosAPI(); }
@@ -1806,52 +1145,40 @@
 
     async function excluirOS(id) {
       if (confirm('Atenção: Deseja realmente excluir esta Ordem de Serviço do banco de dados?')) {
-        try {
-          const response = await apiFetch(`/api/os/${id}`, { method: 'DELETE' });
-          if (response.ok) { showNotification('Ordem de serviço excluída definitivamente!'); carregarDadosAPI(); }
-        } catch (error) { showNotification('Erro ao tentar deletar a OS.'); }
+        try { const response = await apiFetch(`/api/os/${id}`, { method: 'DELETE' }); if (response.ok) { showNotification('Ordem de serviço excluída definitivamente!'); carregarDadosAPI(); } } catch (error) { showNotification('Erro ao tentar deletar a OS.'); }
       }
     }
 
     function mudarPeriodo(periodo) {
       filtroPeriodoAtual = periodo;
       document.getElementById('chartTitleText').textContent = `Desempenho Financeiro - ${periodo === 'hoje' ? 'Hoje' : periodo === '7dias' ? 'Últimos 7 Dias' : periodo === 'mes' ? 'Mês Atual' : periodo === 'ano' ? 'Ano Atual' : 'Todos os Dados'}`;
-      showNotification(`Filtro alterado.`);
-      carregarDadosAPI(); 
+      showNotification(`Filtro alterado.`); carregarDadosAPI(); 
     }
 
     function atualizarGrafico(dadosDaApi) {
       const ctx = document.getElementById('financialChart').getContext('2d');
       if (chartInstance) chartInstance.destroy();
-      
       chartInstance = new Chart(ctx, {
         type: 'bar',
-        data: {
-          labels: dadosDaApi.labels.reverse(),
-          datasets: [
-            { label: 'Faturamento Bruto', data: dadosDaApi.faturamento.reverse(), backgroundColor: '#00ff66', borderRadius: 6 },
-            { label: 'Lucro Líquido', data: dadosDaApi.lucro.reverse(), backgroundColor: '#6efeb0', borderRadius: 6 }
-          ]
-        },
+        data: { labels: dadosDaApi.labels.reverse(), datasets: [{ label: 'Faturamento Bruto', data: dadosDaApi.faturamento.reverse(), backgroundColor: '#00ff66', borderRadius: 6 }, { label: 'Lucro Líquido', data: dadosDaApi.lucro.reverse(), backgroundColor: '#6efeb0', borderRadius: 6 }] },
         options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { ticks: { color: '#8cb19a' } }, y: { ticks: { color: '#8cb19a' } } } }
       });
     }
 
     function atualizarTabela(lista) {
-      const tbody = document.getElementById('corpoTabelaAparelhos');
-      tbody.innerHTML = '';
-      if (lista.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:20px; color:var(--text-muted);">Nenhum registro encontrado.</td></tr>`;
-        return;
-      }
+      const tbody = document.getElementById('corpoTabelaAparelhos'); tbody.innerHTML = '';
+      if (lista.length === 0) { tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:20px; color:var(--text-muted);">Nenhum registro encontrado.</td></tr>`; return; }
       lista.slice(0, 7).forEach(item => {
         const tr = document.createElement('tr');
+        // AQUI FORAM ADICIONADOS OS BOTÕES DE WHATSAPP E IMPRESSÃO
         tr.innerHTML = `
           <td><div class="client-device-cell"><span class="client-name">${escapeHTML(item.cliente_nome || item.cliente)}</span><span class="device-name">${escapeHTML(item.aparelho)}</span></div></td>
           <td style="font-weight:600; color:#d0f0dc;">${escapeHTML(item.servico)}</td>
           <td><span class="status-badge ${obterClasseStatus(item.status)}" onclick="alternarStatusOS(${item.id})">${escapeHTML(item.status)}</span></td>
           <td class="val-text-green">${formatarMoeda(item.valor)}</td>
           <td style="text-align: right; white-space: nowrap;">
+            <button class="btn-table-action" style="color: #25D366; margin-right: 4px;" onclick="enviarWhatsApp('${item.cliente_nome || item.cliente}', '${item.aparelho}', '${item.servico}', ${item.valor}, '${item.status}')" title="Avisar no WhatsApp"><i class="fa-brands fa-whatsapp"></i></button>
+            <button class="btn-table-action" style="color: #b2d8c1; margin-right: 4px;" onclick="imprimirCupom('${item.id}', '${item.cliente_nome || item.cliente}', '${item.aparelho}', '${item.servico}', ${item.valor})" title="Imprimir Recibo"><i class="fa-solid fa-print"></i></button>
             <button class="btn-table-action" onclick="abrirEdicaoOS(${item.id})" title="Editar"><i class="fa-solid fa-pen"></i></button>
             <button class="btn-table-action delete" onclick="excluirOS(${item.id})" title="Excluir"><i class="fa-solid fa-trash"></i></button>
           </td>
@@ -1860,179 +1187,75 @@
       });
     }
 
-    function pesquisarOS(term) {
-      term = term.toLowerCase().trim();
-      const res = osList.filter(o => (o.cliente_nome||'').toLowerCase().includes(term) || (o.aparelho||'').toLowerCase().includes(term) || (o.servico||'').toLowerCase().includes(term));
-      atualizarTabela(res);
-    }
+    function pesquisarOS(term) { term = term.toLowerCase().trim(); const res = osList.filter(o => (o.cliente_nome||'').toLowerCase().includes(term) || (o.aparelho||'').toLowerCase().includes(term) || (o.servico||'').toLowerCase().includes(term)); atualizarTabela(res); }
     function handleGlobalSearch(term) { pesquisarOS(term); }
-
-    function atualizarAutoSuggest() {
-      const cli = [...new Set(osList.map(o => o.cliente_nome))];
-      const ap = [...new Set(osList.map(o => o.aparelho))];
-      const serv = [...new Set(osList.map(o => o.servico))];
-      preencherDatalist('clientesDatalist', cli);
-      preencherDatalist('aparelhosDatalist', ap);
-      preencherDatalist('servicosDatalist', serv);
-    }
-    function preencherDatalist(id, arr) {
-      const el = document.getElementById(id);
-      if (!el) return; el.innerHTML = '';
-      arr.forEach(i => { if(i){ const opt = document.createElement('option'); opt.value = i; el.appendChild(opt); }});
-    }
-
-    function obterClasseStatus(st) {
-      if (st === 'Concluído') return 'status-concluido';
-      if (st === 'Em Andamento') return 'status-andamento';
-      if (st === 'Na Fila') return 'status-fila';
-      return 'status-cancelado';
-    }
-
-    function formatarMoeda(val) {
-      return 'R$ ' + parseFloat(val || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    }
+    function atualizarAutoSuggest() { const cli = [...new Set(osList.map(o => o.cliente_nome))]; const ap = [...new Set(osList.map(o => o.aparelho))]; const serv = [...new Set(osList.map(o => o.servico))]; preencherDatalist('clientesDatalist', cli); preencherDatalist('aparelhosDatalist', ap); preencherDatalist('servicosDatalist', serv); }
+    function preencherDatalist(id, arr) { const el = document.getElementById(id); if (!el) return; el.innerHTML = ''; arr.forEach(i => { if(i){ const opt = document.createElement('option'); opt.value = i; el.appendChild(opt); }}); }
+    function obterClasseStatus(st) { if (st === 'Concluído') return 'status-concluido'; if (st === 'Em Andamento') return 'status-andamento'; if (st === 'Na Fila') return 'status-fila'; return 'status-cancelado'; }
+    function formatarMoeda(val) { return 'R$ ' + parseFloat(val || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
 
     /* =========================================================
-       4. ESTATÍSTICAS E RELATÓRIOS (MODAIS VIA API JWT)
+       MODAIS DE ESTATÍSTICAS E RELATÓRIOS
        ========================================================= */
-
     function navegarPara(tab) {
       document.querySelectorAll('#sidebarNav .nav-item').forEach(li => li.classList.toggle('active', li.getAttribute('data-tab') === tab));
       if (tab === 'inicio') window.scrollTo({ top: 0, behavior: 'smooth' });
-      else if (tab === 'financeiro') abrirModalLancamentos();
-      else if (tab === 'clientes') abrirModalClientes();
-      else if (tab === 'servicos') abrirModalServicos();
-      else if (tab === 'aparelhos') abrirModalAparelhos();
-      else if (tab === 'relatorios') abrirModalRelatorios();
-      else if (tab === 'configuracoes') abrirConfiguracoes();
+      else if (tab === 'financeiro') abrirModalLancamentos(); else if (tab === 'clientes') abrirModalClientes(); else if (tab === 'servicos') abrirModalServicos();
+      else if (tab === 'aparelhos') abrirModalAparelhos(); else if (tab === 'relatorios') abrirModalRelatorios(); else if (tab === 'configuracoes') abrirConfiguracoes();
       if(window.innerWidth <= 992) { document.getElementById('sidebar').classList.remove('open'); }
     }
 
     async function abrirModalClientes() {
-      const tbody = document.getElementById('clientesTbody'); 
-      tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding:20px; color:var(--neon-green);">Carregando dados do servidor...</td></tr>';
-      abrirModal('modalClientes');
-      try {
-        const res = await apiFetch(`/api/estatisticas/clientes`);
-        if (res.ok) {
-          const dados = await res.json();
-          tbody.innerHTML = '';
-          if(dados.length === 0) { tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:var(--text-muted);">Nenhum cliente registrado.</td></tr>'; return; }
-          dados.forEach(d => {
-            tbody.innerHTML += `<tr><td style="font-weight:700;">${escapeHTML(d.cliente)}</td><td>${d.servicos} serviço(s)</td><td>Direto</td><td style="text-align:right;" class="val-text-green">${formatarMoeda(d.total_gasto)}</td></tr>`;
-          });
-        }
-      } catch (e) {}
+      const tbody = document.getElementById('clientesTbody'); tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding:20px; color:var(--neon-green);">Carregando dados do servidor...</td></tr>'; abrirModal('modalClientes');
+      try { const res = await apiFetch(`/api/estatisticas/clientes`); if (res.ok) { const dados = await res.json(); tbody.innerHTML = ''; if(dados.length === 0) { tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:var(--text-muted);">Nenhum cliente registrado.</td></tr>'; return; } dados.forEach(d => { tbody.innerHTML += `<tr><td style="font-weight:700;">${escapeHTML(d.cliente)}</td><td>${d.servicos} serviço(s)</td><td>Direto</td><td style="text-align:right;" class="val-text-green">${formatarMoeda(d.total_gasto)}</td></tr>`; }); } } catch (e) {}
     }
 
     async function abrirModalServicos() {
-      const tbody = document.getElementById('servicosTbody'); 
-      tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding:20px; color:var(--neon-green);">Carregando dados...</td></tr>';
-      abrirModal('modalServicos');
-      try {
-        const res = await apiFetch(`/api/estatisticas/servicos`);
-        if (res.ok) {
-          const dados = await res.json();
-          tbody.innerHTML = '';
-          if(dados.length === 0) { tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:var(--text-muted);">Nenhum serviço registrado.</td></tr>'; return; }
-          dados.forEach(d => {
-            tbody.innerHTML += `<tr><td style="font-weight:700;">${escapeHTML(d.servico)}</td><td>${d.quantidade}</td><td>${formatarMoeda(d.preco_medio)}</td><td style="text-align:right;" class="val-text-green">${formatarMoeda(d.total_gerado)}</td></tr>`;
-          });
-        }
-      } catch (e) {}
+      const tbody = document.getElementById('servicosTbody'); tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding:20px; color:var(--neon-green);">Carregando dados...</td></tr>'; abrirModal('modalServicos');
+      try { const res = await apiFetch(`/api/estatisticas/servicos`); if (res.ok) { const dados = await res.json(); tbody.innerHTML = ''; if(dados.length === 0) { tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:var(--text-muted);">Nenhum serviço registrado.</td></tr>'; return; } dados.forEach(d => { tbody.innerHTML += `<tr><td style="font-weight:700;">${escapeHTML(d.servico)}</td><td>${d.quantidade}</td><td>${formatarMoeda(d.preco_medio)}</td><td style="text-align:right;" class="val-text-green">${formatarMoeda(d.total_gerado)}</td></tr>`; }); } } catch (e) {}
     }
 
     async function abrirModalAparelhos() {
-      const tbody = document.getElementById('aparelhosTbody'); 
-      tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding:20px; color:var(--neon-green);">Carregando dados...</td></tr>';
-      abrirModal('modalAparelhos');
-      try {
-        const res = await apiFetch(`/api/estatisticas/aparelhos`);
-        if (res.ok) {
-          const dados = await res.json();
-          tbody.innerHTML = '';
-          if(dados.length === 0) { tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:var(--text-muted);">Nenhum aparelho registrado.</td></tr>'; return; }
-          dados.forEach(d => {
-            tbody.innerHTML += `<tr><td style="font-weight:700;">${escapeHTML(d.aparelho)}</td><td>${d.quantidade}</td><td>Mobile</td><td style="text-align:right;" class="val-text-green">${formatarMoeda(d.total_gerado)}</td></tr>`;
-          });
-        }
-      } catch (e) {}
+      const tbody = document.getElementById('aparelhosTbody'); tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding:20px; color:var(--neon-green);">Carregando dados...</td></tr>'; abrirModal('modalAparelhos');
+      try { const res = await apiFetch(`/api/estatisticas/aparelhos`); if (res.ok) { const dados = await res.json(); tbody.innerHTML = ''; if(dados.length === 0) { tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:var(--text-muted);">Nenhum aparelho registrado.</td></tr>'; return; } dados.forEach(d => { tbody.innerHTML += `<tr><td style="font-weight:700;">${escapeHTML(d.aparelho)}</td><td>${d.quantidade}</td><td>Mobile</td><td style="text-align:right;" class="val-text-green">${formatarMoeda(d.total_gerado)}</td></tr>`; }); } } catch (e) {}
     }
 
     function abrirModalRelatorios() {
-      const kpiFat = document.getElementById('kpiFaturamento').textContent;
-      const kpiCust = document.getElementById('kpiCustos').textContent;
-      const kpiLuc = document.getElementById('kpiLucro').textContent;
-      
-      document.getElementById('relFaturamento').textContent = kpiFat;
-      document.getElementById('relCustos').textContent = kpiCust;
-      document.getElementById('relLucro').textContent = kpiLuc;
-      
+      const kpiFat = document.getElementById('kpiFaturamento').textContent; const kpiCust = document.getElementById('kpiCustos').textContent; const kpiLuc = document.getElementById('kpiLucro').textContent;
+      document.getElementById('relFaturamento').textContent = kpiFat; document.getElementById('relCustos').textContent = kpiCust; document.getElementById('relLucro').textContent = kpiLuc;
       const tbody = document.getElementById('relatorioTbody'); tbody.innerHTML = '';
-      if(osList.length === 0) {
-          tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; color:var(--text-muted);">Nenhum dado para o relatório.</td></tr>';
-      } else {
-          osList.forEach(o => {
-            const lucroBruto = (o.valor || 0) - (o.custo || 0);
-            tbody.innerHTML += `<tr><td>#${o.id.toString().slice(-4)}</td><td>${escapeHTML(o.cliente_nome)}</td><td>${escapeHTML(o.aparelho)}</td><td>${escapeHTML(o.servico)}</td><td>${escapeHTML(o.data||'')}</td><td><span class="status-badge ${obterClasseStatus(o.status)}">${o.status}</span></td><td style="text-align:right;" class="val-text-green">${formatarMoeda(lucroBruto)}</td></tr>`;
-          });
-      }
+      if(osList.length === 0) { tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; color:var(--text-muted);">Nenhum dado para o relatório.</td></tr>'; } 
+      else { osList.forEach(o => { const lucroBruto = (o.valor || 0) - (o.custo || 0); tbody.innerHTML += `<tr><td>#${o.id.toString().slice(-4)}</td><td>${escapeHTML(o.cliente_nome)}</td><td>${escapeHTML(o.aparelho)}</td><td>${escapeHTML(o.servico)}</td><td>${escapeHTML(o.data||'')}</td><td><span class="status-badge ${obterClasseStatus(o.status)}">${o.status}</span></td><td style="text-align:right;" class="val-text-green">${formatarMoeda(lucroBruto)}</td></tr>`; }); }
       abrirModal('modalRelatorios');
     }
 
     function exportarRelatorioCompletoCSV() {
       let csv = 'ID;CLIENTE;APARELHO;SERVICO;VALOR;CUSTO;LUCRO\n';
-      osList.forEach(o => {
-        const lucro = (o.valor || 0) - (o.custo || 0);
-        csv += `"${o.id}";"${o.cliente_nome}";"${o.aparelho}";"${o.servico}";"${o.valor}";"${o.custo}";"${lucro}"\n`;
-      });
-      baixarArquivo(csv, 'relatorio_geral.csv', 'text/csv');
-      showNotification('Relatório exportado!');
+      osList.forEach(o => { const lucro = (o.valor || 0) - (o.custo || 0); csv += `"${o.id}";"${o.cliente_nome}";"${o.aparelho}";"${o.servico}";"${o.valor}";"${o.custo}";"${lucro}"\n`; });
+      baixarArquivo(csv, 'relatorio_geral.csv', 'text/csv'); showNotification('Relatório exportado!');
     }
 
     /* =========================================================
-       5. LANÇAMENTOS AVULSOS E FECHAMENTO
+       LANÇAMENTOS AVULSOS
        ========================================================= */
-
     function abrirNovoLancamentoModal() { abrirModal('modalNovoLancamento'); }
-    
     async function salvarLancamentoAvulso(e) {
       e.preventDefault();
-      const tipo = document.getElementById('avulsoTipo').value;
-      const descricao = document.getElementById('avulsoDesc').value.trim();
-      const valor = parseFloat(document.getElementById('avulsoValor').value) || 0;
-      const dataRaw = document.getElementById('avulsoData').value;
-      const metodo = document.getElementById('avulsoMetodo').value;
-
+      const tipo = document.getElementById('avulsoTipo').value; const descricao = document.getElementById('avulsoDesc').value.trim(); const valor = parseFloat(document.getElementById('avulsoValor').value) || 0;
+      const dataRaw = document.getElementById('avulsoData').value; const metodo = document.getElementById('avulsoMetodo').value;
       try {
-        const url = new URL(`${API_BASE_URL}/api/lancamentos/`);
-        url.searchParams.append("descricao", descricao);
-        url.searchParams.append("tipo", tipo);
-        url.searchParams.append("valor", valor);
-        url.searchParams.append("data", dataRaw);
-        url.searchParams.append("metodo_pagamento", metodo);
-
+        const url = new URL(`${API_BASE_URL}/api/lancamentos/`); url.searchParams.append("descricao", descricao); url.searchParams.append("tipo", tipo); url.searchParams.append("valor", valor); url.searchParams.append("data", dataRaw); url.searchParams.append("metodo_pagamento", metodo);
         const response = await apiFetch(url.pathname + url.search, { method: 'POST' });
-        
-        if (response.ok) {
-          fecharModal('modalNovoLancamento');
-          showNotification('Lançamento avulso salvo!');
-          document.getElementById('avulsoDesc').value = '';
-          document.getElementById('avulsoValor').value = '';
-          carregarDadosAPI();
-        }
+        if (response.ok) { fecharModal('modalNovoLancamento'); showNotification('Lançamento avulso salvo!'); document.getElementById('avulsoDesc').value = ''; document.getElementById('avulsoValor').value = ''; carregarDadosAPI(); }
       } catch (error) {}
     }
 
     function abrirModalLancamentos() { filtrarTabelaModalLancamentos('todos'); abrirModal('modalLancamentos'); }
-    
     function filtrarTabelaModalLancamentos(tipoFiltro) {
-      const tbody = document.getElementById('modalLancamentosTbody');
-      tbody.innerHTML = '';
+      const tbody = document.getElementById('modalLancamentosTbody'); tbody.innerHTML = '';
       const data = tipoFiltro === 'todos' ? lancamentosList : lancamentosList.filter(l => l.tipo === tipoFiltro);
       data.forEach(l => {
-        const isRec = l.tipo === 'Receita';
-        const tr = document.createElement('tr');
+        const isRec = l.tipo === 'Receita'; const tr = document.createElement('tr');
         tr.innerHTML = `<td>${escapeHTML(l.data)}</td><td>${escapeHTML(l.descricao)}</td><td style="color:${isRec?'var(--neon-green)':'var(--neon-red)'}; font-weight:700;">${escapeHTML(l.tipo)}</td><td class="${isRec?'val-text-green':'val-text-red'}">${isRec?'+':'-'} ${formatarMoeda(l.valor)}</td><td style="text-align:right;"><button class="btn-table-action delete" onclick="excluirLanc(${l.id})"><i class="fa-solid fa-trash"></i></button></td>`;
         tbody.appendChild(tr);
       });
@@ -2040,130 +1263,55 @@
 
     async function excluirLanc(id) {
       if (confirm('Deseja realmente excluir este lançamento financeiro?')) {
-        try {
-          const response = await apiFetch(`/api/lancamentos/${id}`, { method: 'DELETE' });
-          if (response.ok) {
-            showNotification('Lançamento excluído!');
-            if(document.getElementById('modalLancamentos').classList.contains('show')) {
-                lancamentosList = lancamentosList.filter(l => l.id != id);
-                filtrarTabelaModalLancamentos('todos');
-            }
-            carregarDadosAPI();
-          }
-        } catch (error) {}
+        try { const response = await apiFetch(`/api/lancamentos/${id}`, { method: 'DELETE' }); if (response.ok) { showNotification('Lançamento excluído!'); if(document.getElementById('modalLancamentos').classList.contains('show')) { lancamentosList = lancamentosList.filter(l => l.id != id); filtrarTabelaModalLancamentos('todos'); } carregarDadosAPI(); } } catch (error) {}
       }
     }
-
-    function exportarLancamentosCSV() {
-      let csv = 'DATA;DESCRIÇÃO;TIPO;VALOR\n';
-      lancamentosList.forEach(l => csv += `"${l.data}";"${l.descricao}";"${l.tipo}";"${parseFloat(l.valor).toFixed(2)}"\n`);
-      baixarArquivo(csv, 'lancamentos.csv', 'text/csv');
-      showNotification('CSV exportado com sucesso!');
-    }
-
+    function exportarLancamentosCSV() { let csv = 'DATA;DESCRIÇÃO;TIPO;VALOR\n'; lancamentosList.forEach(l => csv += `"${l.data}";"${l.descricao}";"${l.tipo}";"${parseFloat(l.valor).toFixed(2)}"\n`); baixarArquivo(csv, 'lancamentos.csv', 'text/csv'); showNotification('CSV exportado com sucesso!'); }
     function atualizarTabelaLancamentos() {
-      const tbody = document.getElementById('corpoTabelaLancamentos');
-      if(!tbody) return;
-      tbody.innerHTML = '';
-      if(lancamentosList.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; padding:15px; color:var(--text-muted);">Nenhum lançamento avulso registrado.</td></tr>`;
-        return;
-      }
-      lancamentosList.slice(0, 6).forEach(l => {
-        const isRec = l.tipo === 'Receita';
-        const tr = document.createElement('tr');
-        tr.innerHTML = `<td style="color:var(--text-muted); font-size:0.8rem;">${escapeHTML(l.data)}</td><td style="font-weight:600;">${escapeHTML(l.descricao)}</td><td style="color:${isRec ? 'var(--neon-green)' : 'var(--neon-red)'}; font-weight:700;">${escapeHTML(l.tipo)}</td><td style="text-align: right;" class="${isRec ? 'val-text-green' : 'val-text-red'}">${isRec ? '+ ' : '- '} ${formatarMoeda(l.valor)}</td>`;
-        tbody.appendChild(tr);
-      });
+      const tbody = document.getElementById('corpoTabelaLancamentos'); if(!tbody) return; tbody.innerHTML = '';
+      if(lancamentosList.length === 0) { tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; padding:15px; color:var(--text-muted);">Nenhum lançamento avulso registrado.</td></tr>`; return; }
+      lancamentosList.slice(0, 6).forEach(l => { const isRec = l.tipo === 'Receita'; const tr = document.createElement('tr'); tr.innerHTML = `<td style="color:var(--text-muted); font-size:0.8rem;">${escapeHTML(l.data)}</td><td style="font-weight:600;">${escapeHTML(l.descricao)}</td><td style="color:${isRec ? 'var(--neon-green)' : 'var(--neon-red)'}; font-weight:700;">${escapeHTML(l.tipo)}</td><td style="text-align: right;" class="${isRec ? 'val-text-green' : 'val-text-red'}">${isRec ? '+ ' : '- '} ${formatarMoeda(l.valor)}</td>`; tbody.appendChild(tr); });
     }
 
+    /* =========================================================
+       FECHAMENTO DE CAIXA
+       ========================================================= */
     function abrirFechamentoCaixa() {
-      const inputData = document.getElementById('fechamentoDataFiltro');
-      if(!inputData.value) inputData.value = formatDateISO(new Date());
-      abrirModal('modalFechamento');
-      carregarFechamentoCaixa();
+      const inputData = document.getElementById('fechamentoDataFiltro'); if(!inputData.value) inputData.value = formatDateISO(new Date());
+      abrirModal('modalFechamento'); carregarFechamentoCaixa();
     }
-
     async function carregarFechamentoCaixa() {
       const dataSelecionada = document.getElementById('fechamentoDataFiltro').value;
       try {
         const res = await apiFetch(`/api/financeiro/fechamento?data=${dataSelecionada}`);
         if (res.ok) {
           const data = await res.json();
-          document.getElementById('fechaPix').textContent = formatarMoeda(data.totais["PIX"] || 0);
-          document.getElementById('fechaCredito').textContent = formatarMoeda(data.totais["Cartão de Crédito"] || 0);
-          document.getElementById('fechaDebito').textContent = formatarMoeda(data.totais["Cartão de Débito"] || 0);
-          document.getElementById('fechaDinheiro').textContent = formatarMoeda(data.totais["Dinheiro"] || 0);
+          document.getElementById('fechaPix').textContent = formatarMoeda(data.totais["PIX"] || 0); document.getElementById('fechaCredito').textContent = formatarMoeda(data.totais["Cartão de Crédito"] || 0);
+          document.getElementById('fechaDebito').textContent = formatarMoeda(data.totais["Cartão de Débito"] || 0); document.getElementById('fechaDinheiro').textContent = formatarMoeda(data.totais["Dinheiro"] || 0);
           document.getElementById('fechaTotal').textContent = formatarMoeda(data.total_geral || 0);
         }
-      } catch (e) {
-        showNotification("Erro ao processar fechamento de caixa.");
-      }
+      } catch (e) { showNotification("Erro ao processar fechamento de caixa."); }
     }
 
     /* =========================================================
-       6. UTILITÁRIOS E INTERFACE GERAL
+       UTILITÁRIOS GERAIS
        ========================================================= */
-
     function irParaInicio() { navegarPara('inicio'); }
     function abrirModal(id) { document.getElementById(id).classList.add('show'); }
     function fecharModal(id) { document.getElementById(id).classList.remove('show'); }
-
     function abrirConfiguracoes() { abrirModal('modalConfiguracoes'); }
-    function resetarDadosFabrica() {
-      if (confirm('Atenção: Essa ação irá limpar sua sessão local no navegador.')) {
-        localStorage.clear();
-        location.reload();
-      }
-    }
-
-    function adicionarNotificacao(txt) {
-      notificacoesList.unshift({ id: Date.now(), text: txt, time: new Date().toLocaleTimeString('pt-BR', { hour:'2-digit', minute:'2-digit' }) });
-      localStorage.setItem(STORAGE_KEY_NOTIFS, JSON.stringify(notificacoesList));
-      atualizarNotificacoesUI();
-    }
-    function atualizarNotificacoesUI() {
-      const el = document.getElementById('notifList'); if (!el) return;
-      el.innerHTML = '';
-      notificacoesList.slice(0,5).forEach(n => el.innerHTML += `<div class="notif-item"><span>${escapeHTML(n.text)}</span><small>${n.time}</small></div>`);
-      
-      const badge = document.getElementById('notifBadge');
-      if (notificacoesList.length > 0) { badge.style.display = 'block'; } else { badge.style.display = 'none'; }
-    }
+    function resetarDadosFabrica() { if (confirm('Atenção: Essa ação irá limpar sua sessão local no navegador.')) { localStorage.clear(); location.reload(); } }
+    function adicionarNotificacao(txt) { notificacoesList.unshift({ id: Date.now(), text: txt, time: new Date().toLocaleTimeString('pt-BR', { hour:'2-digit', minute:'2-digit' }) }); localStorage.setItem(STORAGE_KEY_NOTIFS, JSON.stringify(notificacoesList)); atualizarNotificacoesUI(); }
+    function atualizarNotificacoesUI() { const el = document.getElementById('notifList'); if (!el) return; el.innerHTML = ''; notificacoesList.slice(0,5).forEach(n => el.innerHTML += `<div class="notif-item"><span>${escapeHTML(n.text)}</span><small>${n.time}</small></div>`); const badge = document.getElementById('notifBadge'); if (notificacoesList.length > 0) { badge.style.display = 'block'; } else { badge.style.display = 'none'; } }
     function limparNotificacoes() { notificacoesList = []; localStorage.removeItem(STORAGE_KEY_NOTIFS); atualizarNotificacoesUI(); }
     function toggleNotificacoesDropdown() { document.getElementById('notifDropdown').classList.toggle('active'); document.getElementById('userDropdown').classList.remove('active'); }
     function toggleUserDropdown() { document.getElementById('userDropdown').classList.toggle('active'); document.getElementById('notifDropdown').classList.remove('active'); }
-
     function iniciarRelogio() { setInterval(() => { const el = document.getElementById('currentTime'); if (el) el.textContent = new Date().toLocaleTimeString('pt-BR'); }, 1000); }
     function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
-    
-    function showNotification(msg) {
-      const c = document.getElementById('toastContainer');
-      const t = document.createElement('div'); t.className = 'toast';
-      t.innerHTML = `<i class="fa-solid fa-circle-check" style="color:var(--neon-green);"></i><span>${escapeHTML(msg)}</span>`;
-      c.appendChild(t); setTimeout(() => t.remove(), 3500);
-    }
-    
-    function baixarArquivo(content, name, mime) {
-      const b = new Blob([content], { type: mime });
-      const u = URL.createObjectURL(b);
-      const a = document.createElement('a'); a.href = u; a.download = name; a.click(); URL.revokeObjectURL(u);
-    }
-    
+    function showNotification(msg) { const c = document.getElementById('toastContainer'); const t = document.createElement('div'); t.className = 'toast'; t.innerHTML = `<i class="fa-solid fa-circle-check" style="color:var(--neon-green);"></i><span>${escapeHTML(msg)}</span>`; c.appendChild(t); setTimeout(() => t.remove(), 3500); }
+    function baixarArquivo(content, name, mime) { const b = new Blob([content], { type: mime }); const u = URL.createObjectURL(b); const a = document.createElement('a'); a.href = u; a.download = name; a.click(); URL.revokeObjectURL(u); }
     function escapeHTML(str) { return String(str||'').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
-
-    function iniciarCanvasMatrix() {
-      const c = document.getElementById('matrix-canvas'); if (!c) return;
-      const ctx = c.getContext('2d');
-      let w = c.width = window.innerWidth, h = c.height = window.innerHeight;
-      window.addEventListener('resize', () => { w = c.width = window.innerWidth; h = c.height = window.innerHeight; });
-      const cols = Math.floor(w / 30) + 1, ypos = Array(cols).fill(0);
-      setInterval(() => {
-        ctx.fillStyle = 'rgba(2, 6, 4, 0.15)'; ctx.fillRect(0, 0, w, h);
-        ctx.fillStyle = '#00ff66'; ctx.font = '12pt monospace';
-        ypos.forEach((y, i) => { ctx.fillText(String.fromCharCode(Math.floor(Math.random()*94)+33), i*30, y); if (y > 1000) ypos[i] = 0; else ypos[i] = y + 20; });
-      }, 80);
-    }
+    function iniciarCanvasMatrix() { const c = document.getElementById('matrix-canvas'); if (!c) return; const ctx = c.getContext('2d'); let w = c.width = window.innerWidth, h = c.height = window.innerHeight; window.addEventListener('resize', () => { w = c.width = window.innerWidth; h = c.height = window.innerHeight; }); const cols = Math.floor(w / 30) + 1, ypos = Array(cols).fill(0); setInterval(() => { ctx.fillStyle = 'rgba(2, 6, 4, 0.15)'; ctx.fillRect(0, 0, w, h); ctx.fillStyle = '#00ff66'; ctx.font = '12pt monospace'; ypos.forEach((y, i) => { ctx.fillText(String.fromCharCode(Math.floor(Math.random()*94)+33), i*30, y); if (y > 1000) ypos[i] = 0; else ypos[i] = y + 20; }); }, 80); }
   </script>
 </body>
 </html>
